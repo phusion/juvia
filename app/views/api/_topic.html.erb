@@ -1,0 +1,49 @@
+<div class="juvia-container"
+	data-site-key="<%= @site_key %>"
+	data-topic-key="<%= @topic_key %>"
+	data-topic-title="<%= @topic_title %>"
+	data-topic-url="<%= @topic_url %>">
+<div class="juvia-topic">
+	<% if topic.comments.size == 1 %>
+		<h3>1 comment</h3>
+		<div class="juvia-comments">
+			<%= render :partial => 'comment', :collection => topic.comments %>
+		</div>
+	<% elsif topic.comments.size > 1 %>
+		<h3><%= topic.comments.size %> comments</h3>
+		<div class="juvia-comments">
+			<%= render :partial => 'comment', :collection => topic.comments %>
+		</div>
+	<% else %>
+		<div class="juvia-comments juvia-no-comments">There are no comments yet.</div>
+	<% end %>
+	
+	<h3>Add comment</h3>
+	
+	<form
+	method="post"
+	action="javascript:void(0)"
+	onsubmit="return Juvia.submitComment(this)"
+	class="juvia-add-comment-form">
+		<div class="juvia-metadata">
+			<div class="juvia-field juvia-text-field">
+				<div class="juvia-label">Name (optional)</div>
+				<div class="juvia-input"><input type="text" name="author_name"></div>
+			</div>
+			
+			<div class="juvia-field juvia-text-field">
+				<div class="juvia-label">Email (optional)</div>
+				<div class="juvia-input"><input type="text" name="author_email"></div>
+			</div>
+		</div>
+		
+		<div class="juvia-data">
+			<div class="juvia-field juvia-textarea-field">
+				<textarea name="content" cols="80" rows="10"></textarea>
+			</div>
+		</div>
+		
+		<div class="juvia-submit"><input type="submit" value="Submit"></div>
+	</form>
+</div>
+</div> <!-- juvia-container -->

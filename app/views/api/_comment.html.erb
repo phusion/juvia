@@ -1,0 +1,29 @@
+<div class="juvia-comment">
+	<div class="juvia-metadata">
+		<% if comment.author_email %>
+			<div class="juvia-avatar">
+				<img src="http://www.gravatar.com/avatar/<%= comment.author_email_md5 %>?s=64"
+				width="64"
+				height="64"
+				alt="<%= comment.author_name || comment.author_email %>">
+			</div>
+			<div class="juvia-author juvia-author-with-email">
+				<a href="mailto:<%= comment.author_email %>"><%= comment.author_name || 'Anonymous' %></a>
+			</div>
+		<% else %>
+			<div class="juvia-avatar">
+				<img src="http://www.gravatar.com/avatar/generic?s=64"
+				width="64"
+				height="64"
+				alt="<%= comment.author_name || 'No avatar' %>">
+			</div>
+			<div class="juvia-author juvia-author-without-email">
+				<%= comment.author_name || 'Anonymous' %>
+			</div>
+		<% end %>
+		<div class="juvia-end"></div>
+	</div>
+	<div class="juvia-data">
+		<div class="juvia-comment-content"><%= comment.content %></div>
+	</div>
+</div>

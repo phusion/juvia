@@ -2,7 +2,7 @@ class CreateComments < ActiveRecord::Migration
   def self.up
     create_table :comments do |t|
       t.integer  :topic_id, :null => false, :on_update => :cascade, :on_delete => :cascade
-      t.boolean  :passed_moderation, :null => false
+      t.boolean  :passed_moderation, :null => false, :default => true
       t.string   :author_name
       t.string   :author_email
       t.text     :content, :null => false

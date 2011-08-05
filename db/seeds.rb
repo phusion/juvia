@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
+
+site = Site.create!(:key => 'testkey', :name => 'Test Site')
+topic = site.topics.create!(:key => 'testtopic', :title => 'Test Topic', :url => 'http://test')
+topic.comments.create!(:content => 'hello world')

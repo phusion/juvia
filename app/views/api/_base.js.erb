@@ -1,0 +1,112 @@
+var Juvia = {
+	loadScriptCounter: 0
+};
+
+(function() {
+	var $ = jQuery.noConflict();
+	var RawDeflate;
+	<%= File.read("#{Rails.root}/public/javascripts/rawdeflate.js").html_safe %>
+	<%= File.read("#{Rails.root}/public/javascripts/base64.js").html_safe %>
+	
+	Juvia.loadScript = function(path, options) {
+		var url = '<%= escape_javascript(request.protocol + request.host_with_port) %>';
+		url += path;
+		
+		// Make sure that each loadScript() call generates a unique URL,
+		// otherwise the browser may not actually perform the request.
+		url += '?_c=' + this.loadScriptCounter;
+		this.loadScriptCounter++;
+		
+		for (var name in options) {
+			url += '&';
+			url += encodeURIComponent(name);
+			url += '=';
+			url += encodeURIComponent(options[name]);
+		}
+		
+		$('script.juvia').remove();
+		
+		var s = document.createElement('script');
+		s.async     = true;
+		s.type      = 'text/javascript';
+		s.className = 'juvia';
+		s.src       = url;
+		(document.getElementsByTagName('head')[0] ||
+		 document.getElementsByTagName('body')[0]).appendChild(s);
+	}
+	
+	Juvia.submitComment = $.proxy(function(form) {
+		var $container   = $(form).closest('.juvia-container');
+		
+		var content = $('textarea[name="content"]', form).val();
+		content = this.encodeUtf8(content);
+		content = "\x78\x9c" +
+			RawDeflate.deflate(content) +
+			this.uintToBinary(this.adler32(content));
+		content = Base64.encode(content);
+		
+		this.loadScript('/api/add_comment', {
+			site_key     : $container.data('site-key'),
+			topic_key    : $container.data('topic-key'),
+			topic_title  : $container.data('topic-title'),
+			topic_url    : $container.data('topic-url'),
+			author_name  : $('input[name="author_name"]', form).val(),
+			author_email : $('input[name="author_email"]', form).val(),
+			content      : content
+		});
+		return false;
+	}, Juvia);
+	
+	Juvia.eval = $.proxy(function(source) {
+		eval(source);
+	}, Juvia);
+	
+	Juvia.encodeUtf8 = function(string) {
+		string = string.replace(/\r\n/g,"\n");
+		var utftext = "";
+		
+		for (var n = 0; n < string.length; n++) {
+			
+			var c = string.charCodeAt(n);
+			
+			if (c < 128) {
+				utftext += String.fromCharCode(c);
+			}
+			else if((c > 127) && (c < 2048)) {
+				utftext += String.fromCharCode((c >> 6) | 192);
+				utftext += String.fromCharCode((c & 63) | 128);
+			}
+			else {
+				utftext += String.fromCharCode((c >> 12) | 224);
+				utftext += String.fromCharCode(((c >> 6) & 63) | 128);
+				utftext += String.fromCharCode((c & 63) | 128);
+			}
+
+		}
+		
+		return utftext;
+	}
+	
+	Juvia.adler32 = function(data) {
+		const MOD_ADLER = 65521;
+		var a = 1, b = 0;
+		var index;
+
+		for (index = 0; index < data.length; index++) {
+			a = (a + data.charCodeAt(index)) % MOD_ADLER;
+			b = (b + a) % MOD_ADLER;
+		}
+
+		return (b << 16) | a;
+	}
+	
+	/** Converts a 32-bit unsigned integer into a 32-bit binary string, big endian encoding. */
+	Juvia.uintToBinary = function(i) {
+		var buf = [];
+		buf[0] = String.fromCharCode((i & 0xff000000) >> 24);
+		buf[1] = String.fromCharCode((i & 0xff0000) >> 16);
+		buf[2] = String.fromCharCode((i & 0xff00) >> 8);
+		buf[3] = String.fromCharCode((i & 0xff));
+		return buf.join('');
+	}
+})();

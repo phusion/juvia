@@ -1,0 +1,26 @@
+<h2>before comments</h2>
+<div id="comments"></div>
+<h3>after comments</h3>
+
+<script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" class="juvia">
+(function() {
+	var container   = '#comments';
+	var site_key    = 'testkey';
+	var topic_key   = 'testtopic';
+	var topic_title = document.title;
+	var topic_url   = location.href;
+	
+	var s       = document.createElement('script');
+	s.async     = true;
+	s.type      = 'text/javascript';
+	s.className = 'juvia';
+	s.src = 'http://0.0.0.0:3000/api/load_topic' +
+		'?container=' + encodeURIComponent(container) +
+		'&site_key=' + encodeURIComponent(site_key) +
+		'&topic_key=' + encodeURIComponent(topic_key) +
+		'&topic_url=' + encodeURIComponent(topic_url);
+	(document.getElementsByTagName('head')[0] ||
+	 document.getElementsByTagName('body')[0]).appendChild(s);
+})();
+</script>

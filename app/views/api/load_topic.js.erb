@@ -1,0 +1,10 @@
+var $container = $(<%= @container.to_json.html_safe %>);
+<%
+	html = render(:partial => 'topic.html', :locals => { :topic => @topic }).html_safe
+	if @include_css
+		html << '<style type="text/css">'.html_safe
+		html << render(:partial => 'stylesheet.css').html_safe
+		html << '</style>'.html_safe
+	end
+%>
+$container.html(<%= html.to_json.html_safe %>);

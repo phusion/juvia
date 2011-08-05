@@ -13,8 +13,9 @@
 ActiveRecord::Schema.define(:version => 20110804201102) do
 
   create_table "sites", :force => true do |t|
-    t.string   "name",                         :null => false
     t.string   "key",                          :null => false
+    t.string   "name",                         :null => false
+    t.string   "url"
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
     t.boolean  "moderated",  :default => true, :null => false
@@ -22,22 +23,22 @@ ActiveRecord::Schema.define(:version => 20110804201102) do
 
   create_table "topics", :force => true do |t|
     t.integer  "site_id",    :null => false
-    t.string   "identifier", :null => false
+    t.string   "key",        :null => false
     t.string   "title",      :null => false
-    t.string   "origin_url", :null => false
+    t.string   "url",        :null => false
     t.datetime "created_at", :null => false
-    t.index ["site_id", "identifier"], :name => "index_topics_on_site_id_and_identifier", :unique => true
+    t.index ["site_id", "key"], :name => "index_topics_on_site_id_and_key", :unique => true
     t.index ["site_id"], :name => "index_topics_on_site_id"
     t.foreign_key ["site_id"], "sites", ["id"], :on_update => :no_action, :on_delete => :no_action
   end
 
   create_table "comments", :force => true do |t|
-    t.integer  "topic_id",          :null => false
-    t.boolean  "passed_moderation", :null => false
+    t.integer  "topic_id",                            :null => false
+    t.boolean  "passed_moderation", :default => true, :null => false
     t.string   "author_name"
     t.string   "author_email"
-    t.text     "content",           :null => false
-    t.datetime "created_at",        :null => false
+    t.text     "content",                             :null => false
+    t.datetime "created_at",                          :null => false
     t.index ["topic_id"], :name => "index_comments_on_topic_id"
     t.foreign_key ["topic_id"], "topics", ["id"], :on_update => :cascade, :on_delete => :cascade
   end
