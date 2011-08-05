@@ -53,6 +53,7 @@ private
     options            = args.extract_options!
     include_base_js    = options.delete(:include_base_js)
     eval               = options.delete(:eval)
+    args << options
     
     headers["Content-Type"] = "text/javascript; charset=utf-8"
     content = render_to_string(*args)

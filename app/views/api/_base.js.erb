@@ -87,26 +87,34 @@ var Juvia = {
 		return utftext;
 	}
 	
-	Juvia.adler32 = function(data) {
+	Juvia.uint32 = function(i) {
+		return i >>> 0;
+	}
+	
+	Juvia.uint8 = function(i) {
+		return i & 0xff;
+	}
+	
+	Juvia.adler32 = $.proxy(function(data) {
 		const MOD_ADLER = 65521;
 		var a = 1, b = 0;
 		var index;
-
+		
 		for (index = 0; index < data.length; index++) {
 			a = (a + data.charCodeAt(index)) % MOD_ADLER;
 			b = (b + a) % MOD_ADLER;
 		}
-
-		return (b << 16) | a;
-	}
+		
+		return this.uint32((b << 16) | a);
+	}, Juvia);
 	
 	/** Converts a 32-bit unsigned integer into a 32-bit binary string, big endian encoding. */
-	Juvia.uintToBinary = function(i) {
+	Juvia.uintToBinary = $.proxy(function(i) {
 		var buf = [];
-		buf[0] = String.fromCharCode((i & 0xff000000) >> 24);
-		buf[1] = String.fromCharCode((i & 0xff0000) >> 16);
-		buf[2] = String.fromCharCode((i & 0xff00) >> 8);
-		buf[3] = String.fromCharCode((i & 0xff));
+		buf[0] = String.fromCharCode(this.uint8((i & 0xff000000) >> 24));
+		buf[1] = String.fromCharCode(this.uint8((i & 0xff0000) >> 16));
+		buf[2] = String.fromCharCode(this.uint8((i & 0xff00) >> 8));
+		buf[3] = String.fromCharCode(this.uint8( i & 0xff ));
 		return buf.join('');
-	}
+	}, Juvia);
 })();

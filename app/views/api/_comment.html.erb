@@ -21,9 +21,14 @@
 				<%= comment.author_name || 'Anonymous' %>
 			</div>
 		<% end %>
+		<div class="juvia-creation-date">
+			<%= comment.created_at.strftime("%B %d %Y, %H:%M") %>
+		</div>
 		<div class="juvia-end"></div>
 	</div>
 	<div class="juvia-data">
-		<div class="juvia-comment-content"><%= comment.content %></div>
+		<div class="juvia-comment-content">
+			<%= BlueCloth.new(comment.content).to_html.html_safe %>
+		</div>
 	</div>
 </div>
