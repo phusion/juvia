@@ -1,16 +1,25 @@
-<%= File.read("#{Rails.root}/public/javascripts/jquery-1.6.2.min.js") %>
-
 var Juvia = {
 	loadScriptCounter: 0
 };
 
 (function(Juvia) {
+	<%= File.read("#{Rails.root}/public/javascripts/jquery-1.6.2.min.js").html_safe %>
 	var $ = jQuery.noConflict();
 	var RawDeflate;
-	
-	<%= File.read("#{Rails.root}/public/javascripts/jquery.delayed-observer.js") %>
+	<%= File.read("#{Rails.root}/public/javascripts/jquery.delayed-observer.js").html_safe %>
 	<%= File.read("#{Rails.root}/public/javascripts/rawdeflate.js").html_safe %>
 	<%= File.read("#{Rails.root}/public/javascripts/base64.js").html_safe %>
+	
+	Juvia.reinstallBehavior = function() {
+		var self = this;
+		$('.juvia-container:not(.juvia-installed-behavior)').each(function() {
+			$(this).addClass('juvia-installed-behavior');
+			var textarea = $('.juvia-add-comment-form .juvia-textarea-field textarea', this);
+			$('textarea').delayedObserver(function() {
+				self.previewComment(this);
+			});
+		});
+	}
 	
 	Juvia.loadScript = function(path, options) {
 		var url = '<%= escape_javascript(request.protocol + request.host_with_port) %>';
@@ -41,6 +50,7 @@ var Juvia = {
 	
 	Juvia.handleResponse = function(response) {
 		this['handle' + response.action](response);
+		this.reinstallBehavior();
 	}
 	
 	Juvia.handleLoadTopic = function(options) {
@@ -78,8 +88,12 @@ var Juvia = {
 	Juvia.handlePreviewComment = function(options) {
 		var container = this.findContainer(options);
 		var preview = $('.juvia-preview', container);
-		preview.find('.juvia-preview-content').html(options.html);
-		preview.show();
+		if (options.html.length == 0) {
+			preview.hide();
+		} else {
+			preview.find('.juvia-preview-content').html(options.html);
+			preview.show();
+		}
 	}
 	
 	Juvia.submitComment = function(form) {
@@ -96,8 +110,8 @@ var Juvia = {
 		return false;
 	}
 	
-	Juvia.previewComment = function(button) {
-		var $container = $(button).closest('.juvia-container');
+	Juvia.previewComment = function(formElement) {
+		var $container = $(formElement).closest('.juvia-container');
 		this.loadScript('/api/preview_comment', {
 			site_key : $container.data('site-key'),
 			topic_key: $container.data('topic-key'),
