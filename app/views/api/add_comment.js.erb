@@ -1,0 +1,6 @@
+<%= juvia_handle_response(
+	:action    => 'AddComment',
+	:site_key  => @site_key,
+	:topic_key => @topic_key,
+	:html      => render(:partial => 'api/comment', :locals => { :comment => @comment })
+) %>

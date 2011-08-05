@@ -2,7 +2,7 @@
 <div id="comments"></div>
 <h3>after comments</h3>
 
-<script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+<sscript src="/javascripts/jquery-1.6.2.min.js"></sscript>
 <script type="text/javascript" class="juvia">
 (function() {
 	var container   = '#comments';
@@ -15,7 +15,7 @@
 	s.async     = true;
 	s.type      = 'text/javascript';
 	s.className = 'juvia';
-	s.src = 'http://0.0.0.0:3000/api/load_topic' +
+	s.src = 'http://127.0.0.1:3000/api/show_topic' +
 		'?container=' + encodeURIComponent(container) +
 		'&site_key=' + encodeURIComponent(site_key) +
 		'&topic_key=' + encodeURIComponent(topic_key) +

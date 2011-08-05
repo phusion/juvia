@@ -19,31 +19,6 @@
 	<% end %>
 	
 	<h3>Add comment</h3>
-	
-	<form
-	method="post"
-	action="javascript:void(0)"
-	onsubmit="return Juvia.submitComment(this)"
-	class="juvia-add-comment-form">
-		<div class="juvia-metadata">
-			<div class="juvia-field juvia-text-field">
-				<div class="juvia-label">Name (optional)</div>
-				<div class="juvia-input"><input type="text" name="author_name"></div>
-			</div>
-			
-			<div class="juvia-field juvia-text-field">
-				<div class="juvia-label">Email (optional)</div>
-				<div class="juvia-input"><input type="text" name="author_email"></div>
-			</div>
-		</div>
-		
-		<div class="juvia-data">
-			<div class="juvia-field juvia-textarea-field">
-				<textarea name="content" cols="80" rows="10"></textarea>
-			</div>
-		</div>
-		
-		<div class="juvia-submit"><input type="submit" value="Submit"></div>
-	</form>
+	<%= render :partial => 'form' %>
 </div>
 </div> <!-- juvia-container -->

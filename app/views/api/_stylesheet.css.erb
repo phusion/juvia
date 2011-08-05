@@ -1,19 +1,24 @@
+.juvia-container {
+	font-family: 'Helvetica', 'Arial', 'Sans Serif';
+	font-size: 11pt;
+}
+
 .juvia-comment {
 	min-height: 64px;
-	margin-bottom: 1em;
+	margin-bottom: 30px;
 }
 
 .juvia-comment .juvia-metadata {
+	position: relative;
+	background: #eeeeee;
 	margin-bottom: 0.5em;
-}
-
-.juvia-comment .juvia-metadata div {
-	display: inline;
+	padding: 8px;
 }
 
 .juvia-comment .juvia-avatar {
 	float: left;
-	margin-left: -80px;
+	margin-top: -8px;
+	margin-left: -92px;
 }
 
 .juvia-comment .juvia-author {
@@ -21,11 +26,64 @@
 }
 
 .juvia-comment .juvia-creation-date {
-	margin-left: 1em;
-	font-size: smaller;
+	position: absolute;
+	right: 12px;
+	top: 10px;
+	font-size: 70%;
 }
 
-.juvia-comment .juvia-metadata,
+.juvia-comment .juvia-metadata {
+	margin-left: 84px;
+}
+
 .juvia-comment .juvia-data {
-	margin-left: 80px;
+	margin-left: 92px;
+}
+
+.juvia-comment pre {
+	background: #eeeeee;
+	border: solid 1px #dddddd;
+	margin-left: 1em;
+	margin-right: 1em;
+	padding: 6px;
+	font-size: 85%;
+	overflow: auto;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+.juvia-comment h1 {
+	font-size: 125%;
+}
+
+.juvia-comment h2 {
+	font-size: 115%;
+}
+
+.juvia-comment h3,
+.juvia-comment h4,
+.juvia-comment h5,
+.juvia-comment h6 {
+	font-size: 105%;
+}
+
+.juvia-form-actions .juvia-action {
+	display: inline;
+}
+
+.juvia-preview-content {
+	background: #ffffdd;
+	border: solid 1px #ffeebb;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	padding: 8px;
+}
+
+.juvia-preview-content > *:first-child {
+	margin-top: 0;
+}
+
+.juvia-preview-content > *:last-child {
+	margin-bottom: 0;
 }

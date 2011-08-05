@@ -1,0 +1,39 @@
+<form
+method="post"
+action="javascript:void(0)"
+onsubmit="return Juvia.submitComment(this)"
+class="juvia-add-comment-form">
+	<div class="juvia-metadata">
+		<div class="juvia-field juvia-text-field">
+			<div class="juvia-label">Name (optional)</div>
+			<div class="juvia-input"><input type="text" name="author_name"></div>
+		</div>
+		
+		<div class="juvia-field juvia-text-field">
+			<div class="juvia-label">Email (optional) [?]</div>
+			<div class="juvia-input">
+				<input type="text" name="author_email">
+			</div>
+		</div>
+	</div>
+	
+	<div class="juvia-data">
+		<div class="juvia-field juvia-textarea-field">
+			<textarea name="content" cols="80" rows="14"></textarea>
+		</div>
+	</div>
+	
+	<div class="juvia-form-actions">
+		<div class="juvia-action juvia-submit-button">
+			<input type="submit" value="Submit">
+		</div>
+		<div class="juvia-action juvia-preview-button">
+			<input type="button" value="Preview" onclick="return Juvia.previewComment(this)">
+		</div>
+	</div>
+	
+	<div class="juvia-preview" style="display: none">
+		<h3>Preview</h3>
+		<div class="juvia-preview-content"></div>
+	</div>
+</form>

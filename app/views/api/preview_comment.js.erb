@@ -1,0 +1,6 @@
+<%= juvia_handle_response(
+	:action    => 'PreviewComment',
+	:site_key  => @site_key,
+	:topic_key => @topic_key,
+	:html      => render_markdown(@content)
+) %>
