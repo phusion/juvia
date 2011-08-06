@@ -5,22 +5,19 @@
 				<img src="http://www.gravatar.com/avatar/<%= comment.author_email_md5 %>?s=64"
 				width="64"
 				height="64"
-				alt="<%= comment.author_name || comment.author_email %>">
-			</div>
-			<div class="juvia-author juvia-author-with-email">
-				<a href="mailto:<%= comment.author_email %>"><%= comment.author_name || 'Anonymous' %></a>
+				alt="<%= comment.author_name || 'Anonymous' %>">
 			</div>
 		<% else %>
 			<div class="juvia-avatar">
 				<img src="http://www.gravatar.com/avatar/generic?s=64"
 				width="64"
 				height="64"
-				alt="<%= comment.author_name || 'No avatar' %>">
-			</div>
-			<div class="juvia-author juvia-author-without-email">
-				<%= comment.author_name || 'Anonymous' %>
+				alt="<%= comment.author_name || 'Anonymous' %>">
 			</div>
 		<% end %>
+		<div class="juvia-author juvia-author-without-email">
+			<%= comment.author_name || 'Anonymous' %>
+		</div>
 		<div class="juvia-creation-date">
 			<%= comment.created_at.strftime("%B %d %Y, %H:%M") %>
 		</div>

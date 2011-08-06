@@ -13,6 +13,17 @@ var Juvia = {
 	
 	Juvia.reinstallBehavior = function() {
 		var self = this;
+		
+		if (!$(document.body).hasClass('juvia-installed-behavior')) {
+			$(document.body).addClass('juvia-installed-behavior');
+			$(document.body).bind('mousedown touchdown', function(event) {
+				if (!$(event.target).hasClass('.juvia-help-content')
+				 && $(event.target).closest('.juvia-help-content').length == 0) {
+					$('.juvia-help-content').hide();
+				}
+			});
+		}
+		
 		$('.juvia-container:not(.juvia-installed-behavior)').each(function() {
 			var $this = $(this);
 			$this.addClass('juvia-installed-behavior');
@@ -28,6 +39,17 @@ var Juvia = {
 			// want jquery.example to clear example texts before we
 			// query those fields' values.
 			addCommentForm.submit(self.submitComment);
+			
+			$('.juvia-help', this).bind('click', function() {
+				var $this = $(this);
+				var content = $this.parent().find('.juvia-help-content');
+				var offset = $this.position();
+				content.css({
+					left: offset.left + 'px',
+					top: (offset.top + $this.outerHeight() + 8) + 'px'
+				});
+				content.show();
+			});
 			
 			var textarea = $('.juvia-textarea-field textarea', addCommentForm);
 			$('textarea').delayedObserver(function() {
