@@ -53,29 +53,62 @@
 	-webkit-border-radius: 4px;
 }
 
-.juvia-comment h1 {
+.juvia-comment h1,
+.juvia-preview-content h1 {
 	font-size: 125%;
 }
 
-.juvia-comment h2 {
-	font-size: 115%;
+.juvia-comment h2,
+.juvia-preview-content h2 {
+	font-size: 110%;
 }
 
 .juvia-comment h3,
+.juvia-preview-content h3,
 .juvia-comment h4,
+.juvia-preview-content h4,
 .juvia-comment h5,
-.juvia-comment h6 {
-	font-size: 105%;
+.juvia-preview-content h5,
+.juvia-comment h6,
+.juvia-preview-content h6 {
+	font-size: 100%;
+}
+
+.juvia-field .juvia-label {
+	margin-bottom: 0.25em;
+}
+
+.juvia-field input {
+	width: 20em;
+}
+
+.juvia-field .juvia-input,
+.juvia-textarea-field {
+	margin-bottom: 0.5em;
+}
+
+.juvia-textarea-field textarea {
+	width: 50em;
+	height: 15em;
 }
 
 .juvia-form-actions .juvia-action {
 	display: inline;
 }
 
+.juvia-form-actions .juvia-error {
+	display: inline;
+	color: red;
+	margin-left: 1em;
+}
+
+.juvia-preview h4 {
+	margin-bottom: 0.5em;
+}
+
 .juvia-preview-content {
 	background: #ffffdd;
 	border: solid 1px #ffeebb;
-	margin-top: 1em;
 	margin-bottom: 1em;
 	padding: 8px;
 }

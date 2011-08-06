@@ -20,6 +20,13 @@ class ApiController < ApplicationController
   end
   
   def add_comment
+    @content = decompress(params[:content])
+    
+    if @content.blank?
+      render 'content_may_not_be_blank'
+      return
+    end
+    
     Topic.transaction do
       @topic = Topic.lookup_or_create(
         @site_key,
@@ -30,7 +37,7 @@ class ApiController < ApplicationController
         @comment = @topic.comments.create!(
           :author_name => params[:author_name],
           :author_email => params[:author_email],
-          :content => decompress(params[:content]))
+          :content => @content)
         render
       else
         render_error 'site_not_found'

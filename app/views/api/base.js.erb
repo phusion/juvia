@@ -13,12 +13,38 @@ var Juvia = {
 	Juvia.reinstallBehavior = function() {
 		var self = this;
 		$('.juvia-container:not(.juvia-installed-behavior)').each(function() {
-			$(this).addClass('juvia-installed-behavior');
-			var textarea = $('.juvia-add-comment-form .juvia-textarea-field textarea', this);
+			var $this = $(this);
+			$this.addClass('juvia-installed-behavior');
+			
+			var addCommentForm = $('.juvia-add-comment-form', this);
+			
+			var textarea = $('.juvia-textarea-field textarea', addCommentForm);
 			$('textarea').delayedObserver(function() {
 				self.previewComment(this);
 			});
+			
+			var errorDiv = $('.juvia-form-actions .juvia-error', addCommentForm);
+			addCommentForm.bind('reset', function() {
+				errorDiv.hide();
+			});
 		});
+	}
+	
+	Juvia.findContainer = function(options) {
+		return $('.juvia-container[data-site-key="' +
+			options.site_key +
+			'"][data-topic-key="' +
+			options.topic_key +
+			'"]');
+	}
+	
+	Juvia.showFormError = function(container, message) {
+		var div = $('.juvia-form-actions .juvia-error', container);
+		if (message == undefined || message == null || message == '') {
+			div.hide();
+		} else {
+			div.text(message).show();
+		}
 	}
 	
 	Juvia.loadScript = function(path, options) {
@@ -69,31 +95,31 @@ var Juvia = {
 		}
 	}
 	
-	Juvia.findContainer = function(options) {
-		return $('.juvia-container[data-site-key="' +
-			options.site_key +
-			'"][data-topic-key="' +
-			options.topic_key +
-			'"]');
-	}
-	
 	Juvia.handleAddComment = function(options) {
 		var container = this.findContainer(options);
 		var element = $(options.html);
 		element.prependTo(container.find('.juvia-comments'));
-		element[0].scrollIntoView();
 		container.find('form')[0].reset();
+		element[0].scrollIntoView();
+		element.hide().fadeIn();
 	}
 	
 	Juvia.handlePreviewComment = function(options) {
 		var container = this.findContainer(options);
 		var preview = $('.juvia-preview', container);
+		this.showFormError(container, undefined);
 		if (options.html.length == 0) {
-			preview.hide();
+			preview.find('.juvia-preview-empty').show();
+			preview.find('.juvia-preview-content').hide();
 		} else {
-			preview.find('.juvia-preview-content').html(options.html);
-			preview.show();
+			preview.find('.juvia-preview-empty').hide();
+			preview.find('.juvia-preview-content').html(options.html).show();
 		}
+	}
+	
+	Juvia.handleShowFormError = function(options) {
+		var container = this.findContainer(options);
+		this.showFormError(container, options.text);
 	}
 	
 	Juvia.submitComment = function(form) {

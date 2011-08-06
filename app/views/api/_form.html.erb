@@ -5,15 +5,19 @@ onsubmit="return Juvia.submitComment(this)"
 class="juvia-add-comment-form">
 	<div class="juvia-metadata">
 		<div class="juvia-field juvia-text-field">
-			<div class="juvia-label">Name (optional)</div>
-			<div class="juvia-input"><input type="text" name="author_name"></div>
+			<label>
+				<div class="juvia-label">Name (optional)</div>
+				<div class="juvia-input"><input type="text" name="author_name"></div>
+			</label>
 		</div>
 		
 		<div class="juvia-field juvia-text-field">
-			<div class="juvia-label">Email (optional) [?]</div>
-			<div class="juvia-input">
-				<input type="text" name="author_email">
-			</div>
+			<label>
+				<div class="juvia-label">Email (optional) [?]</div>
+				<div class="juvia-input">
+					<input type="text" name="author_email">
+				</div>
+			</label>
 		</div>
 	</div>
 	
@@ -27,10 +31,15 @@ class="juvia-add-comment-form">
 		<div class="juvia-action juvia-submit-button">
 			<input type="submit" value="Submit">
 		</div>
+		<div class="juvia-error" style="display: none"></div>
 	</div>
 	
-	<div class="juvia-preview" style="display: none">
-		<h3>Preview</h3>
-		<div class="juvia-preview-content"></div>
+	<div class="juvia-preview">
+		<h4>Preview</h4>
+		<div class="juvia-preview-empty">
+			Comments can be marked up with <a href="http://daringfireball.net/projects/markdown/basics">Markdown</a>.
+			Type something and a preview will show up here.
+		</div>
+		<div class="juvia-preview-content" style="display: none"></div>
 	</div>
 </form>
