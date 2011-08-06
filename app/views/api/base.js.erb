@@ -24,6 +24,11 @@ var Juvia = {
 			$('input[name=author_email]', addCommentForm).example('Your email (optional)',
 				{ className: 'juvia-example-text' });
 			
+			// Must be bound after setting input examples because we
+			// want jquery.example to clear example texts before we
+			// query those fields' values.
+			addCommentForm.submit(self.submitComment);
+			
 			var textarea = $('.juvia-textarea-field textarea', addCommentForm);
 			$('textarea').delayedObserver(function() {
 				self.previewComment(this);
@@ -32,6 +37,10 @@ var Juvia = {
 			var errorDiv = $('.juvia-form-actions .juvia-error', addCommentForm);
 			addCommentForm.bind('reset', function() {
 				errorDiv.hide();
+				// Repopulate example texts in input fields.
+				setTimeout(function() {
+					$('input', addCommentForm).blur();
+				}, 1);
 			});
 		});
 	}
@@ -106,8 +115,8 @@ var Juvia = {
 		var element = $(options.html);
 		element.prependTo(container.find('.juvia-comments'));
 		container.find('form')[0].reset();
-		element[0].scrollIntoView();
-		element.hide().fadeIn();
+		this.smoothlyScrollTo(element.offset().top - 20);
+		element.hide().fadeIn(2000);
 	}
 	
 	Juvia.handlePreviewComment = function(options) {
@@ -128,7 +137,8 @@ var Juvia = {
 		this.showFormError(container, options.text);
 	}
 	
-	Juvia.submitComment = function(form) {
+	Juvia.submitComment = function(event) {
+		var form = event.target;
 		var $container = $(form).closest('.juvia-container');
 		this.loadScript('/api/add_comment', {
 			site_key    : $container.data('site-key'),
@@ -139,7 +149,6 @@ var Juvia = {
 			author_email: $('input[name="author_email"]', form).val(),
 			content     : this.compress($('textarea[name="content"]', form).val())
 		});
-		return false;
 	}
 	
 	Juvia.previewComment = function(formElement) {
@@ -150,6 +159,79 @@ var Juvia = {
 			content  : this.compress($('textarea[name="content"]', $container).val())
 		});
 		return false;
+	}
+	
+	
+	Juvia.virtualAnimate = function(options) {
+		var options = $.extend({
+			duration: 1000
+		}, options || {});
+		var animation_start = this.now();
+		var animation_end = this.now() + options.duration;
+		var interval = animation_end - animation_start;
+		this._virtualAnimate_step(animation_start, animation_end, interval, options);
+	}
+
+	Juvia._virtualAnimate_step = function(animation_start, animation_end, interval, options) {
+		var self = this;
+		var now = new Date();
+		var progress = (now - animation_start) / interval;
+		if (progress > 1) {
+			progress = 1;
+		}
+		progress = (1 + Math.sin(-Math.PI / 2 + progress * Math.PI)) / 2;
+		options.step(progress);
+		if (now < animation_end) {
+			setTimeout(function() {
+				self._virtualAnimate_step(animation_start,
+					animation_end, interval, options);
+			}, 15);
+		} else {
+			options.step(1);
+			if (options.finish) {
+				options.finish();
+			}
+		}
+	}
+	
+	Juvia.smoothlyScrollTo = function(top) {
+		var self = this;
+		var $document = $(document);
+		var current = $document.scrollTop();
+		this.virtualAnimate({
+			duration: 300,
+			step: function(x) {
+				$document.scrollTop(Math.floor(
+					top + (1 - x) * (current - top)
+				));
+			},
+			finish: function() {
+				self.setScrollTop(top);
+			}
+		});
+	}
+	
+	Juvia.setScrollTop = function(top, element) {
+		// Browsers don't always scroll properly so work around
+		// this with a few timers.
+		var self = this;
+		element = element || $(document);
+		element = $(element);
+		element.scrollTop(top);
+		setTimeout(function() {
+			element.scrollTop(top);
+		}, 1);
+		setTimeout(function() {
+			element.scrollTop(top);
+		}, 20);
+	}
+	
+	if (Date.now) {
+		Juvia.now = Date.now;
+	} else {
+		Juvia.now = function() {
+			return new Date().getTime();
+		}
 	}
 	
 	/** UTF-8 encodes the given string. */
