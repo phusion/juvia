@@ -3,13 +3,13 @@ var Juvia = {
 };
 
 (function(Juvia) {
-	<%= File.read("#{Rails.root}/public/javascripts/jquery-1.6.2.min.js").html_safe %>
-	var $ = jQuery.noConflict();
 	var RawDeflate;
+	<%= File.read("#{Rails.root}/public/javascripts/jquery-1.6.2.min.js").html_safe %>
 	<%= File.read("#{Rails.root}/public/javascripts/jquery.delayed-observer.js").html_safe %>
 	<%= File.read("#{Rails.root}/public/javascripts/jquery.example.min.js").html_safe %>
 	<%= File.read("#{Rails.root}/public/javascripts/rawdeflate.js").html_safe %>
 	<%= File.read("#{Rails.root}/public/javascripts/base64.js").html_safe %>
+	var $ = Juvia.$ = window.jQuery.noConflict(true);
 	
 	Juvia.reinstallBehavior = function() {
 		var self = this;
@@ -119,16 +119,17 @@ var Juvia = {
 	Juvia.handleLoadTopic = function(options) {
 		var $container = $(options.container);
 		$container.html(options.html);
-		if (options.css) {
+		if (options.css && $('style.juvia').length == 0) {
 			var style = document.createElement('style');
 			var rules = document.createTextNode(options.css);
 			style.type = 'text/css';
+			style.className = 'juvia';
 			if (style.styleSheet) {
 				style.styleSheet.cssText = rules.nodeValue;
 			} else {
 				style.appendChild(rules);
 			}
-			$(style).appendTo($container);
+			$(style).appendTo(document.head || $('head')[0] || document.body);
 		}
 	}
 	
@@ -142,6 +143,8 @@ var Juvia = {
 			comments.html('');
 		}
 		comment.prependTo(comments);
+		$('.juvia-preview-empty', container).show();
+		$('.juvia-preview-content', container).hide();
 		
 		container.find('form')[0].reset();
 		this.smoothlyScrollTo(comment.offset().top - 20);
@@ -265,21 +268,18 @@ var Juvia = {
 	
 	/** UTF-8 encodes the given string. */
 	Juvia.encodeUtf8 = function(string) {
-		string = string.replace(/\r\n/g,"\n");
+		string = string.replace(/\r\n/g, "\n");
 		var utftext = "";
 		
 		for (var n = 0; n < string.length; n++) {
-			
 			var c = string.charCodeAt(n);
 			
 			if (c < 128) {
 				utftext += String.fromCharCode(c);
-			}
-			else if((c > 127) && (c < 2048)) {
+			} else if((c > 127) && (c < 2048)) {
 				utftext += String.fromCharCode((c >> 6) | 192);
 				utftext += String.fromCharCode((c & 63) | 128);
-			}
-			else {
+			} else {
 				utftext += String.fromCharCode((c >> 12) | 224);
 				utftext += String.fromCharCode(((c >> 6) & 63) | 128);
 				utftext += String.fromCharCode((c & 63) | 128);
@@ -337,7 +337,7 @@ var Juvia = {
 	
 	
 	for (var name in Juvia) {
-		if (typeof(Juvia[name]) == 'function') {
+		if (name != '$' && typeof(Juvia[name]) == 'function') {
 			Juvia[name] = $.proxy(Juvia[name], Juvia);
 		}
 	}
