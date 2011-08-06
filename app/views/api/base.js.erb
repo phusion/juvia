@@ -134,11 +134,18 @@ var Juvia = {
 	
 	Juvia.handleAddComment = function(options) {
 		var container = this.findContainer(options);
-		var element = $(options.html);
-		element.prependTo(container.find('.juvia-comments'));
+		var comments = $('.juvia-comments', container);
+		
+		var comment = $(options.html);
+		if (comments.hasClass('juvia-no-comments')) {
+			comments.removeClass('juvia-no-comments');
+			comments.html('');
+		}
+		comment.prependTo(comments);
+		
 		container.find('form')[0].reset();
-		this.smoothlyScrollTo(element.offset().top - 20);
-		element.hide().fadeIn(2000);
+		this.smoothlyScrollTo(comment.offset().top - 20);
+		comment.hide().fadeIn(2000);
 	}
 	
 	Juvia.handlePreviewComment = function(options) {
