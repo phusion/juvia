@@ -7,6 +7,7 @@ var Juvia = {
 	var $ = jQuery.noConflict();
 	var RawDeflate;
 	<%= File.read("#{Rails.root}/public/javascripts/jquery.delayed-observer.js").html_safe %>
+	<%= File.read("#{Rails.root}/public/javascripts/jquery.example.min.js").html_safe %>
 	<%= File.read("#{Rails.root}/public/javascripts/rawdeflate.js").html_safe %>
 	<%= File.read("#{Rails.root}/public/javascripts/base64.js").html_safe %>
 	
@@ -17,6 +18,11 @@ var Juvia = {
 			$this.addClass('juvia-installed-behavior');
 			
 			var addCommentForm = $('.juvia-add-comment-form', this);
+			
+			$('input[name=author_name]', addCommentForm).example('Your name (optional)',
+				{ className: 'juvia-example-text' });
+			$('input[name=author_email]', addCommentForm).example('Your email (optional)',
+				{ className: 'juvia-example-text' });
 			
 			var textarea = $('.juvia-textarea-field textarea', addCommentForm);
 			$('textarea').delayedObserver(function() {
