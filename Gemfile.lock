@@ -1,3 +1,8 @@
+PATH
+  remote: /Users/hongli/Projects/rakismet
+  specs:
+    rakismet (1.1.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -83,5 +88,6 @@ DEPENDENCIES
   bluecloth
   default_value_for
   rails (= 3.0.9)
+  rakismet!
   schema_plus
   sqlite3-ruby

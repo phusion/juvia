@@ -85,7 +85,7 @@ var Juvia = {
 	}
 	
 	Juvia.loadScript = function(path, options) {
-		var url = '<%= escape_javascript(request.protocol + request.host_with_port) %>';
+		var url = '<%= escape_javascript(@base_url) %>';
 		url += path;
 		
 		// Make sure that each loadScript() call generates a unique URL,

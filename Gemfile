@@ -10,6 +10,7 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'schema_plus'
 gem 'default_value_for'
 gem 'bluecloth'
+gem 'rakismet', :path => '/Users/hongli/Projects/rakismet'
 
 # Use unicorn as the web server
 # gem 'unicorn'

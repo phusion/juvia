@@ -37,6 +37,9 @@ class ApiController < ApplicationController
         @comment = @topic.comments.create!(
           :author_name => params[:author_name],
           :author_email => params[:author_email],
+          :author_ip => request.env['REMOTE_ADDR'],
+          :author_user_agent => request.env['HTTP_USER_AGENT'],
+          :referrer => request.env['HTTP_REFERER'],
           :content => @content)
         render
       else

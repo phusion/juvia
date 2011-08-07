@@ -4,15 +4,16 @@
 	data-topic-title="<%= @topic_title %>"
 	data-topic-url="<%= @topic_url %>">
 <div class="juvia-topic">
-	<% if topic.comments.size == 1 %>
+	<% comments = topic.comments.visible.to_a %>
+	<% if comments.size == 1 %>
 		<h3>1 comment</h3>
 		<div class="juvia-comments">
-			<%= render :partial => 'comment', :collection => topic.comments %>
+			<%= render :partial => 'comment', :collection => comments %>
 		</div>
-	<% elsif topic.comments.size > 1 %>
-		<h3><%= topic.comments.size %> comments</h3>
+	<% elsif comments.size > 1 %>
+		<h3><%= comments.size %> comments</h3>
 		<div class="juvia-comments">
-			<%= render :partial => 'comment', :collection => topic.comments %>
+			<%= render :partial => 'comment', :collection => comments %>
 		</div>
 	<% else %>
 		<div class="juvia-comments juvia-no-comments">There are no comments yet.</div>

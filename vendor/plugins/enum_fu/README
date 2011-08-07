@@ -1,0 +1,96 @@
+With enum_fu, you can use integer fields in DB as enum typed in ActiveRecord.
+ - faster operation in DB
+ - easy coding 
+
+
+
+Usage 
+======
+
+# db schema
+create_table 'users' do |t|
+  t.column 'role', :integer, :limit => 2
+end
+
+# model
+class User < ActiveRecord::Base
+  acts_as_enum :role, [:customer, :admin]
+end
+
+# usage
+
+
+# create new record
+u = User.new(:role => :customer) 
+u.save
+
+# get value
+u.role				# :customer
+u.role_before_type_cast		# 0
+
+# set value
+u.role = :user
+
+
+# get the integer value for an enum value
+User.role(:user)		# 1
+
+
+# list of all enum values  
+User::ROLE			# [:customer, :admin]
+
+
+# in a view
+<% form_for :customer, :url => {:action => 'create'} do |f| %>
+    <%= f.select :role, Customer::ROLE %>
+<% end %>
+
+# in a controller
+u = User.new(params[:customer])
+
+
+#list of all enum values with humanized names, useful for selects when enum has a composed name as:
+
+#model
+class User < ActiveRecord::Base
+  acts_as_enum :role, [:customer, :admin, :special_user]
+end
+
+User::ROLE_HUMAN		# [['Customer',:customer], ['Admin',:admin], ['Special user',:special_user]]
+
+
+#hash with all enum values with humanized names associated with the integer value, useful for plugin like filter_table:
+
+User::ROLE_VALUES		# {'Customer' => 0, 'Admin' => 1, 'Special user' => 2}
+
+
+
+History 
+=======
+
+Version 0.3 
+-----------
+    2008.09.04 
+    Applied patches from Hongli Lia(www.phusion.nl)
+
+    - Fixed a type in Readme 
+
+    - The singleton enum value getter method (e.g. "Car.status(:broken)   =>  1") is now defined on the metaclass instead of on 'SomeModel.class'. This is because 'SomeModel.class' always returns 'Class', so you actually ended up defining this singleton method on every class in the system.
+
+    - The value assignment method (e.g. "@car.status = ...") can now also accept numbers (e.g. 123) and number strings (e.g. "123"). This allows one to call "Car.new(:car => { :broken => '1' })" (There was a similiar patch also from Georg Ledermann long before.)
+
+    - Unit tests have been added. (Wow! Big applause to Hongli Lai)
+
+Version 0.2 
+-----------
+    2007.12.28 
+    Applied patches from Norman Clarke and Georg Ledermann 
+
+    - accpet nil as input
+	user.role = nil
+
+Version 0.1 
+-----------
+    Someday in 2007 
+    First Release
+

@@ -1,7 +1,7 @@
 class CreateTopics < ActiveRecord::Migration
   def self.up
     create_table :topics do |t|
-      t.integer  :site_id, :null => false
+      t.integer  :site_id, :null => false, :on_update => :cascade, :on_delete => :cascade
       t.string   :key, :null => false
       t.string   :title, :null => false
       t.string   :url, :null => false

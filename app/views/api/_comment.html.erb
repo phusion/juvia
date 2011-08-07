@@ -1,4 +1,4 @@
-<div class="juvia-comment">
+<div class="juvia-comment" id="juvia-comment-<%= comment.id %>">
 	<div class="juvia-metadata">
 		<% if comment.author_email %>
 			<div class="juvia-avatar">
@@ -25,6 +25,13 @@
 	</div>
 	<div class="juvia-data">
 		<div class="juvia-comment-content">
+			<% if comment.moderation_status != :ok %>
+				<p class="juvia-moderating">
+					This comment is currently under moderation
+					and won't show up until approved by the
+					administrator.
+				</p>
+			<% end %>
 			<%= render_markdown(comment.content) %>
 		</div>
 	</div>

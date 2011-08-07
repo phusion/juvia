@@ -6,7 +6,8 @@ class CreateSites < ActiveRecord::Migration
       t.string   :url
       t.datetime :created_at, :null => false
       t.datetime :updated_at, :null => false
-      t.boolean  :moderated, :null => false, :default => true
+      t.integer  :moderation_method, :null => false, :default => 0
+      t.string   :akismet_key
     end
   end
 
