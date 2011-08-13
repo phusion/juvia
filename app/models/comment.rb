@@ -3,7 +3,7 @@ require 'net/http'
 require 'cgi'
 
 class Comment < ActiveRecord::Base
-  belongs_to :topic
+  belongs_to :topic, :inverse_of => :comments
   
   acts_as_enum :moderation_status, [:ok, :spam, :unchecked]
   

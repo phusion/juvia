@@ -1,6 +1,6 @@
 class Topic < ActiveRecord::Base
-  belongs_to :site
-  has_many :comments, :order => 'created_at DESC'
+  belongs_to :site, :inverse_of => :topics
+  has_many :comments, :order => 'created_at DESC', :inverse_of => :topic
   
   def self.lookup(site_key, topic_key)
     Topic.

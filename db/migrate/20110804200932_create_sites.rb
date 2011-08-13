@@ -1,6 +1,7 @@
 class CreateSites < ActiveRecord::Migration
   def self.up
     create_table :sites do |t|
+      t.integer  :user_id, :null => false
       t.string   :key, :null => false
       t.string   :name, :null => false
       t.string   :url

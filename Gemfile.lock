@@ -29,9 +29,14 @@ GEM
       activesupport (= 3.0.9)
     activesupport (3.0.9)
     arel (2.0.10)
+    bcrypt-ruby (2.1.4)
     bluecloth (2.1.0)
     builder (2.1.2)
     default_value_for (1.0.4)
+    devise (1.4.2)
+      bcrypt-ruby (~> 2.1.2)
+      orm_adapter (~> 0.0.3)
+      warden (~> 1.0.3)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     i18n (0.5.0)
@@ -41,6 +46,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    orm_adapter (0.0.5)
     polyglot (0.3.2)
     rack (1.2.3)
     rack-mount (0.6.14)
@@ -75,6 +81,8 @@ GEM
       polyglot (>= 0.3.1)
     tzinfo (0.3.29)
     valuable (0.9.1)
+    warden (1.0.5)
+      rack (>= 1.0)
 
 PLATFORMS
   ruby
@@ -82,6 +90,7 @@ PLATFORMS
 DEPENDENCIES
   bluecloth
   default_value_for
+  devise
   rails (= 3.0.9)
   schema_plus
   sqlite3-ruby

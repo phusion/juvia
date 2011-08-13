@@ -1,5 +1,6 @@
 class Site < ActiveRecord::Base
-  has_many :topics
+  belongs_to :user, :inverse_of => :sites
+  has_many :topics, :inverse_of=> :site
   
   acts_as_enum :moderation_method, [:none, :akismet, :manual]
   

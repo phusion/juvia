@@ -1,4 +1,8 @@
 Juvia::Application.routes.draw do
+  devise_for :users
+
+  resources :users
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -51,6 +55,7 @@ Juvia::Application.routes.draw do
   # root :to => "welcome#index"
 
   get 'api/:action', :to => 'api'
+  root :to => "users#index"
 
   # See how all your routes lay out with "rake routes"
 

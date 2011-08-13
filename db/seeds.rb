@@ -6,7 +6,8 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
-site = Site.create!(:key => 'testkey', :name => 'Test Site', :url => 'http://test')
+user = User.create!(:email => 'a@a.com', :password => '123456', :password_confirmation => '123456')
+site = user.sites.create!(:key => 'testkey', :name => 'Test Site', :url => 'http://test')
 topic = site.topics.create!(:key => 'testtopic', :title => 'Test Topic', :url => 'http://test/testtopic')
 topic.comments.create!(:content => 'hello world',
   :author_ip => '127.0.0.1',

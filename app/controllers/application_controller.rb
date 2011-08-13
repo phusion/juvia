@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   
   around_filter :set_active_base_url
+  before_filter :authenticate_user!
 
 private
   def set_active_base_url
