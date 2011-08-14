@@ -1,8 +1,12 @@
 Juvia::Application.routes.draw do
+  get 'api/:action', :to => 'api'
+  root :to => "admin/dashboard#index", :as => :dashboard
+  
   devise_for :users
-
+  
   namespace :admin do
-    match 'dashboard(/:action(/:id(.:format)))' => 'dashboard', :as => :dashboard
+    resources :comments
+    resources :sites
     resources :users do
       get :comments
       get :sites
@@ -59,9 +63,6 @@ Juvia::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   # root :to => "welcome#index"
-
-  get 'api/:action', :to => 'api'
-  root :to => "admin/dashboard#index"
 
   # See how all your routes lay out with "rake routes"
 

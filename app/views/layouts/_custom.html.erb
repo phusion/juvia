@@ -9,7 +9,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" >
   <meta charset="utf-8">
 
-  <title>Columnal Demo Page</title>
+  <title><% if @title %><%= @title %> - <% end %>Juvia</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 
@@ -61,7 +61,7 @@
     <nav class="col_8 omega">
       <% if user_signed_in? %>
         <div><%= link_to current_user.email, edit_admin_user_path(current_user) %></div>
-        <div><%= link_to 'Dashboard', '/dashboard' %></div>
+        <div><%= link_to 'Dashboard', dashboard_path %></div>
       <% end %>
       <div><a href="/help">Help</a></div>
       <% if user_signed_in? %>

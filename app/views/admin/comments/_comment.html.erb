@@ -1,0 +1,29 @@
+<%= div_for(comment) do %>
+  <div class="avatar">
+		<img src="http://www.gravatar.com/avatar/<%= comment.author_email_md5 %>?s=64"
+		width="64"
+		height="64"
+		alt="<%= comment.author_name || 'Anonymous' %>">
+	</div>
+	<div class="author">
+	  <span class="name"><%= comment.author_name || 'Anonymous' %></span>
+	  <% if comment.author_email %>
+	    <span class="email">(<a href="mailto:<%= comment.author_email %>"><%= comment.author_email %></a>)</span>
+	  <% end %>
+	</div>
+  <div class="content">
+    <%= render_markdown(comment.content) %>
+  </div>
+  <div class="actions">
+    <%= link_to 'Edit', edit_admin_comment_path(comment) %>
+    <% if comment.moderation_status == :ok %>
+      <%= link_to 'Spam & delete', [:admin, comment], :method => 'delete', :confirm => 'Are you sure?' %>
+    <% elsif comment.moderation_status == :unchecked %>
+      <%= link_to 'Approve', approve_admin_comment_path(comment), :method => 'post', :class => 'approve' %>
+      <%= link_to 'Spam & delete', [:admin, comment], :method => 'delete', :confirm => 'Are you sure?' %>
+    <% else %>
+      <% raise "Bug: unknown moderation status #{comment.moderation_status.inspect}" %>
+    <% end %>
+    <%= link_to 'Delete', [:admin, comment], :method => 'delete', :confirm => 'Are you sure?' %>
+  </div>
+<% end %>

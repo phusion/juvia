@@ -5,6 +5,15 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
 
 private
+  # before filters
+  
+  def require_admin!
+    if !current_user.admin?
+      render :template => 'shared/admin_required'
+    end
+  end
+  
+  
   def set_active_base_url
     Thread.current[:base_url] = @base_url = request.protocol + request.host_with_port
     yield

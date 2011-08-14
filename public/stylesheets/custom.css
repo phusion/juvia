@@ -20,7 +20,8 @@ footer {
     text-align: center;
 }
 
-.no-top-margin {
+.container > .row > *:first-child > h1:first-child,
+.container > .row > *:first-child > h2:first-child {
     margin-top: 0;
 }
 
@@ -117,6 +118,57 @@ footer {
 .users.list .user .actions a {
     font-size: 85%;
     margin-right: 0.7em;
+}
+
+
+.comments.list .comment {
+    min-height: 64px;
+    margin-bottom: 24px;
+}
+
+.comments.list .comment .avatar {
+    float: left;
+    margin-left: 0;
+    line-height: 0;
+}
+
+.comments.list .comment .avatar img {
+    margin: 0;
+}
+
+.comments.list .comment > div {
+    margin-left: 80px;
+}
+
+.comments.list .comment .author {
+    font-weight: bold;
+}
+
+.comments.list .comment .content {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.comments.list .comment .content > *:first-child {
+    margin-top: 0;
+}
+
+.comments.list .comment .content > *:last-child {
+    margin-bottom: 0;
+}
+
+.comments.list .comment .actions {
+    border-top: 1px solid #d0d0d0;
+    padding-top: 8px;
+    font-size: 85%;
+}
+
+.comments.list .comment .actions a {
+    margin-right: 1em;
+}
+
+.comments.list .comment .actions .approve {
+    font-weight: bold;
 }
 
 

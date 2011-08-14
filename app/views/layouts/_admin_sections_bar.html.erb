@@ -1,8 +1,8 @@
 <nav id="sections_bar" class="container">
   <div class="row">
     <div class="sections col_10 clearleft">
-      <div class="section <%= maybe_active(:comments) %>"><a href="/admin/dashboard/comments">Comments</a></div>
-      <div class="section <%= maybe_active(:sites) %>"><a href="/admin/dashboard/sites">Sites</a></div>
+      <div class="section <%= maybe_active(:comments) %>"><%= link_to 'Comments', admin_comments_path %></div>
+      <div class="section <%= maybe_active(:sites) %>"><%= link_to 'Sites', admin_sites_path %></div>
       <div class="section <%= maybe_active(:users) %>"><%= link_to 'Users', admin_users_path %></div>
       <div class="section <%= maybe_active(:system_settings) %>"><a>System Settings</a></div>
     </div>

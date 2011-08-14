@@ -1,9 +1,10 @@
 module Admin
 
 class UsersController < ApplicationController
-  layout 'users'
+  layout 'admin'
   
   before_filter :set_navigation_ids
+  before_filter :require_admin!
   
   def index
     @users = User.page(params[:page]).order('email')
@@ -85,7 +86,7 @@ class UsersController < ApplicationController
 
 private
   def set_navigation_ids
-    @navigation_id = :users
+    @navigation_ids = [:dashboard, :users]
   end
 end
 
