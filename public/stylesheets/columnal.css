@@ -1,0 +1,571 @@
+/* HTML RESET
+///////////////////////////////////////////// */
+
+/*
+   http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {display: block;}
+body {line-height: 1;}
+ol, ul {list-style: none;}
+blockquote, q {quotes: none;}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {border-collapse: collapse;border-spacing: 0;}
+
+/* END HTML RESET
+///////////////////////////////////////////// */
+
+
+
+
+
+
+
+
+
+
+/* TYPE PRESETS
+///////////////////////////////////////////// */
+/*
+_______________________________
+Columnal - TYPE (basic settings to make type look nice) */
+
+body {	
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 100%;
+	color: #444;
+	
+	line-height: 1.6em; /* from cssgrid.net */
+	-webkit-text-size-adjust: none;		/* from cssgrid.net */ /* Stops the iPhone scalling type up - from cssgrid.net */
+	}
+
+/* h1, h2, h3, h4, h5, h6 { letter-spacing: 1px; } */
+
+h1, h2, h3, h4, h5, h6, p, dl, hr, ol, ul, pre, table, address, fieldset {margin-bottom: 1.6em;}
+
+/* Add back in basic text markup (after removal by reset) */
+strong { font-weight: bold; }
+em { font-style:italic; }
+pre { font-family: "Courier New", Courier, monospace; font-size: 13px; font-weight:bold; }
+
+/* text colors, add custom colors here to match your site */
+.teal { color: #155f62; }
+
+/* link colors */
+a { color: #058; text-decoration:none; }
+a:visited { color:#c14b0d; text-decoration:none; }
+a:hover { color:#eb6721; text-decoration:underline; }
+a:focus { outline:1px dotted #79160d; }
+
+/* .row hr, .row p, .row ul, .row ol, .row dl, .row pre, .row address, .row table, .row form {margin-bottom: 1.6em;} */
+
+dt { font-weight: bold; }
+p { font-size: 1em; }
+p + p, p + ul {margin-top: -.8em;}
+h1 { font-size: 2em; line-height:1.2em; font-weight:normal; margin:1em 0 .5em; }
+p + h1 { margin-top:.5em; }
+h2, h3, h4, h5, h6 { font-weight: bold; }
+	h1 + p, h2 + p, h3 + p, h4 + p, h5 + p, h6 + p { margin-top: 0;} /* fix for weird Chrome collapse bug */
+h2 { font-size:1.7em; line-height:1.3em; margin:1.07em 0 .535em; }
+h3 { font-size:1.3em; margin:1.14em 0 .57em 0; }
+h4 { font-size:1.25em; margin:1em 0 .5em; }
+h5, h6 { font-size: 1em; margin:1em 0 .25em 0; }
+
+ol { margin-left: 0; padding-left: 20px; text-indent: 0; }
+ul {list-style:disc outside;}
+li { font-size: 15px; margin-bottom: 2px; margin-left: 20px; }
+blockquote { font-family: Georgia, "Times New Roman", Times, sans-serif; font-size:18px; line-height: 24px; font-style:italic; padding-left:35px; color: #999; margin: .5em 0 .5em 0; }
+
+input, textarea { font: .75em  Arial, "Helvetica Neue", Helvetica, sans-serif; }
+
+hr { background:black; border:none; color:black; display:block; height:1px; margin-top: 20px; width:100%;}
+
+
+/*
+_______________________________
+Columnal - reverse type presets (for text on dark backgrounds) */
+.reverse h1, .reverse h2, .reverse h3, .reverse h4, .reverse h5, .reverse h6 {color: white;}
+.reverse p, .reverse ul {color: #aaa;}
+
+
+/*
+_______________________________
+IMAGE basics */
+img, object, embed {margin-bottom: 20px;}
+img {
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	margin-bottom: 20px;
+}
+a img {display: block;		/* Stops image links getting text link styles */}
+
+/* END TYPE PRESETS
+///////////////////////////////////////////// */
+
+
+
+
+
+
+
+
+
+
+
+
+/* COLUMNAL - CORE
+///////////////////////////////////////////// */
+
+/* Column code based on work from cssgrid.net: 
+The 1140px Grid by Andy Taylor – http://cssgrid.net – http://www.twitter.com/andytlr – http://www.catchingzebra.com */
+.container {padding-left: 20px; padding-right: 20px;}
+.row {clear: both; width: 100%; max-width: 1140px; margin: 0 auto; overflow: hidden;}
+
+.col_1, .col_2, .col_3, .col_4, .col_5, .col_6, .col_7, .col_8, .col_9, .col_10, .col_11 {float: left; margin-right: 3.8%; position: relative;}
+
+.col_1 {width: 4.85%;}  /* ie - 4.7% */
+.col_2 {width: 13.5%;}  /* ie - 13.2% */
+.col_3 {width: 22.15%;} /* ie - 22.05% */
+.col_4 {width: 30.8%;} 	/* ie - 30.6% */
+.col_5 {width: 39.45%;} /* ie - 39% */
+.col_6 {width: 48.1%;} 	/* ie - 48% */
+.col_7 {width: 56.75%;} /* ie - 56.75% */
+.col_8 {width: 65.4%;} 	/* ie - 61.6% */
+.col_9 {width: 74.05%;} /* ie - 74.05% */
+.col_10 {width: 82.7%;} /* ie - 82.7% */
+.col_11 {width: 91.35%;}/* ie - 91.35% */
+.col_12 {clear: both; width: 100%; float: left;}
+
+
+.last, .omega {margin-right: 0 !important;}
+img, object, embed {max-width: 100%;}
+
+
+/*
+_______________________________
+Columnal - sub-columns */
+
+.col_2 .col_1 {margin-right:28.62%; width:35.69%;}
+.col_2 .pre_1 {padding-left:35.69%;}
+.col_2 .suf_1 {padding-right:35.69%;}
+
+/* */
+
+.col_3 .col_2, .col_3 .col_1 {margin-right:17.45%;}
+.col_3 .col_1 {width:21.7%;}
+.col_3 .col_2 {width:60.86%;}
+
+.col_3 .pre_1 {padding-left:21.7%;}
+.col_3 .pre_2 {padding-left:60.86%;}
+
+.col_3 .suf_1 {padding-right:21.7%;}
+.col_3 .suf_2 {padding-right:60.86%;}
+
+/* */
+
+.col_4 .col_3, .col_4 .col_2, .col_4 .col_1 {margin-right:12.36%;}
+.col_4 .col_1 {width:15.73%;}
+.col_4 .col_2 {width:43.82%;}
+.col_4 .col_3 {width:71.91%;}
+
+.col_4 .pre_1 {padding-left:28.09%;}
+.col_4 .pre_2 {padding-left:56.18%;}
+.col_4 .pre_3 {padding-left:84.27%;}
+
+.col_4 .suf_1 {padding-right:28.09%;}
+.col_4 .suf_2 {padding-right:56.18%;}
+.col_4 .suf_3 {padding-right:84.27%;}
+
+/* */
+
+.col_5 .col_4, .col_5 .col_3, .col_5 .col_2, .col_5 .col_1 {margin-right:9.7%;} 
+.col_5 .col_1 {width:12.24%;}
+.col_5 .col_2 {width:34%;}
+.col_5 .col_3 {width:56.28%;}
+.col_5 .col_4 {width:78%;}
+
+.col_5 .pre_1 {padding-left:21.94%;}
+.col_5 .pre_2 {padding-left:43.7%;}
+.col_5 .pre_3 {padding-left:65.98%;}
+.col_5 .pre_4 {padding-left:87.7%;}
+
+.col_5 .suf_1 {padding-right:21.94%;}
+.col_5 .suf_2 {padding-right:43.7%;}
+.col_5 .suf_3 {padding-right:65.98%;}
+.col_5 .suf_4 {padding-right:87.7%;}
+
+/* */
+
+.col_6 .col_5, .col_6 .col_4, .col_6 .col_3, .col_6 .col_2, .col_6 .col_1 {margin-right:7.77%}
+.col_6 .col_1 {width:10.19%;}
+.col_6 .col_2 {width: 28.13%;}
+.col_6 .col_3 {width: 46.11%;}
+.col_6 .col_4 {width: 64.1%;}
+.col_6 .col_5 {width: 82%;}
+
+.col_6 .pre_1 {padding-left:89.77%;}
+.col_6 .pre_2 {padding-left:71.87%;}
+.col_6 .pre_3 {padding-left:53.88%;}
+.col_6 .pre_4 {padding-left:35.9%;}
+.col_6 .pre_5 {padding-left:17.96%;}
+
+.col_6 .suf_1 {padding-right:89.77%;}
+.col_6 .suf_2 {padding-right:71.87%;}
+.col_6 .suf_3 {padding-right:53.88%;}
+.col_6 .suf_4 {padding-right:35.9%;}
+.col_6 .suf_5 {padding-right:17.96%;}
+
+/* */
+
+.col_7 .col_6, .col_7 .col_5, .col_7 .col_4, .col_7 .col_3, .col_7 .col_2, .col_7 .col_1 {margin-right: 6.56%;}
+.col_7 .col_1 {width:8.66%;}
+.col_7 .col_2 {width:23.88%;}
+.col_7 .col_3 {width:39.11%;}
+.col_7 .col_4 {width:54.33%;}
+.col_7 .col_5 {width:69.56%;}
+.col_7 .col_6 {width:84.78%;}
+
+.col_7 .pre_1 {padding-left:15.22%;}
+.col_7 .pre_2 {padding-left:30.44%;}
+.col_7 .pre_3 {padding-left:45.67%;}
+.col_7 .pre_4 {padding-left:60.89%;}
+.col_7 .pre_5 {padding-left:76.12%;}
+.col_7 .pre_6 {padding-left:91.34%;}
+
+.col_7 .suf_1 {padding-right:15.22%;}
+.col_7 .suf_2 {padding-right:30.44%;}
+.col_7 .suf_3 {padding-right:45.67%;}
+.col_7 .suf_4 {padding-right:60.89%;}
+.col_7 .suf_5 {padding-right:76.12%;}
+.col_7 .suf_6 {padding-right:91.34%;}
+
+/* */
+
+.col_8 .col_7, .col_8 .col_6, .col_8 .col_5, .col_8 .col_4, .col_8  .col_3, .col_8 .col_2, .col_8 .col_1 {margin-right:5.78%;}
+.col_8 .col_1 {width:7.44%;}
+.col_8 .col_2 {width:20.66%;}
+.col_8 .col_3 {width:33.89%;}
+.col_8 .col_4 {width:47.11%;}
+.col_8 .col_5 {width:60.33%;}
+.col_8 .col_6 {width:73.56%;}
+.col_8 .col_7 {width:86.78%;}
+
+.col_8 .pre_1 {padding-left:13.22%;}
+.col_8 .pre_2 {padding-left:26.44%;}
+.col_8 .pre_3 {padding-left:39.67%;}
+.col_8 .pre_4 {padding-left:52.89%;}
+.col_8 .pre_5 {padding-left:66.11%;}
+.col_8 .pre_6 {padding-left:79.34%;}
+.col_8 .pre_7 {padding-left:92.56%;}
+
+.col_8 .suf_1 {padding-right:13.22%;}
+.col_8 .suf_2 {padding-right:26.44%;}
+.col_8 .suf_3 {padding-right:39.67%;}
+.col_8 .suf_4 {padding-right:52.89%;}
+.col_8 .suf_5 {padding-right:66.11%;}
+.col_8 .suf_6 {padding-right:79.34%;}
+.col_8 .suf_7 {padding-right:92.56%;}
+
+/* */
+
+.col_9 .col_1, .col_9 .col_2, .col_9 .col_3, .col_9 .col_4, .col_9 .col_5, .col_9 .col_6, .col_9 .col_6, .col_9 .col_7, .col_9 .col_8 {margin-right:5.1%;}
+.col_9 .col_1 {width:6.57%;}
+.col_9 .col_2 {width:18.25%;}
+.col_9 .col_3 {width:29.93%;}
+.col_9 .col_4 {width:41.61%;}
+.col_9 .col_5 {width:53.25%}
+.col_9 .col_6 {width:64.97%;}
+.col_9 .col_7 {width:76.65%;}
+.col_9 .col_8 {width:88.33%;}
+
+.col_9 .pre_1 {padding-left:11.67%;}
+.col_9 .pre_2 {padding-left:23.35%;}
+.col_9 .pre_3 {padding-left:35.03%;}
+.col_9 .pre_4 {padding-left:46.71%;}
+.col_9 .pre_5 {padding-left:58.35%}
+.col_9 .pre_6 {padding-left:70.07%;}
+.col_9 .pre_7 {padding-left:81.75%;}
+.col_9 .pre_8 {padding-left:93.43%;}
+
+.col_9 .suf_1 {padding-right:11.67%;}
+.col_9 .suf_2 {padding-right:23.35%;}
+.col_9 .suf_3 {padding-right:35.03%;}
+.col_9 .suf_4 {padding-right:46.71%;}
+.col_9 .suf_5 {padding-right:58.35%}
+.col_9 .suf_6 {padding-right:70.07%;}
+.col_9 .suf_7 {padding-right:81.75%;}
+.col_9 .suf_8 {padding-right:93.43%;}
+
+/* */
+
+.col_10 .col_9, .col_10 .col_8, .col_10 .col_7, .col_10 .col_6, .col_10 .col_5, .col_10 .col_4, .col_10 .col_3, .col_10 .col_2, .col_10 .col_1 {margin-right:4.61%;}
+.col_10 .col_1 {width:5.85%;}
+.col_10 .col_2 {width:16.31%;}
+.col_10 .col_3 {width:26.77%;}
+.col_10 .col_4 {width:37.23%;}
+.col_10 .col_5 {width:47.69%;}
+.col_10 .col_6 {width:58.16%;}
+.col_10 .col_7 {width:68.62%;}
+.col_10 .col_8 {width:79.08%;}
+.col_10 .col_9 {width:89.54%;}
+
+.col_10 .pre_1 {padding-left:10.46%;}
+.col_10 .pre_2 {padding-left:20.92%;}
+.col_10 .pre_3 {padding-left:31.38%;}
+.col_10 .pre_4 {padding-left:41.84%;}
+.col_10 .pre_5 {padding-left:52.3%;}
+.col_10 .pre_6 {padding-left:62.77%;}
+.col_10 .pre_7 {padding-left:73.23%;}
+.col_10 .pre_8 {padding-left:83.69%;}
+.col_10 .pre_9 {padding-left:94.06%;}
+
+.col_10 .suf_1 {padding-right:10.46%;}
+.col_10 .suf_2 {padding-right:20.92%;}
+.col_10 .suf_3 {padding-right:31.38%;}
+.col_10 .suf_4 {padding-right:41.84%;}
+.col_10 .suf_5 {padding-right:52.3%;}
+.col_10 .suf_6 {padding-right:62.77%;}
+.col_10 .suf_7 {padding-right:73.23%;}
+.col_10 .suf_8 {padding-right:83.69%;}
+.col_10 .suf_9 {padding-right:94.06%;}
+
+/* */
+
+.col_11 .col_10, .col_11 .col_9, .col_11 .col_8, .col_11 .col_7, .col_11 .col_6, .col_11 .col_5, .col_11 .col_4, .col_11 .col_3, .col_11 .col_2, .col_11 .col_1 {margin-right:4.14%;}
+.col_11 .col_1 {width:5.32%;}
+.col_11 .col_2 {width:14.79%;}
+.col_11 .col_3 {width:24.26%;}
+.col_11 .col_4 {width:33.73%;}
+.col_11 .col_5 {width:43.2%;}
+.col_11 .col_6 {width:52.66%;}
+.col_11 .col_7 {width:62.1%;}
+.col_11 .col_8 {width:71.6%;}
+.col_11 .col_9 {width:81.07%;}
+.col_11 .col_10 {width:90.54%;}
+
+.col_11 .pre_1 {padding-left:9.46%;}
+.col_11 .pre_2 {padding-left:18.93%;}
+.col_11 .pre_3 {padding-left:28.4%;}
+.col_11 .pre_4 {padding-left:37.87%;}
+.col_11 .pre_5 {padding-left:47.34%;}
+.col_11 .pre_6 {padding-left:56.8%;}
+.col_11 .pre_7 {padding-left:66.24%;}
+.col_11 .pre_8 {padding-left:75.74%;}
+.col_11 .pre_9 {padding-left:85.21%;}
+.col_11 .pre_10 {padding-left:94.68%;}
+
+.col_11 .suf_1 {padding-right:9.46%;}
+.col_11 .suf_2 {padding-right:18.93%;}
+.col_11 .suf_3 {padding-right:28.4%;}
+.col_11 .suf_4 {padding-right:37.87%;}
+.col_11 .suf_5 {padding-right:47.34%;}
+.col_11 .suf_6 {padding-right:56.8%;}
+.col_11 .suf_7 {padding-right:66.24%;}
+.col_11 .suf_8 {padding-right:75.74%;}
+.col_11 .suf_9 {padding-right:85.21%;}
+.col_11 .suf_10 {padding-right:94.68%;}
+
+/*
+_______________________________
+Columnal - prefix and suffix columns for horizontal spacing options */
+
+/* spacing for before column */
+.pre_1 {padding-left: 8.65%;} /* 4.85 + 3.8 */
+.pre_2 {padding-left: 17.3%;} /* 13.5 + 3.8 */
+.pre_3 {padding-left: 25.95%;} /* 22.15 + 3.8 */
+.pre_4 {padding-left: 34.6%;} /* 30.8 + 3.8 */
+.pre_5 {padding-left: 43.25%;} /* 39.45 + 3.8 */
+.pre_6 {padding-left: 51.9%;} /* 48.1 + 3.8 */
+.pre_7 {padding-left: 60.55%;} /* 56.75 + 3.8 */
+.pre_8 {padding-left: 69.2%;} /* 65.4 + 3.8 */
+.pre_9 {padding-left: 77.85%;} /* 74.05 + 3.8 */
+.pre_10 {padding-left: 86.5%;} /* 82.7 + 3.8 */
+.pre_11 {padding-left: 95.15%;} /* 91.35 + 3.8 */
+
+/* spacing for after column */
+.suf_1 {padding-right: 8.65%;}
+.suf_2 {padding-right: 17.3%;}
+.suf_3 {padding-right: 25.95%}
+.suf_4 {padding-right: 34.6%;}
+.suf_5 {padding-right: 43.25%;}
+.suf_6 {padding-right: 51.9%;}
+.suf_7 {padding-right: 60.55%;}
+.suf_8 {padding-right: 69.2%;}
+.suf_9 {padding-right: 77.85%;}
+.suf_10 {padding-right: 86.5%;}
+.suf_11 {padding-right: 95.15%;}
+
+/*
+_______________________________
+Columnal - vertical spacing options */
+
+.margin_top_5 {margin-top: 5px !important;}
+.margin_top_15 {margin-top: 15px !important;}
+.margin_top_25 {margin-top: 25px !important;}
+.margin_top_30 {margin-top: 30px !important;}
+.margin_top_35 {margin-top: 35px !important;}
+.margin_top_45 {margin-top: 45px !important;}
+.margin_top_60 {margin-top: 60px !important;}
+.margin_top_90 {margin-top: 90px !important;}
+.margin_top_120 {margin-top: 120px !important;}
+
+.margin_bottom_5 {margin-bottom: 5px !important;}
+.margin_bottom_15 {margin-bottom: 15px !important;}
+.margin_bottom_25 {margin-bottom: 25px !important;}
+.margin_bottom_30 {margin-bottom: 30px !important;}
+.margin_bottom_35 {margin-bottom: 35px !important;}
+.margin_bottom_45 {margin-bottom: 45px !important;}
+.margin_bottom_60 {margin-bottom: 60px !important;}
+.margin_bottom_90 {margin-bottom: 90px !important;}
+.margin_bottom_120 {margin-bottom: 120px !important;}
+
+.padding_top_15 {padding-top:15px !important;}
+.padding_top_30 {padding-top:30px !important;}
+.padding_top_45 {padding-top:45px !important;}
+.padding_top_60 {padding-top:60px !important;}
+.padding_top_90 {padding-top:90px !important;}
+.padding_top_120 {padding-top:120px !important;}
+.padding_top_130 {padding-top:130px !important;}
+
+.padding_bottom_15 {padding-bottom:15px !important;}
+.padding_bottom_30 {padding-bottom:30px !important;}
+.padding_bottom_45 {padding-bottom:45px !important;}
+.padding_bottom_60 {padding-bottom:60px !important;}
+.padding_bottom_90 {padding-bottom:90px !important;}
+.padding_bottom_120 {padding-bottom:120px !important;}
+.padding_bottom_130 {padding-bottom:130px !important;}
+
+
+
+/*
+_______________________________
+Columnal - extras */
+
+.clear, .clearboth {clear:both !important;}
+.clearleft {clear:left !important;}
+.clearright {clear:right !important;}
+
+.textcenter {text-align:center;}
+.textright {text-align:right;}
+.textleft {text-align:left;}
+
+/* this will insert a pseduo element clears floats for an element containing floated content */
+.selfclear:after {clear:both; content:"."; display:block; height:0; visibility:hidden;}
+
+.mobile-only {display: none;}
+
+/* END COLUMNAL - CORE CODE
+///////////////////////////////////////////// */
+
+
+
+
+
+
+
+
+
+
+
+
+/* COLUMNAL - MOBILE
+///////////////////////////////////////////// */
+
+@media handheld, only screen and (max-width: 767px) {
+	.row, .body, .container {
+	width: 100%;
+	margin-left:0;
+	margin-right:0;
+	padding-left:0;
+	padding-right:0;
+	}
+	/* kill prefixes and suffixes, otherwise 1-column version breaks */
+	.pre_1, .pre_2, .pre_3, .pre_4, .pre_5, .pre_6, .pre_7, .pre_8, .pre_9, .pre_10, .pre_11 {padding-left: 0;}
+	.suf_1, .suf_2, .suf_3, .suf_4, .suf_5, .suf_6, .suf_7, .suf_8, .suf_9, .suf_10, .suf_11 {padding-right: 0;}
+
+	/************************************************************************/
+
+	/* cssgrid.net - mobile presets */
+	.col_1, .col_2, .col_3, .col_4, .col_5, .col_6,
+	.col_7, .col_8, .col_9, .col_10, .col_11, .col_12 {
+		clear: both;
+		float: none;
+		margin-left: 0;
+		margin-right: 0;
+		padding-left: 20px;
+		padding-right: 20px;
+		width: auto;
+		width: -moz-available;
+	}
+
+
+	/* Columnal - sub columns */
+	.col_2 .col_1, 
+	.col_3 .col_2, .col_3 .col_1,
+	.col_4 .col_3, .col_4 .col_2, .col_4 .col_1,
+	.col_5 .col_4, .col_5 .col_3, .col_5 .col_2, .col_5 .col_1,
+	.col_6 .col_5, .col_6 .col_4, .col_6 .col_3, .col_6 .col_2, .col_6 .col_1,
+	.col_7 .col_6, .col_7 .col_5, .col_7 .col_4, .col_7 .col_3, .col_7 .col_2, .col_7 .col_1,
+	.col_8 .col_7, .col_8 .col_6, .col_8 .col_5, .col_8 .col_4, .col_8 .col_3, .col_8 .col_2, .col_8 .col_1,
+	.col_9 .col_1, .col_9 .col_2, .col_9 .col_3, .col_9 .col_4, .col_9 .col_5, .col_9 .col_6, .col_9 .col_7, .col_9 .col_8,
+	.col_10 .col_9, .col_10 .col_8, .col_10 .col_7, .col_10 .col_6, .col_10 .col_5, .col_10 .col_4, .col_10 .col_3, .col_10 .col_2, .col_10 .col_1,
+	.col_11 .col_10, .col_11 .col_9, .col_11 .col_8, .col_11 .col_7, .col_11 .col_6, .col_11 .col_5, .col_11 .col_4, .col_11 .col_3, .col_11 .col_2, .col_11 .col_1,
+	.col_12 .col_11, .col_12 .col_10, .col_12 .col_9, .col_12 .col_8, .col_12 .col_7, .col_12 .col_6, .col_12 .col_5, .col_12 .col_4, .col_12 .col_3, .col_12 .col_2, .col_12 .col_1 {
+		padding-left: 0;
+		padding-right: 0;
+		width: 100%;
+	}
+
+	/* .row {width: 100%;} */
+	/* Type presets */
+	.container h1 {margin:.5em 0 .5em;}
+	.container h2 {margin:.5em 0 .535em;}
+	.container h3 {margin:.5em 0 .57em;}
+	.container h4 {margin:.5em 0 .615em;}
+	.container h5 {margin:.5em 0 .67em;}
+	.container h6 {margin:.5em 0 .8em;}
+
+	/* .reverse {padding-top: 1em; margin-bottom: 1em;} */
+
+	/* Columnal content control - use on any elements to show/hide content on mobile */
+	.mobile-hide {display: none;}
+	.mobile-only {display: block;}
+
+	/*****************************************
+	   CUSTOM ADDITIONS FOR MOBILE SITE LAYOUT 
+	*****************************************/
+
+	
+
+}
+/* END COLUMNAL - MOBILE
+///////////////////////////////////////////// */

@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Juvia</title>
-  <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
-  <%= csrf_meta_tag %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
-</html>
+<%= render :layout => 'layouts/custom.html' do %>
+  <div class="row">
+    <div class="col_12 clearleft omega"><%= yield %></div>
+  </div>
+<% end %>

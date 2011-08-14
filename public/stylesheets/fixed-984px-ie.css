@@ -1,0 +1,118 @@
+/*
+_______________________________
+Columnal - Fixed pixel widths for Internet Explorer 6 and 7 = width 948px total */
+
+.row { 
+	margin-left: auto;
+	margin-right: auto;
+	width: 984px !important; 
+	}
+
+.last, .omega {
+    margin-right: 0 !important;
+	padding-right: 0 !important;
+}
+
+.col_1, .col_2, .col_3, .col_4, .col_5, .col_6, .col_7, .col_8, .col_9, .col_10, .col_11, .col_12 { display:inline; position: relative; }
+
+.col_1, .col_2, .col_3, .col_4, .col_5, .col_6, .col_7, .col_8, .col_9, .col_10, .col_11 { margin-right: 24px; }
+
+.col_1 { width: 60px; }
+.col_2 { width: 144px; }
+.col_3 { width: 228px; }
+.col_4 { width: 312px; }
+.col_5 { width: 396px; }
+.col_6 { width: 480px; }
+.col_7 { width: 564px; }
+.col_8 { width: 648px; }
+.col_9 { width: 732px; }
+.col_10 { width: 816px; }
+.col_11 { width: 900px; }
+.col_12 { clear: both; width: 984px; }
+
+
+/*
+_______________________________
+Columnal - addition */
+
+/* spacing for before column */
+.pre_1 { padding-left: 84px; }
+.pre_2 { padding-left: 168px; }
+.pre_3 { padding-left: 252px; }
+.pre_4 { padding-left: 336px; }
+.pre_5 { padding-left: 420px; }
+.pre_6 { padding-left: 504px; }
+.pre_7 { padding-left: 588px; }
+.pre_8 { padding-left: 672px; }
+.pre_9 { padding-left: 756px; }
+.pre_10 { padding-left: 840px; }
+.pre_11 { padding-left: 925px; }
+
+/* spacing for after column */
+.suf_1 { padding-right: 84px; }
+.suf_2 { padding-right: 168px; }
+.suf_3 { padding-right: 252px; }
+.suf_4 { padding-right: 336px; }
+.suf_5 { padding-right: 420px; }
+.suf_6 { padding-right: 504px; }
+.suf_7 { padding-right: 588px; }
+.suf_8 { padding-right: 672px; }
+.suf_9 { padding-right: 756px; }
+.suf_10 { padding-right: 840px; }
+.suf_11 { padding-right: 925px; }
+
+/*
+_______________________________
+Columnal - sub-columns */
+
+/* NOTE: This fixes IE 6 and 7 using the percentage spacing used in prior css files. This is mostly an issue with IE6. */
+
+.col_2 .col_1,
+.col_3 .col_2, .col_3 .col_1,
+.col_4 .col_3, .col_4 .col_2, .col_4 .col_1,
+.col_5 .col_4, .col_5 .col_3, .col_5 .col_2, .col_5 .col_1,
+.col_6 .col_5, .col_6 .col_4, .col_6 .col_3, .col_6 .col_2, .col_6 .col_1,
+.col_7 .col_6, .col_7 .col_5, .col_7 .col_4, .col_7 .col_3, .col_7 .col_2, .col_7 .col_1,
+.col_8 .col_7, .col_8 .col_6, .col_8 .col_5, .col_8 .col_4, .col_8  .col_3, .col_8 .col_2, .col_8 .col_1,
+.col_9 .col_1, .col_9 .col_2, .col_9 .col_3, .col_9 .col_4, .col_9 .col_5, .col_9 .col_6, .col_9 .col_6, .col_9 .col_7, .col_9 .col_8,
+.col_10 .col_9, .col_10 .col_8, .col_10 .col_7, .col_10 .col_6, .col_10 .col_5, .col_10 .col_4, .col_10 .col_3, .col_10 .col_2, .col_10 .col_1,
+.col_11 .col_10, .col_11 .col_9, .col_11 .col_8, .col_11 .col_7, .col_11 .col_6, .col_11 .col_5, .col_11 .col_4, .col_11 .col_3, .col_11 .col_2, .col_11 .col_1 { margin-right: 24px; }
+
+.col_2 .col_1, .col_3 .col_1, .col_4 .col_1, .col_5 .col_1, .col_6 .col_1, .col_7 .col_1, .col_8 .col_1, .col_9 .col_1, .col_10 .col_1, .col_11 .col_1 { width: 60px; }
+.col_3 .col_2, .col_4 .col_2, .col_5 .col_2, .col_6 .col_2, .col_7 .col_2, .col_8 .col_2, .col_9 .col_2, .col_10 .col_2, .col_11 .col_2 { width: 144px; }
+.col_4 .col_3, .col_5 .col_3, .col_6 .col_3, .col_7 .col_3, .col_8 .col_3, .col_9 .col_3, .col_10 .col_3, .col_11 .col_3 { width: 228px; }
+.col_5 .col_4, .col_6 .col_4, .col_7 .col_4, .col_8 .col_4, .col_9 .col_4, .col_10 .col_4, .col_11 .col_4 { width: 312px; }
+.col_6 .col_5, .col_7 .col_5, .col_8 .col_5, .col_9 .col_5, .col_10 .col_5, .col_11 .col_5 { width: 396px; }
+.col_7 .col_6, .col_8 .col_6, .col_9 .col_6, .col_10 .col_6, .col_11 .col_6 { width: 480px; }
+.col_8 .col_7, .col_9 .col_7, .col_10 .col_7, .col_11 .col_7 { width: 564px; }
+.col_9 .col_8, .col_10 .col_8, .col_11 .col_8 { width: 648px; }
+.col_10 .col_9, .col_11 .col_9 { width: 732px; }
+.col_11 .col_10 { width: 816px; }
+
+.col_2 .pre_1, .col_3 .pre_1, .col_4 .pre_1, .col_5 .pre_1, .col_6 .pre_1, .col_7 .pre_1, .col_8 .pre_1, .col_9 .pre_1, .col_10 .pre_1, .col_11 .pre_1 { padding-left:84px; }
+.col_3 .pre_2, .col_4 .pre_2, .col_5 .pre_2, .col_6 .pre_2, .col_7 .pre_2, .col_8 .pre_2, .col_9 .pre_2, .col_10 .pre_2, .col_11 .pre_2 { padding-left: 168px; }
+.col_4 .pre_3, .col_5 .pre_3, .col_6 .pre_3, .col_7 .pre_3, .col_8 .pre_3, .col_9 .pre_3, .col_10 .pre_3, .col_11 .pre_3 { padding-left: 252px; }
+.col_5 .pre_4, .col_6 .pre_4, .col_7 .pre_4, .col_8 .pre_4, .col_9 .pre_4, .col_10 .pre_4, .col_11 .pre_4 { padding-left: 336px; }
+.col_6 .pre_5, .col_7 .pre_5, .col_8 .pre_5, .col_9 .pre_5, .col_10 .pre_5, .col_11 .pre_5 { padding-left: 420px; }
+.col_7 .pre_6, .col_8 .pre_6, .col_9 .pre_6, .col_10 .pre_6, .col_11 .pre_6 { padding-left: 504px; }
+.col_8 .pre_7, .col_9 .pre_7, .col_10 .pre_7, .col_11 .pre_7 { padding-left: 588px; }
+.col_9 .pre_8, .col_10 .pre_8, .col_11 .pre_8 { padding-left: 672px; }
+.col_10 .pre_9, .col_11 .pre_9 { padding-left: 756px; }
+.col_11 .pre_10 { padding-left: 840px; }
+
+.col_2 .suf_1, .col_3 .suf_1, .col_4 .suf_1, .col_5 .suf_1, .col_6 .suf_1, .col_7 .suf_1, .col_8 .suf_1, .col_9 .suf_1, .col_10 .suf_1, .col_11 .suf_1 { padding-right:84px; }
+.col_3 .suf_2, .col_4 .suf_2, .col_5 .suf_2, .col_6 .suf_2, .col_7 .suf_2, .col_8 .suf_2, .col_9 .suf_2, .col_10 .suf_2, .col_11 .suf_2 { padding-right: 168px; }
+.col_4 .suf_3, .col_5 .suf_3, .col_6 .suf_3, .col_7 .suf_3, .col_8 .suf_3, .col_9 .suf_3, .col_10 .suf_3, .col_11 .suf_3 { padding-right: 252px; }
+.col_5 .suf_4, .col_6 .suf_4, .col_7 .suf_4, .col_8 .suf_4, .col_9 .suf_4, .col_10 .suf_4, .col_11 .suf_4 { padding-right: 336px; }
+.col_6 .suf_5, .col_7 .suf_5, .col_8 .suf_5, .col_9 .suf_5, .col_10 .suf_5, .col_11 .suf_5 { padding-right: 420px; }
+.col_7 .suf_6, .col_8 .suf_6, .col_9 .suf_6, .col_10 .suf_6, .col_11 .suf_6 { padding-right: 504px; }
+.col_8 .suf_7, .col_9 .suf_7, .col_10 .suf_7, .col_11 .suf_7 { padding-right: 588px; }
+.col_9 .suf_8, .col_10 .suf_8, .col_11 .suf_8 { padding-right: 672px; }
+.col_10 .suf_9, .col_11 .suf_9 { padding-right: 756px; }
+.col_11 .suf_10 { padding-right: 840px; }
+
+/*
+--------------------------------------------------*/
+/* special debugging - fixes for debugging since outline is not supported in IE 6/7 */
+.container.test {background: #eee !important;}
+.container.test .row {background: white !important;}

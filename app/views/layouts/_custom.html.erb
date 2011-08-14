@@ -1,0 +1,59 @@
+<!doctype html>  
+<!--[if lt IE 7 ]> <html lang="en-us" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en-us" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en-us" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en-us" class="no-js ie9"> <![endif]-->   
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en-us" class="no-js"> <!--<![endif]-->
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" >
+  <meta charset="utf-8">
+
+  <title>Columnal Demo Page</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <!-- The Columnal Grid (1140px wide base, load first), Type and image presets, and mobile stylesheet -->
+  <%= stylesheet_link_tag 'columnal.css' %>
+
+  <!-- Fixes for IE -->
+    <!--[if lt IE 9]>
+      <%= stylesheet_link_tag 'ie.css' %>
+    <![endif]-->
+
+    <!-- use "fixed-984px-ie.css" or "fixed-960px-ie.css for a 984px or 960px fixed width for IE6 and 7 -->
+    <!--[if lte IE 7]>
+      <%= stylesheet_link_tag 'fixed-984px-ie.css' %>
+    <![endif]-->
+
+    <!-- Fixes for IE6, only needed if IE 6 will be supported - width must match 984px or 960px of css file used above -->
+    <!-- Use .imagescale to fix IE6 issues with full-column width images (class must be added to any image wider than the column it is placed into) -->
+    <!--[if lte IE 6]>
+      <link rel="stylesheet" href="css/ie6-984px.css" type="text/css" media="screen" />
+    <![endif]-->
+  <!-- End fixes for IE -->
+  
+  <!-- Customizations here --> 
+  <%= stylesheet_link_tag 'custom.css' %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+  
+  <!-- Page build tools - only needed while creating a site, remove when launching - Gray box colors and page debugging tools -->
+  <%= stylesheet_link_tag 'build.css' %>
+  
+  <style>
+  <!--
+  /* These are just styles for the demo, you do not need them for your project */
+  body {padding-bottom: 40px;}
+  .col_12.title {background-color: white !important; border-bottom: none;}
+  -->
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <%= yield %>
+</div><!--class="container" -->
+
+</body>
+</html>

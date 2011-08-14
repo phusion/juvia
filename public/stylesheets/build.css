@@ -1,0 +1,42 @@
+/*
+_______________________________
+BUILD.CSS - Tools for rapid prototyping and page debugging */
+
+.bg000 { background: #000; }
+.bg111 { background: #111; }
+.bg222 { background: #222; }
+.bg333 { background: #333; }
+.bg444 { background: #444; }
+.bg555 { background: #555; }
+.bg666 { background: #666; }
+.bg777 { background: #777; }
+.bg888 { background: #888; }
+.bg999 { background: #999; }
+.bgaaa { background: #aaa; }
+.bgbbb { background: #bbb; }
+.bgccc { background: #ccc; }
+.bgddd { background: #ddd; }
+.bgeee { background: #eee; }
+.bgfff { background: #fff; }
+
+
+/*
+_______________________________
+Columnal - debugging */
+
+.test .row {outline: 1px solid red !important;}
+
+.test .col_1, .test .col_2, .test .col_3, .test .col_4, .test .col_5, .test .col_6, .test .col_7, .test .col_8, .test .col_9, .test .ninecol, 
+.test .col_10, .test .col_11, .test .col_12 {background-color: #FFEFF2; border-bottom: 1px solid red;}
+
+.test .col_2 .col_1,
+.test .col_3 .col_1, .test .col_3 .col_2,
+.test .col_4 .col_1, .test .col_4 .col_2, .test .col_4 .col_3,
+.test .col_5 .col_1, .test .col_5 .col_2, .test .col_5 .col_3, .test .col_5 .col_4,
+.test .col_6 .col_1, .test .col_6 .col_2, .test .col_6 .col_3, .test .col_6 .col_4, .test .col_6 .col_5,
+.test .col_7 .col_1, .test .col_7 .col_2, .test .col_7 .col_3, .test .col_7 .col_4, .test .col_7 .col_5, .test .col_7 .col_6,
+.test .col_8 .col_1, .test .col_8 .col_2, .test .col_8 .col_3, .test .col_8 .col_4, .test .col_8 .col_5, .test .col_8 .col_6, .test .col_8 .col_7,
+.test .col_9 .col_1, .test .col_9 .col_2, .test .col_9 .col_3, .test .col_9 .col_4, .test .col_9 .col_5, .test .col_9 .col_6, .test .col_9 .col_7, .test .col_9 .col_8,
+.test .col_10 .col_1, .test .col_10 .col_2, .test .col_10 .col_3, .test .col_10 .col_4, .test .col_10 .col_5, .test .col_10 .col_6, .test .col_10 .col_7, .test .col_10 .col_8, .test .col_10 .col_9,
+.test .col_11 .col_1, .test .col_11 .col_2, .test .col_11 .col_3, .test .col_11 .col_4, .test .col_11 .col_5, .test .col_11 .col_6, .test .col_11 .col_7, .test .col_11 .col_8, .test .col_11 .col_9, .test .col_11 .col_10,
+.test .col_12 .col_1, .test .col_12 .col_2, .test .col_12 .col_3, .test .col_12 .col_4, .test .col_12 .col_5, .test .col_12 .col_6, .test .col_12 .col_7, .test .col_12 .col_8, .test .col_12 .col_9, .test .col_12 .col_10, .test .col_12 .col_11  {background-color: #ffc0cb; border-bottom: 1px solid red;}

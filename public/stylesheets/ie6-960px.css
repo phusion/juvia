@@ -1,0 +1,14 @@
+/* tell IE 6 how to handle full-width images in a column */
+
+.col_1 img.fullwidth { width: 60px; }
+.col_2 img.fullwidth { width: 140px; }
+.col_3 img.fullwidth { width: 220px; }
+.col_4 img.fullwidth { width: 300px; }
+.col_5 img.fullwidth { width: 380px; }
+.col_6 img.fullwidth { width: 460px; }
+.col_7 img.fullwidth { width: 540px; }
+.col_8 img.fullwidth { width: 620px; }
+.col_9 img.fullwidth { width: 700px; }
+.col_10 img.fullwidth { width: 780px; }
+.col_11 img.fullwidth { width: 860px; }
+.col_12 img.fullwidth { width: 940px; }
