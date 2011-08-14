@@ -1,15 +1,20 @@
 <%= div_for(comment) do %>
-  <div class="avatar">
-		<img src="http://www.gravatar.com/avatar/<%= comment.author_email_md5 %>?s=64"
-		width="64"
-		height="64"
-		alt="<%= comment.author_name || 'Anonymous' %>">
-	</div>
-	<div class="author">
-	  <span class="name"><%= comment.author_name || 'Anonymous' %></span>
-	  <% if comment.author_email %>
-	    <span class="email">(<a href="mailto:<%= comment.author_email %>"><%= comment.author_email %></a>)</span>
-	  <% end %>
+  <div class="metadata">
+    <div class="avatar">
+		  <img src="http://www.gravatar.com/avatar/<%= comment.author_email_md5 %>?s=64"
+		  width="64"
+		  height="64"
+		  alt="<%= comment.author_name || 'Anonymous' %>">
+	  </div>
+	  <div class="author">
+	    <span class="name"><%= comment.author_name || 'Anonymous' %></span>
+	    <% if comment.author_email %>
+	      <span class="email">(<a href="mailto:<%= comment.author_email %>"><%= comment.author_email %></a>)</span>
+	    <% end %>
+	  </div>
+	  <div class="creation-time">
+	    wrote on <span class="value"><%= comment.created_at.strftime("%B %d %Y, %H:%M") %></span>:
+	  </div>
 	</div>
   <div class="content">
     <%= render_markdown(comment.content) %>
