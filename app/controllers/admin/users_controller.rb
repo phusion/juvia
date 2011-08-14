@@ -1,6 +1,10 @@
 module Admin
 
 class UsersController < ApplicationController
+  layout 'users'
+  
+  before_filter :set_navigation_ids
+  
   def index
     @users = User.all
 
@@ -14,9 +18,16 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
       format.xml  { render :xml => @user }
     end
+  end
+  
+  def sites
+    @user = User.find(params[:user_id])
+  end
+  
+  def comments
+    @user = User.find(params[:user_id])
   end
 
   def new
@@ -68,6 +79,11 @@ class UsersController < ApplicationController
       format.html { redirect_to(admin_users_path) }
       format.xml  { head :ok }
     end
+  end
+
+private
+  def set_navigation_ids
+    @navigation_id = :users
   end
 end
 

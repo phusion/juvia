@@ -1,3 +1,5 @@
+require 'digest/md5'
+
 class User < ActiveRecord::Base
   has_many :sites, :inverse_of => :user
   
@@ -11,6 +13,20 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   
   before_validation :nullify_blank_password_on_update
+  
+  def comments
+    Comment.
+      joins(:topic => { :site => :user }).
+      where(:users => { :id => id })
+  end
+  
+  def email_md5
+    if email
+      Digest::MD5.hexdigest(email.downcase)
+    else
+      nil
+    end
+  end
 
 private
   def nullify_blank_password_on_update

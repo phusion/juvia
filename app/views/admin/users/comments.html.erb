@@ -1,0 +1,11 @@
+<h1 class="no-top-margin">Comments belonging to <%= link_to @user.email, admin_users_path(:anchor => "user_#{@user.id}") %></h1>
+
+<div class="comments list">
+<% for comment in @user.comments do %>
+  <div class="comment">
+    <div>
+      <%= render_markdown(comment.content) %>
+    </div>
+  </div>
+<% end %>
+</div>

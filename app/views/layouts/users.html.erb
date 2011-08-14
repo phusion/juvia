@@ -1,0 +1,10 @@
+<%= render :layout => 'layouts/custom.html' do %>
+  <%= render :partial => 'admin/dashboard/sections_bar' %>
+  <div class="container">
+    <div class="row">
+      <div class="col_12 clearleft omega">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+<% end %>

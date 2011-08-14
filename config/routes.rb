@@ -2,7 +2,11 @@ Juvia::Application.routes.draw do
   devise_for :users
 
   namespace :admin do
-    resources :users
+    match 'dashboard(/:action(/:id(.:format)))' => 'dashboard', :as => :dashboard
+    resources :users do
+      get :comments
+      get :sites
+    end
   end
 
   # The priority is based upon order of creation:
@@ -57,7 +61,7 @@ Juvia::Application.routes.draw do
   # root :to => "welcome#index"
 
   get 'api/:action', :to => 'api'
-  root :to => "admin/users#index"
+  root :to => "admin/dashboard#index"
 
   # See how all your routes lay out with "rake routes"
 

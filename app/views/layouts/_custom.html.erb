@@ -51,9 +51,38 @@
 </head>
 <body>
 
-<div class="container">
+<header class="container">
+  <div class="row">
+    <div id="site_logo" class="col_4 clearleft">
+      Phusion
+      Juvia
+      Commenting system
+    </div>
+    <nav class="col_8 omega">
+      <% if user_signed_in? %>
+        <div><%= link_to current_user.email, edit_admin_user_path(current_user) %></div>
+        <div><%= link_to 'Dashboard', '/dashboard' %></div>
+      <% end %>
+      <div><a href="/help">Help</a></div>
+      <% if user_signed_in? %>
+        <div><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></div>
+      <% end %>
+    </nav>
+  </div>
+</header>
+
+<div id="container">
   <%= yield %>
-</div><!--class="container" -->
+</div>
+
+<footer class="container">
+  <div class="row">
+    <div class="col_12 clearleft omega">
+      <a href="https://github.com/FooBarWidget/juvia">Juvia</a> is created by <a href="http://www.phusion.nl/">Phusion</a> and is open source.
+      Feedback, bug reports, fork &amp; contribute at <a href="https://github.com/FooBarWidget/juvia">Github</a>.
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>

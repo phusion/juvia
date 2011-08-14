@@ -4,6 +4,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.database_authenticatable :null => false
       t.recoverable
       t.rememberable
+      t.boolean    :admin, :null => false, :default => false
       t.timestamps :null => false
     end
 

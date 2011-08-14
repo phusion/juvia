@@ -1,21 +1,14 @@
-<h1>Listing users</h1>
-
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
+<div class="users list">
 <% @users.each do |user| %>
-  <tr>
-    <td><%= user.email %></td>
-    <td><%= link_to 'Edit', edit_admin_user_path(user) %></td>
-    <td><%= link_to 'Delete', admin_user_path(user), :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+  <% div_for user do %>
+    <div class="avatar"><img src="//www.gravatar.com/avatar/<%= user.email_md5 %>?s=58" width="58" height="58"></div>
+    <div class="email"><%= user.email %></div>
+    <div class="actions">
+      <%= link_to 'Sites', admin_user_sites_path(user) %>
+      <%= link_to 'Comments', admin_user_comments_path(user) %>
+      <%= link_to 'Edit', edit_admin_user_path(user) %>
+      <%= link_to 'Delete', admin_user_path(user), :confirm => 'Are you sure?', :method => :delete %>
+    </div>
+  <% end %>
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New User', new_admin_user_path %>
+</div>
