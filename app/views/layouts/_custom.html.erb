@@ -14,7 +14,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 
   <!-- The Columnal Grid (1140px wide base, load first), Type and image presets, and mobile stylesheet -->
-  <%= stylesheet_link_tag 'columnal.css' %>
+  <%= stylesheet_link_tag 'columnal' %>
 
   <!-- Fixes for IE -->
     <!--[if lt IE 9]>
@@ -34,8 +34,8 @@
   <!-- End fixes for IE -->
   
   <!-- Customizations here --> 
-  <%= stylesheet_link_tag 'custom.css' %>
-  <%= javascript_include_tag :defaults %>
+  <%= stylesheet_link_tag 'custom' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tag %>
   
   <!-- Page build tools - only needed while creating a site, remove when launching - Gray box colors and page debugging tools -->
