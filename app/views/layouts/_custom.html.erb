@@ -18,36 +18,28 @@
 
   <!-- Fixes for IE -->
     <!--[if lt IE 9]>
-      <%= stylesheet_link_tag 'ie.css' %>
+      <%= stylesheet_link_tag 'ie' %>
     <![endif]-->
 
     <!-- use "fixed-984px-ie.css" or "fixed-960px-ie.css for a 984px or 960px fixed width for IE6 and 7 -->
     <!--[if lte IE 7]>
-      <%= stylesheet_link_tag 'fixed-984px-ie.css' %>
+      <%= stylesheet_link_tag 'fixed-984px-ie' %>
     <![endif]-->
 
     <!-- Fixes for IE6, only needed if IE 6 will be supported - width must match 984px or 960px of css file used above -->
     <!-- Use .imagescale to fix IE6 issues with full-column width images (class must be added to any image wider than the column it is placed into) -->
     <!--[if lte IE 6]>
-      <link rel="stylesheet" href="css/ie6-984px.css" type="text/css" media="screen" />
+      <%= stylesheet_link_tag 'ie6-984px' %>
     <![endif]-->
   <!-- End fixes for IE -->
   
   <!-- Customizations here --> 
-  <%= stylesheet_link_tag 'custom' %>
+  <%= stylesheet_link_tag 'application' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tag %>
   
   <!-- Page build tools - only needed while creating a site, remove when launching - Gray box colors and page debugging tools -->
-  <%= stylesheet_link_tag 'build.css' %>
-  
-  <style>
-  <!--
-  /* These are just styles for the demo, you do not need them for your project */
-  body {padding-bottom: 40px;}
-  .col_12.title {background-color: white !important; border-bottom: none;}
-  -->
-  </style>
+  <%= stylesheet_link_tag 'build' %>
 </head>
 <body>
 

@@ -1,0 +1,201 @@
+header {
+    nav {
+        text-align: right;
+        
+        div {
+            display: inline-block;
+        }
+    }
+} // header
+
+footer {
+    margin-top: 24px;
+    font-size: 80%;
+    text-align: center;
+}
+
+
+.container > .row > *:first-child > h1:first-child,
+.container > .row > *:first-child > h2:first-child {
+    margin-top: 0;
+}
+
+
+#sections_bar {
+    margin: 20px;
+    
+    .row {
+        background: #deefff; /* Old browsers */
+        background: -moz-linear-gradient(top, #deefff 0%, #98bede 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#deefff), color-stop(100%,#98bede)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top, #deefff 0%,#98bede 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top, #deefff 0%,#98bede 100%); /* Opera11.10+ */
+        background: -ms-linear-gradient(top, #deefff 0%,#98bede 100%); /* IE10+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#deefff', endColorstr='#98bede',GradientType=0 ); /* IE6-9 */
+        background: linear-gradient(top, #deefff 0%,#98bede 100%); /* W3C */
+        
+        border-radius: 6px;
+    }
+    
+    .section {
+        display: inline-block;
+        margin: 8px;
+        line-height: 1em;
+        
+        &:first-child {
+            margin-left: 16px;
+        }
+        
+        a {
+            display: block;
+            padding: 6px;
+            text-decoration: none;
+            border-radius: 4px;
+            text-shadow: 1px 1px 0 white;
+            color: black;
+        }
+        
+        &.active a,
+        a:hover {
+            background: #e9f6fd; /* Old browsers */
+            background: -moz-linear-gradient(top, #e9f6fd 0%, #d3eefb 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e9f6fd), color-stop(100%,#d3eefb)); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top, #e9f6fd 0%,#d3eefb 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top, #e9f6fd 0%,#d3eefb 100%); /* Opera11.10+ */
+            background: -ms-linear-gradient(top, #e9f6fd 0%,#d3eefb 100%); /* IE10+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e9f6fd', endColorstr='#d3eefb',GradientType=0 ); /* IE6-9 */
+            background: linear-gradient(top, #e9f6fd 0%,#d3eefb 100%); /* W3C */
+            background: #deefff;
+            border: solid 1px #abcfee;
+            border-right-color: #deefff;
+            border-bottom-color: #deefff;
+            padding: 5px;
+        }
+        
+        &.active a {
+            font-weight: bold;
+        }
+    }
+    
+    .action {
+        display: inline-block;
+    }
+} // #sections_bar
+
+
+.users.list {
+    .user:first-child {
+        margin-top: 0;
+    }
+    
+    .user {
+        min-height: 58px;
+        margin-top: 16px;
+        
+        .avatar {
+            float: left;
+            margin-left: 0;
+            line-height: 0;
+        }
+        
+        .avatar img {
+            margin: 0;
+        }
+        
+        > div {
+            margin-left: 74px;
+        }
+        
+        .email {
+            font-size: 140%;
+            line-height: 1.5em;
+        }
+        
+        .actions a {
+            font-size: 85%;
+            margin-right: 0.7em;
+        }
+    }
+} // .users.list
+
+
+.comments.list {
+    .comment {
+        min-height: 64px;
+        margin-bottom: 24px;
+        
+        .avatar {
+            float: left;
+            margin-left: 0;
+            line-height: 0;
+        }
+
+        .avatar img {
+            margin: 0;
+        }
+
+        > div {
+            margin-left: 80px;
+        }
+
+        .author {
+            font-weight: bold;
+        }
+
+        .content {
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+
+        .content > *:first-child {
+            margin-top: 0;
+        }
+
+        .content > *:last-child {
+            margin-bottom: 0;
+        }
+
+        .actions {
+            border-top: 1px solid #d0d0d0;
+            padding-top: 8px;
+            font-size: 85%;
+        }
+
+        .actions a {
+            margin-right: 1em;
+        }
+
+        .actions .approve {
+            font-weight: bold;
+        }
+    }
+} // .comments.list
+
+
+/*
+_______________________________
+Mobile version - preset code from cssgrid.net */
+
+@media handheld, only screen and (max-width: 767px) {
+
+	.examplecontainer {}
+
+	body {}
+	
+}
+
+
+/*
+_______________________________
+Provide higher res assets for iPhone 4 - preset code from cssgrid.net */
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) { 
+
+	/* An example of how to override an image with one twice the size for iPhone 4. Specify the original pixel size with background-size.
+	.download {
+	background: url(../img/downarrow@2x.png) no-repeat;
+	background-size: 27px 28px;
+	}
+	*/
+
+}
