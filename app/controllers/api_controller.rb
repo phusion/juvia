@@ -3,6 +3,7 @@ require 'zlib'
 class ApiController < ApplicationController
   layout nil
   
+  skip_before_filter :verify_authenticity_token
   skip_before_filter :authenticate_user!
   before_filter :populate_variables
   
