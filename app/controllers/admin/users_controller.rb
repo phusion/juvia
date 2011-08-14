@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   before_filter :require_admin!
   
   def index
-    @users = User.page(params[:page]).order('email')
+    @users = User.order('email').page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
