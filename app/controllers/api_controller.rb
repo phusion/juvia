@@ -7,7 +7,8 @@ class ApiController < ApplicationController
   
   skip_before_filter :verify_authenticity_token
   skip_before_filter :authenticate_user!
-  before_filter :populate_variables_and_set_headers
+  before_filter :handle_cors
+  before_filter :populate_variables
   
   def show_topic
     @topic_title  = params[:topic_title]
@@ -56,11 +57,19 @@ class ApiController < ApplicationController
   end
 
 private
-  def populate_variables_and_set_headers
+  def handle_cors
+    headers["Access-Control-Allow-Origin"] = "*"
+    headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
+    headers["Access-Control-Max-Age"] = (60 * 60 * 24).to_s
+    if request.method == "OPTIONS"
+      render :text => '', :content_type => 'text/plain'
+    end
+  end
+  
+  def populate_variables
     @container = params[:container]
     @site_key  = params[:site_key]
     @topic_key = params[:topic_key]
-    headers["Access-Control-Allow-Origin"] = "*"
   end
   
   def get_boolean_param(name, default = false)
