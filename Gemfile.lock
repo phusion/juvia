@@ -34,7 +34,7 @@ GEM
     bcrypt-ruby (2.1.4)
     bluecloth (2.1.0)
     builder (3.0.0)
-    default_value_for (1.0.4)
+    default_value_for (1.0.5)
     devise (1.4.2)
       bcrypt-ruby (~> 2.1.2)
       orm_adapter (~> 0.0.3)
