@@ -1,7 +1,7 @@
 <h1 class="no-top-margin">Sites belonging to <%= link_to @user.email, admin_users_path(:anchor => "user_#{@user.id}") %></h1>
 
 <div class="sites list">
-<% for site in @user.sites do %>
+<% for site in @sites do %>
   <div class="site">
     <div>
       <%= site.name %>

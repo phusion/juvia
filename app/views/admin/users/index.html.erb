@@ -1,3 +1,5 @@
+<%= link_to 'New user', new_admin_user_path %>
+
 <div class="users list">
 <% @users.each do |user| %>
   <% div_for user do %>
@@ -12,3 +14,7 @@
   <% end %>
 <% end %>
 </div>
+
+<%= will_paginate @users %>
+
+<%= link_to 'New user', new_admin_user_path %>

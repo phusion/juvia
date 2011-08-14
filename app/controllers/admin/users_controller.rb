@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   before_filter :set_navigation_ids
   
   def index
-    @users = User.all
+    @users = User.page(params[:page]).order('email')
 
     respond_to do |format|
       format.html # index.html.erb
@@ -24,10 +24,12 @@ class UsersController < ApplicationController
   
   def sites
     @user = User.find(params[:user_id])
+    @sites = @user.sites.page(params[:page])
   end
   
   def comments
     @user = User.find(params[:user_id])
+    @comments = @user.comments.page(params[:page])
   end
 
   def new

@@ -1,7 +1,7 @@
 require 'digest/md5'
 
 class User < ActiveRecord::Base
-  has_many :sites, :inverse_of => :user
+  has_many :sites, :inverse_of => :user, :order => 'name'
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
@@ -17,7 +17,8 @@ class User < ActiveRecord::Base
   def comments
     Comment.
       joins(:topic => { :site => :user }).
-      where(:users => { :id => id })
+      where(:users => { :id => id }).
+      order('comments.created_at DESC')
   end
   
   def email_md5

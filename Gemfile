@@ -12,6 +12,7 @@ gem 'default_value_for'
 gem 'bluecloth'
 gem 'devise'
 gem 'jquery-rails', '>= 1.0.12'
+gem 'will_paginate', '~> 3.0.pre4'
 
 # Use unicorn as the web server
 # gem 'unicorn'
