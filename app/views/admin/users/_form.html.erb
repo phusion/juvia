@@ -25,6 +25,11 @@
     <div class="label"><%= f.label :password_confirmation, 'Confirm password' %></div>
     <div class="value"><%= f.password_field :password_confirmation %></div>
   </div>
+  
+  <div class="checkbox field">
+    <%= f.check_box :admin %>
+    <%= f.label :admin, 'Administrator rights' %>
+  </div>
 
   <div class="actions">
     <%= f.submit %>

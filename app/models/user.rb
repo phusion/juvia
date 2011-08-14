@@ -9,8 +9,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable,
          :timeoutable
 
-  # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :admin, :as => :admin
   
   before_validation :nullify_blank_password_on_update
   

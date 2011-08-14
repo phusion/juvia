@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
+    @user = User.new(params[:user], :as => :admin)
 
     respond_to do |format|
       if @user.save
@@ -64,7 +64,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     respond_to do |format|
-      if @user.update_attributes(params[:user])
+      if @user.update_attributes(params[:user], :as => :admin)
         format.html { redirect_to(admin_users_path, :notice => 'User was successfully updated.') }
         format.xml  { head :ok }
       else
