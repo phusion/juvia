@@ -5,7 +5,11 @@ Juvia::Application.routes.draw do
   devise_for :users
   
   namespace :admin do
-    resources :comments
+    resources :comments do
+      collection do
+        get :preview
+      end
+    end
     resources :sites
     resources :users do
       get :comments

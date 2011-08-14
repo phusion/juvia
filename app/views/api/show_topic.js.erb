@@ -5,6 +5,6 @@
 		:container => @container,
 		:html      => render(:partial => 'topic.html', :locals => { :topic => @topic })
 	}
-	options[:css] = render(:partial => 'stylesheet.css') if @include_css
+	options[:css] = Juvia::Application.assets.find_asset('api.css').body if @include_css
 %>
 <%= juvia_handle_response(options) %>

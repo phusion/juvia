@@ -24,4 +24,6 @@ Juvia::Application.configure do
 
   # Do not compress assets
   config.assets.compress = false
+  
+  config.sass.line_comments = true
 end

@@ -1,0 +1,22 @@
+@mixin CommentContent() {
+    p {
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+    
+    pre {
+	    background: #eeeeee;
+	    border: solid 1px #dddddd;
+	    margin-left: 1em;
+	    margin-right: 1em;
+	    margin-top: 1em;
+	    margin-bottom: 1em;
+	    padding: 6px;
+	    font-size: 85%;
+	    overflow: auto;
+	    border-radius: 4px;
+	    -moz-border-radius: 4px;
+	    -webkit-border-radius: 4px;
+    }
+}
+

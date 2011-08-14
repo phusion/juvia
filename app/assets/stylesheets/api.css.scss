@@ -1,3 +1,5 @@
+@import "comment_content";
+
 .juvia-container {
 	font-family: 'Helvetica', 'Arial', 'Sans Serif';
 	font-size: 11pt;
@@ -51,17 +53,9 @@
 	font-style: italic;
 }
 
-.juvia-topic pre {
-	background: #eeeeee;
-	border: solid 1px #dddddd;
-	margin-left: 1em;
-	margin-right: 1em;
-	padding: 6px;
-	font-size: 85%;
-	overflow: auto;
-	border-radius: 4px;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
+.juvia-comment-content,
+.juvia-preview-conten {
+    @include CommentContent;
 }
 
 .juvia-comment h1,
@@ -144,3 +138,4 @@
 .juvia-preview-content > *:last-child {
 	margin-bottom: 0;
 }
+

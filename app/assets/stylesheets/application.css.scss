@@ -1,3 +1,5 @@
+@import "comment_content";
+
 header {
     nav {
         text-align: right;
@@ -15,9 +17,16 @@ footer {
 }
 
 
-.container > .row > *:first-child > h1:first-child,
-.container > .row > *:first-child > h2:first-child {
-    margin-top: 0;
+.container > .row > *:first-child {
+    > h1:first-child,
+    > h2:first-child {
+        margin-top: 0;
+    }
+}
+
+textarea {
+    width: 580px;
+    height: 200px;
 }
 
 
@@ -204,6 +213,17 @@ footer {
         }
     }
 } // .comments.list
+
+form.comment {
+    textarea {
+        font-family: Monospace;
+        font-size: 100%;
+    }
+    
+    .preview .content {
+        @include CommentContent;
+    }
+}
 
 
 /*

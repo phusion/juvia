@@ -20,7 +20,7 @@
     <%= render_markdown(comment.content) %>
   </div>
   <div class="actions">
-    <%= link_to 'Edit', edit_admin_comment_path(comment) %>
+    <%= link_to 'Edit', edit_admin_comment_path(comment, :return_to => request.fullpath) %>
     <% if comment.moderation_status == :ok %>
       <%= link_to 'Spam & delete', [:admin, comment], :method => 'delete', :confirm => 'Are you sure?' %>
     <% elsif comment.moderation_status == :unchecked %>

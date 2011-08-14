@@ -1,4 +1,6 @@
 module ApplicationHelper
+  extend self
+  
   def maybe_active(*navigation_ids)
     if @navigation_id && navigation_ids.include?(@navigation_id)
       'active'

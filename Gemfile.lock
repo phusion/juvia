@@ -34,12 +34,18 @@ GEM
     bcrypt-ruby (2.1.4)
     bluecloth (2.1.0)
     builder (3.0.0)
+    coffee-script (2.2.0)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.1.2)
     default_value_for (1.0.5)
     devise (1.4.2)
       bcrypt-ruby (~> 2.1.2)
       orm_adapter (~> 0.0.3)
       warden (~> 1.0.3)
     erubis (2.7.0)
+    execjs (1.2.4)
+      multi_json (~> 1.0)
     hike (1.2.0)
     i18n (0.6.0)
     jquery-rails (1.0.13)
@@ -80,6 +86,11 @@ GEM
     rake (0.9.2)
     rdoc (3.9.2)
     sass (3.1.7)
+    sass-rails (3.1.0.rc.5)
+      actionpack (~> 3.1.0.rc1)
+      railties (~> 3.1.0.rc1)
+      sass (>= 3.1.4)
+      sprockets (>= 2.0.0.beta.9)
     schema_plus (0.1.2)
       rails
       valuable
@@ -106,11 +117,12 @@ PLATFORMS
 
 DEPENDENCIES
   bluecloth
+  coffee-script
   default_value_for
   devise
   jquery-rails (>= 1.0.12)
   rails (= 3.1.0.rc5)
-  sass
+  sass-rails
   schema_plus
   sqlite3-ruby
   will_paginate (~> 3.0.pre4)
