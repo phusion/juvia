@@ -1,3 +1,5 @@
+// -*- Mode: SCSS; tab-width: 8; indent-tabs-mode: true; c-basic-offset: 8 -*-
+
 var Juvia = {
 	loadScriptCounter: 0
 };
@@ -88,27 +90,35 @@ var Juvia = {
 		var url = '<%= escape_javascript(@base_url) %>';
 		url += path;
 		
-		// Make sure that each loadScript() call generates a unique URL,
-		// otherwise the browser may not actually perform the request.
-		url += '?_c=' + this.loadScriptCounter;
-		this.loadScriptCounter++;
-		
-		for (var name in options) {
-			url += '&';
-			url += encodeURIComponent(name);
-			url += '=';
-			url += encodeURIComponent(options[name]);
+		if (this.supportsCors) {
+			url += '.json';
+			$.post(url, options, function(response) {
+				Juvia.handleResponse(response);
+			}, 'json');
+		} else {
+			url += '.js';
+			
+			// Make sure that each loadScript() call generates a unique URL,
+			// otherwise the browser may not actually perform the request.
+			url += '?_c=' + this.loadScriptCounter;
+			this.loadScriptCounter++;
+			
+			var paramString = $.param(options);
+			if (paramString.length > 0) {
+				url += '&';
+				url += paramString;
+			}
+			
+			$('script.juvia').remove();
+			
+			var s       = document.createElement('script');
+			s.async     = true;
+			s.type      = 'text/javascript';
+			s.className = 'juvia';
+			s.src       = url;
+			(document.getElementsByTagName('head')[0] ||
+			 document.getElementsByTagName('body')[0]).appendChild(s);
 		}
-		
-		$('script.juvia').remove();
-		
-		var s       = document.createElement('script');
-		s.async     = true;
-		s.type      = 'text/javascript';
-		s.className = 'juvia';
-		s.src       = url;
-		(document.getElementsByTagName('head')[0] ||
-		 document.getElementsByTagName('body')[0]).appendChild(s);
 	}
 	
 	Juvia.handleResponse = function(response) {
@@ -161,6 +171,25 @@ var Juvia = {
 		} else {
 			preview.find('.juvia-preview-empty').hide();
 			preview.find('.juvia-preview-content').html(options.html).show();
+		}
+	}
+	
+	Juvia.handleShowError = function(options) {
+		if (options.container) {
+			var $container = $(options.container);
+			$container.html(options.html);
+		} else if (options.site_key && options.topic_key) {
+			var container = this.findContainer(options);
+			container.parent().html(options.html);
+		} else if (options.message) {
+			alert(options.message);
+		} else if (options.html) {
+			// Convert HTML to text and display it in a dialog box.
+			var div = $('<div></div>');
+			div.html(options.html);
+			alert($.trim(div.text()));
+		} else {
+			alert("Juvia unknown error");
 		}
 	}
 	
@@ -333,6 +362,13 @@ var Juvia = {
 				this.uintToBinary(this.adler32(data));
 			return Base64.encode(data);
 		}
+	}
+	
+	
+	// Checks whether browser supports Cross-Origin Resource Sharing.
+	if (window.XMLHttpRequest) {
+		var xhr = new XMLHttpRequest();
+		Juvia.supportsCors = 'withCredentials' in xhr;
 	}
 	
 	

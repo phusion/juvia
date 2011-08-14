@@ -3,14 +3,21 @@ class Topic < ActiveRecord::Base
   has_many :comments, :order => 'created_at DESC', :inverse_of => :topic
   
   def self.lookup(site_key, topic_key)
-    Topic.
-      where('sites.key = ? AND topics.key = ?', site_key, topic_key).
-      joins(:site).
-      first
+    topic = find_by_site_key_and_topic_key(site_key, topic_key)
+    if topic
+      topic
+    else
+      site = Site.find_by_key(site_key)
+      if site
+        Topic.new(:key => topic_key, :site => site)
+      else
+        nil
+      end
+    end
   end
   
   def self.lookup_or_create(site_key, topic_key, topic_title, topic_url)
-    topic = lookup(site_key, topic_key)
+    topic = find_by_site_key_and_topic_key(site_key, topic_key)
     if topic
       topic
     else
@@ -24,5 +31,13 @@ class Topic < ActiveRecord::Base
         nil
       end
     end
+  end
+
+private
+  def self.find_by_site_key_and_topic_key(site_key, topic_key)
+    Topic.
+      where('sites.key = ? AND topics.key = ?', site_key, topic_key).
+      joins(:site).
+      first
   end
 end

@@ -1,3 +1,5 @@
+# -*- Mode: Ruby; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+
 require 'zlib'
 
 class ApiController < ApplicationController
@@ -5,10 +7,9 @@ class ApiController < ApplicationController
   
   skip_before_filter :verify_authenticity_token
   skip_before_filter :authenticate_user!
-  before_filter :populate_variables
+  before_filter :populate_variables_and_set_headers
   
   def show_topic
-    @container    = params[:container]
     @topic_title  = params[:topic_title]
     @topic_url    = params[:topic_url]
     @include_base = get_boolean_param(:include_base, true)
@@ -17,7 +18,7 @@ class ApiController < ApplicationController
     if @topic = Topic.lookup(@site_key, @topic_key)
       render
     else
-      render_error 'topic_not_found.html'
+      render :partial => 'site_not_found_in_show_topic'
     end
   end
   
@@ -45,7 +46,7 @@ class ApiController < ApplicationController
           :content => @content)
         render
       else
-        render_error 'site_not_found'
+        render :partial => 'site_not_found'
       end
     end
   end
@@ -55,9 +56,11 @@ class ApiController < ApplicationController
   end
 
 private
-  def populate_variables
-    @site_key     = params[:site_key]
-    @topic_key    = params[:topic_key]
+  def populate_variables_and_set_headers
+    @container = params[:container]
+    @site_key  = params[:site_key]
+    @topic_key = params[:topic_key]
+    headers["Access-Control-Allow-Origin"] = "*"
   end
   
   def get_boolean_param(name, default = false)
@@ -66,21 +69,6 @@ private
       value == 'true' || value == 'yes' || value == '1' || value == 'on'
     else
       default
-    end
-  end
-  
-  def render_error(*args)
-    response_to do |format|
-      format.html do
-        render(*args)
-      end
-      format.js do
-        options = {
-          :action => 'ShowError',
-          :html => render_to_string(*args)
-        }
-        render :text => %Q{Juvia.handleResponse(#{options.to_json})}
-      end
     end
   end
   
