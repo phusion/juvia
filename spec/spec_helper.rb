@@ -12,6 +12,7 @@ DatabaseCleaner.logger = Rails.logger
 
 RSpec.configure do |config|
   config.include FactoryHelpers
+  config.include SpecSupport
   
   # == Mock Framework
   #

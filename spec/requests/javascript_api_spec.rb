@@ -107,7 +107,7 @@ shared_examples "showing a topic and commenting with the Javascript API" do
     end
     
     it "creates the topic upon posting and sets its URL to the given topic_url", :js => true do
-      show_topic(@site_key, @topic_key, 'http://my-origin.local')
+      show_topic(@site_key, @topic_key, :topic_url => 'http://my-origin.local')
       fill_in 'content', :with => 'a *new* comment!'
       click_button 'Submit'
       
@@ -137,7 +137,7 @@ shared_examples "showing a topic and commenting with the Javascript API" do
     end
     
     it "doesn't change the topic's URL even if topic_url is different", :js => true do
-      show_topic(@site_key, @topic_key, 'http://my-origin.local')
+      show_topic(@site_key, @topic_key, :topic_url => 'http://my-origin.local')
       fill_in 'content', :with => 'a *new* comment!'
       click_button 'Submit'
       
@@ -160,51 +160,17 @@ shared_examples "showing a topic and commenting with the Javascript API" do
 end
 
 describe "Javascript API", "on browsers with CORS support" do
-  def show_topic(site_key, topic_key, referer = nil)
-    File.open('public/_test.html', 'w') do |f|
-      f.write(%Q^
-        <div id="comments"></div>
-        <script type="text/javascript" class="juvia">
-        (function() {
-	        var container   = '#comments';
-	        var site_key    = '#{site_key}';
-	        var topic_key   = '#{topic_key}';
-	        var topic_url   = #{referer ? "'#{referer}'" : "location.href"};
-	        var topic_title = document.title || topic_url;
-	        
-	        var s       = document.createElement('script');
-	        s.async     = true;
-	        s.type      = 'text/javascript';
-	        s.className = 'juvia';
-	        s.src = '/api/show_topic.js' +
-		        '?container=' + encodeURIComponent(container) +
-		        '&site_key=' + encodeURIComponent(site_key) +
-		        '&topic_key=' + encodeURIComponent(topic_key) +
-		        '&topic_url=' + encodeURIComponent(topic_url) +
-            '&topic_title=' + encodeURIComponent(topic_title);
-	        (document.getElementsByTagName('head')[0] ||
-	         document.getElementsByTagName('body')[0]).appendChild(s);
-        })();
-        </script>
-      ^)
-    end
-    visit('/_test.html')
-  end
-  
   specify "the test driver supports Javascript and CORS", :js => true do
-    File.open('public/_test.html', 'w') do |f|
-      f.write(%Q^
-        <script>
-          if (window.XMLHttpRequest) {
-            var xhr = new XMLHttpRequest();
-            document.writeln('withCredentials' in xhr);
-          } else {
-            document.writeln(false);
-          }
-        </script>
-      ^)
-    end
-    visit('/_test.html')
+    visit_html(%Q^
+      <script>
+        if (window.XMLHttpRequest) {
+          var xhr = new XMLHttpRequest();
+          document.writeln('withCredentials' in xhr);
+        } else {
+          document.writeln(false);
+        }
+      </script>
+    ^)
     page.should have_content('true')
   end
   
@@ -212,36 +178,12 @@ describe "Javascript API", "on browsers with CORS support" do
 end
 
 describe "Javascript API", "on browsers without CORS support" do
-  def show_topic(site_key, topic_key, referer = nil)
-    File.open('public/_test.html', 'w') do |f|
-      f.write(%Q^
-        <div id="comments"></div>
-        <script type="text/javascript" class="juvia">
+  def show_topic(site_key, topic_key, options = {})
+    super(site_key, topic_key, options.merge(
+      :pre_js => %Q{
         var Juvia = { supportsCors: false };
-        (function() {
-	        var container   = '#comments';
-	        var site_key    = '#{site_key}';
-	        var topic_key   = '#{topic_key}';
-	        var topic_url   = #{referer ? "'#{referer}'" : "location.href"};
-	        var topic_title = document.title || topic_url;
-	        
-	        var s       = document.createElement('script');
-	        s.async     = true;
-	        s.type      = 'text/javascript';
-	        s.className = 'juvia';
-	        s.src = '/api/show_topic.js' +
-		        '?container=' + encodeURIComponent(container) +
-		        '&site_key=' + encodeURIComponent(site_key) +
-		        '&topic_key=' + encodeURIComponent(topic_key) +
-		        '&topic_url=' + encodeURIComponent(topic_url) +
-            '&topic_title=' + encodeURIComponent(topic_title);
-	        (document.getElementsByTagName('head')[0] ||
-	         document.getElementsByTagName('body')[0]).appendChild(s);
-        })();
-        </script>
-      ^)
-    end
-    visit('/_test.html')
+      })
+    )
   end
   
   include_examples "showing a topic and commenting with the Javascript API"
@@ -249,9 +191,19 @@ end
 
 describe "Javascript API", "error handling" do
   describe "show_topic" do
-    it "returns an error if a required parameter isn't given" do
-      post '/api/show_topic.js'
-      puts response.body
+    it "returns an error if a required parameter is blank", :js => true do
+      visit_html(%Q^
+        <div class="comments"></div>
+        <script src="/api/show_topic.js?container=.comments&amp;site_key="></script>
+      ^)
+      page.should have_css('.comments', :text => /The required parameter site_key wasn't given/)
+    end
+  end
+  
+  describe "add_comment" do
+    it "returns an error if a required parameter is blank" do
+      post '/api/add_comment.js', :site_key => ''
+      response.body.should include("The required parameter <code>site_key</code> wasn't given")
     end
   end
 end

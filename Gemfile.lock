@@ -37,6 +37,7 @@ GEM
       activesupport (= 3.1.0.rc5)
     activesupport (3.1.0.rc5)
       multi_json (~> 1.0)
+    addressable (2.2.6)
     arel (2.1.4)
     bcrypt-ruby (2.1.4)
     bluecloth (2.1.0)
@@ -75,6 +76,8 @@ GEM
       railties (~> 3.0)
       thor (~> 0.14)
     json_pure (1.5.3)
+    launchy (2.0.5)
+      addressable (~> 2.2.6)
     mail (2.3.0)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -171,6 +174,7 @@ DEPENDENCIES
   devise
   factory_girl_rails
   jquery-rails (>= 1.0.12)
+  launchy
   rails (= 3.1.0.rc5)
   rspec-rails (~> 2.4)
   sass-rails

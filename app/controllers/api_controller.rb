@@ -59,7 +59,6 @@ class ApiController < ApplicationController
   end
   
   def preview_comment
-    require_params(:content) || return
     @content = decompress(params[:content])
   end
 

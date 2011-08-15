@@ -31,5 +31,6 @@ group :development, :test do
   gem 'capybara-webkit', :git => 'git://github.com/FooBarWidget/capybara-webkit.git'
   gem 'database_cleaner'
   gem 'factory_girl_rails'
+  gem 'launchy'
 end
 
