@@ -169,8 +169,8 @@ describe "Javascript API", "on browsers with CORS support" do
 	        var container   = '#comments';
 	        var site_key    = '#{site_key}';
 	        var topic_key   = '#{topic_key}';
-	        var topic_title = document.title;
 	        var topic_url   = #{referer ? "'#{referer}'" : "location.href"};
+	        var topic_title = document.title || topic_url;
 	        
 	        var s       = document.createElement('script');
 	        s.async     = true;
@@ -180,7 +180,8 @@ describe "Javascript API", "on browsers with CORS support" do
 		        '?container=' + encodeURIComponent(container) +
 		        '&site_key=' + encodeURIComponent(site_key) +
 		        '&topic_key=' + encodeURIComponent(topic_key) +
-		        '&topic_url=' + encodeURIComponent(topic_url);
+		        '&topic_url=' + encodeURIComponent(topic_url) +
+            '&topic_title=' + encodeURIComponent(topic_title);
 	        (document.getElementsByTagName('head')[0] ||
 	         document.getElementsByTagName('body')[0]).appendChild(s);
         })();
@@ -221,8 +222,8 @@ describe "Javascript API", "on browsers without CORS support" do
 	        var container   = '#comments';
 	        var site_key    = '#{site_key}';
 	        var topic_key   = '#{topic_key}';
-	        var topic_title = document.title;
 	        var topic_url   = #{referer ? "'#{referer}'" : "location.href"};
+	        var topic_title = document.title || topic_url;
 	        
 	        var s       = document.createElement('script');
 	        s.async     = true;
@@ -232,7 +233,8 @@ describe "Javascript API", "on browsers without CORS support" do
 		        '?container=' + encodeURIComponent(container) +
 		        '&site_key=' + encodeURIComponent(site_key) +
 		        '&topic_key=' + encodeURIComponent(topic_key) +
-		        '&topic_url=' + encodeURIComponent(topic_url);
+		        '&topic_url=' + encodeURIComponent(topic_url) +
+            '&topic_title=' + encodeURIComponent(topic_title);
 	        (document.getElementsByTagName('head')[0] ||
 	         document.getElementsByTagName('body')[0]).appendChild(s);
         })();
@@ -243,5 +245,14 @@ describe "Javascript API", "on browsers without CORS support" do
   end
   
   include_examples "showing a topic and commenting with the Javascript API"
+end
+
+describe "Javascript API", "error handling" do
+  describe "show_topic" do
+    it "returns an error if a required parameter isn't given" do
+      post '/api/show_topic.js'
+      puts response.body
+    end
+  end
 end
 

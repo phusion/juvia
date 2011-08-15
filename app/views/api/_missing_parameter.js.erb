@@ -3,7 +3,9 @@
 	options = {
 		:action    => 'ShowError',
 		:container => @container,
-		:html      => render(:partial => 'site_not_found.html', :locals => { :topic => @topic })
+		:site_key  => @site_key,
+		:topic_key => @topic_key,
+		:html      => render(:partial => 'missing_parameter.html', :locals => { :topic => @topic })
 	}
 	options[:css] = Juvia::Application.assets.find_asset('api.css').body if @include_css
 %>

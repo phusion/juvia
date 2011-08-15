@@ -15,19 +15,25 @@ class ApiController < ApplicationController
     @topic_url    = params[:topic_url]
     @include_base = get_boolean_param(:include_base, true)
     @include_css  = get_boolean_param(:include_css, true)
+    # Must come before error checking because the error
+    # templates depend on @include_base/@include_css.
+    
+    require_params(:site_key, :topic_key, :container, :topic_title,
+      :topic_url) || return
     
     if @topic = Topic.lookup(@site_key, @topic_key)
       render
     else
-      render :partial => 'site_not_found_in_show_topic'
+      render :partial => 'site_not_found'
     end
   end
   
   def add_comment
+    require_params(:site_key, :topic_key, :topic_title, :topic_url, :content) || return
     @content = decompress(params[:content])
     
     if @content.blank?
-      render 'content_may_not_be_blank'
+      render :partial => 'content_may_not_be_blank'
       return
     end
     
@@ -53,6 +59,7 @@ class ApiController < ApplicationController
   end
   
   def preview_comment
+    require_params(:content) || return
     @content = decompress(params[:content])
   end
 
@@ -72,8 +79,19 @@ private
     @topic_key = params[:topic_key]
   end
   
+  def require_params(*args)
+    args.each do |arg|
+      if params[arg].blank?
+        @param_name = arg
+        render :partial => 'missing_parameter'
+        return false
+      end
+    end
+    true
+  end
+  
   def get_boolean_param(name, default = false)
-    if params.has_key?(name)
+    if params[name].present?
       value = params[name].downcase
       value == 'true' || value == 'yes' || value == '1' || value == 'on'
     else
