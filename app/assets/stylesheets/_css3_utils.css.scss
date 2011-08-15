@@ -1,0 +1,13 @@
+@mixin BorderRadius($value) {
+	border-radius: $value;
+	-moz-border-radius: $value;
+	-webkit-border-radius: $value;
+	-o-border-radius: $value;
+}
+
+@mixin BoxShadow($value) {
+	box-shadow: $value;
+	-moz-box-shadow: $value;
+	-webkit-box-shadow: $value;
+	-o-box-shadow: $value;
+}

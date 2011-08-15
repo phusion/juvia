@@ -1,8 +1,22 @@
 // -*- Mode: SCSS; tab-width: 4; indent-tabs-mode: true; c-basic-offset: 4 -*-
 
 @import "comment_content";
+@import "css3_utils";
 
 header {
+	background: rgb(207,231,250); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(207,231,250,1) 0%, rgba(99,147,193,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(207,231,250,1)), color-stop(100%,rgba(99,147,193,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(207,231,250,1) 0%,rgba(99,147,193,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(207,231,250,1) 0%,rgba(99,147,193,1) 100%); /* Opera11.10+ */
+	background: -ms-linear-gradient(top, rgba(207,231,250,1) 0%,rgba(99,147,193,1) 100%); /* IE10+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cfe7fa', endColorstr='#6393c1',GradientType=0 ); /* IE6-9 */
+	background: linear-gradient(top, rgba(207,231,250,1) 0%,rgba(99,147,193,1) 100%); /* W3C */
+	
+	height: 40px;
+	margin-bottom: 20px;
+	border-bottom: solid 2px #487cac;
+
 	nav {
 		text-align: right;
 		
@@ -45,7 +59,8 @@ textarea {
 		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#deefff', endColorstr='#98bede',GradientType=0 ); /* IE6-9 */
 		background: linear-gradient(top, #deefff 0%,#98bede 100%); /* W3C */
 		
-		border-radius: 6px;
+		@include BorderRadius(6px);
+		@include BoxShadow(1px 1px 2px #555555);
 	}
 	
 	.section {
@@ -61,7 +76,7 @@ textarea {
 			display: block;
 			padding: 6px;
 			text-decoration: none;
-			border-radius: 4px;
+			@include BorderRadius(4px);
 			text-shadow: 1px 1px 0 white;
 			color: black;
 		}
@@ -158,8 +173,10 @@ textarea {
 			background: linear-gradient(top, #e2e2e2 0%,#dbdbdb 50%,#d1d1d1 51%); /* W3C */
 			
 			font-size: 90%;
-			border-radius: 3px;
 			padding: $metadata_padding;
+			@include BorderRadius(3px);
+			@include BoxShadow(1px 1px 2px #555555);
+			margin-right: 2px; // So that the shadow isn't cut off.
 		}
 		
 		.avatar {
@@ -171,6 +188,7 @@ textarea {
 		
 		.avatar img {
 			margin: 0;
+			@include BoxShadow(1px 1px 2px #555555);
 		}
 		
 		.author {
