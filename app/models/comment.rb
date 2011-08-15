@@ -12,7 +12,7 @@ class Comment < ActiveRecord::Base
   validates_presence_of :content
   validates_presence_of :author_ip
   validates_presence_of :author_user_agent
-  validates_presence_of :referrer
+  validates_presence_of :referer
   
   before_validation :nullify_blank_fields
   before_create :set_moderation_status
@@ -67,7 +67,7 @@ private
       :blog => topic.site.url,
       :user_ip => author_ip,
       :user_agent => author_user_agent,
-      :referrer => referrer,
+      :referrer => referer,
       :comment_content => content,
       :comment_type => 'comment'
     }

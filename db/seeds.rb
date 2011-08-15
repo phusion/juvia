@@ -17,4 +17,4 @@ topic = site.topics.create!(:key => 'testtopic', :title => 'Test Topic', :url =>
 topic.comments.create!(:content => 'hello world',
   :author_ip => '127.0.0.1',
   :author_user_agent => 'Firefox',
-  :referrer => 'http://www.google.com')
+  :referer => 'http://www.google.com')
