@@ -1,8 +1,9 @@
 // -*- Mode: SCSS; tab-width: 8; indent-tabs-mode: true; c-basic-offset: 8 -*-
 
-var Juvia = {
-	loadScriptCounter: 0
-};
+var Juvia;
+if (!Juvia) {
+	Juvia = {};
+}
 
 (function(Juvia) {
 	var RawDeflate;
@@ -365,10 +366,20 @@ var Juvia = {
 	}
 	
 	
+	/********* Initialization *********/
+	
+	if (!('loadScriptCounter' in Juvia)) {
+		Juvia.loadScriptCounter = 0;
+	}
+	
 	// Checks whether browser supports Cross-Origin Resource Sharing.
-	if (window.XMLHttpRequest) {
-		var xhr = new XMLHttpRequest();
-		Juvia.supportsCors = 'withCredentials' in xhr;
+	if (!('supportsCors' in Juvia)) {
+		if (window.XMLHttpRequest) {
+			var xhr = new XMLHttpRequest();
+			Juvia.supportsCors = 'withCredentials' in xhr;
+		} else {
+			Juvia.supportsCors = false;
+		}
 	}
 	
 	
