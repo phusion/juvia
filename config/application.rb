@@ -1,7 +1,10 @@
+# -*- Mode: Ruby; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 require 'securerandom'
+require 'uri'
 
 # If you have a Gemfile, require the default gems, the ones in the
 # current environment and also include :assets gems if in development
@@ -10,6 +13,10 @@ Bundler.require *Rails.groups(:assets) if defined?(Bundler)
 
 module Juvia
   class Application < Rails::Application
+    require File.expand_path('../../lib/app_config', __FILE__)
+
+    config.required_app_config = [:base_url]
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -40,5 +47,16 @@ module Juvia
 
     # Enable the asset pipeline
     config.assets.enabled = true
+    
+    initializer "action_mailer.default_url_options", :after => "app_config" do
+      uri = URI.parse(config.base_url)
+      config.action_mailer.default_url_options = { :host => uri.host }
+      if uri.scheme != "http"
+        config.action_mailer.default_url_options[:protocol] = uri.scheme
+      end
+      if !(uri.scheme == "http" && uri.port == 80) && !(uri.scheme == "https" && uri.port == 443)
+        config.action_mailer.default_url_options[:port] = uri.port
+      end
+    end
   end
 end

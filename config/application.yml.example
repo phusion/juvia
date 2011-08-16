@@ -1,0 +1,10 @@
+development:
+  # The base URL on which you want to install Juvia, without trailing slash.
+  base_url: http://juvia.local
+
+test:
+  base_url: http://juvia.yoursite.com
+
+production:
+  base_url: http://juvia.yoursite.com
+
