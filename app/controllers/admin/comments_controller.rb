@@ -3,7 +3,7 @@ class Admin::CommentsController < ApplicationController
   
   before_filter :require_admin!
   before_filter :set_navigation_ids
-  before_filter :save_return_to_url
+  before_filter :save_return_to_url, :only => [:new, :edit]
   
   def index
     @comments = Comment.order('created_at DESC').page(params[:page])

@@ -21,6 +21,22 @@ class User < ActiveRecord::Base
       order('comments.created_at DESC')
   end
   
+  def accessible_comments
+    if admin?
+      Comment.where(nil)
+    else
+      comments
+    end
+  end
+  
+  def accessible_sites
+    if admin?
+      Site.where(nil)
+    else
+      sites
+    end
+  end
+  
   def email_md5
     if email
       Digest::MD5.hexdigest(email.downcase)

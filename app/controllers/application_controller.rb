@@ -12,9 +12,6 @@ private
     end
   end
   
-  
-  ### helpers
-  
   def save_return_to_url
     session[:return_to] ||= begin
       path = params[:return_to]
@@ -25,6 +22,9 @@ private
       end
     end
   end
+  
+  
+  ### helpers
   
   def redirect_back(default_url = nil)
     redirect_to(session.delete(:return_to) || :back)

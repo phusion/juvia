@@ -1,0 +1,35 @@
+<h1>Welcome to Juvia</h1>
+Let's setup an administrator account first!
+
+<%= form_for(@user, :url => { :action => 'create_admin' }) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being created:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <div class="label"><%= f.label :email %></div>
+    <div class="value"><%= f.text_field :email %></div>
+  </div>
+  
+  <div class="field">
+    <div class="label"><%= f.label :password %></div>
+    <div class="value"><%= f.password_field :password %></div>
+  </div>
+  
+  <div class="field">
+    <div class="label"><%= f.label :password_confirmation, 'Confirm password' %></div>
+    <div class="value"><%= f.password_field :password_confirmation %></div>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit "Next step &raquo;".html_safe %>
+  </div>
+<% end %>

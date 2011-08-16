@@ -1,5 +1,7 @@
 <%= render :layout => 'layouts/custom' do %>
-  <%= render :partial => 'layouts/admin_sections_bar' %>
+  <% if user_signed_in? %>
+    <%= render :partial => 'layouts/admin_sections_bar' %>
+  <% end %>
   <div class="container">
     <div class="row">
       <div class="col_12 clearleft omega">

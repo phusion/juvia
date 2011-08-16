@@ -1,6 +1,6 @@
 Juvia::Application.routes.draw do
   match 'api/:action(.:format)', :to => 'api'
-  root :to => "admin/dashboard#index", :as => :dashboard
+  root :to => 'admin/dashboard#index'
   
   devise_for :users
   
@@ -16,6 +16,8 @@ Juvia::Application.routes.draw do
       get :sites
     end
   end
+  
+  match 'admin/dashboard(/:action)', :to => 'admin/dashboard', :as => :dashboard
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
