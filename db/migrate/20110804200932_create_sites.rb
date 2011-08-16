@@ -2,7 +2,7 @@ class CreateSites < ActiveRecord::Migration
   def self.up
     create_table :sites do |t|
       t.integer  :user_id, :null => false, :on_delete => :cascade, :on_update => :cascade
-      t.string   :key, :null => false
+      t.string   :key, :null => false, :index => :unique
       t.string   :name, :null => false
       t.string   :url
       t.datetime :created_at, :null => false

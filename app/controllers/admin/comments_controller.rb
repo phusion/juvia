@@ -1,8 +1,8 @@
 class Admin::CommentsController < ApplicationController
   layout 'admin'
   
-  before_filter :set_navigation_ids
   before_filter :require_admin!
+  before_filter :set_navigation_ids
   before_filter :save_return_to_url
   
   def index

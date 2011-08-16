@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20110804201102) do
     t.datetime "updated_at",                       :null => false
     t.integer  "moderation_method", :default => 0, :null => false
     t.string   "akismet_key"
+    t.index ["key"], :name => "index_sites_on_key", :unique => true
     t.index ["user_id"], :name => "index_sites_on_user_id"
     t.foreign_key ["user_id"], "users", ["id"], :on_update => :cascade, :on_delete => :cascade
   end

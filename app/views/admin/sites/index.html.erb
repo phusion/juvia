@@ -1,0 +1,23 @@
+<h1>Listing sites</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @sites.each do |site| %>
+  <tr>
+    <td><%= site.name %>
+    <td><%= link_to 'Show', [:admin, site] %></td>
+    <td><%= link_to 'Edit', edit_admin_site_path(site) %></td>
+    <td><%= link_to 'Destroy', [:admin, site], :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br>
+
+<%= link_to 'New Site', new_admin_site_path %>
