@@ -36,15 +36,9 @@ RSpec.configure do |config|
   # config.mock_with :flexmock
   # config.mock_with :rr
   config.mock_with :rspec
-
-  # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
-
-  # We already use database_cleaner.
-  config.use_transactional_fixtures = false
   
   config.before(:each) do
-    if example.metadata[:js]
+    if example.metadata[:type] == :request
       DatabaseCleaner.strategy = :truncation
     else
       DatabaseCleaner.strategy = :transaction

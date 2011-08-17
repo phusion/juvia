@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/FooBarWidget/capybara-webkit.git
-  revision: dc49e5f87587a8f735beebca26ec5800c92fb88c
+  revision: 922d197adfe5bb636f381ecae250744c3e8475cc
   specs:
     capybara-webkit (0.5.0)
       capybara (~> 1.0.0)
