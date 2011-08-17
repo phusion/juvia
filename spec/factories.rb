@@ -3,7 +3,7 @@ FactoryGirl.define do
     email 'admin@admin.com'
     password 123456
     password_confirmation 123456
-    is_admin true
+    admin true
   end
   
   factory :kotori, :class => User do
@@ -58,6 +58,10 @@ FactoryGirl.define do
 end
 
 module FactoryHelpers
+  def admin(attrs = {})
+    @admin ||= FactoryGirl.create(:admin, attrs)
+  end
+  
   def kotori(attrs = {})
     @kotori ||= FactoryGirl.create(:kotori, attrs)
   end

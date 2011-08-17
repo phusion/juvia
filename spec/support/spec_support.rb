@@ -1,7 +1,8 @@
 module SpecSupport
   def login(user)
     if example.metadata[:type] == :request
-      raise "Not yet implemented"
+      visit("/test/login?user_id=#{user.id}")
+      page.should have_content("ok")
     elsif example.metadata[:type] == :controller
       raise "Please use sign_in instead in controller specs"
     else

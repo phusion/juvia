@@ -2,6 +2,30 @@
 <h1>Let's get started!</h1>
 <p>So you want to embed comments on a bunch of web pages.</p>
 
-<p>What's your site's name? Just enter one. If you have more you can add them later.</p>
-
-<p>How do you want to moderate new comments?</p>
+<%= form_for([:admin, @site], :class => 'new_site') do |f| %>
+  <div class="field">
+    <p class="desc"><label for="site_name">What's your site's name?</label></p>
+    <p>Enter just one. If you have more you can add them later.</p>
+    <%= f.text_field :name %>
+  </div>
+  
+  <div class="field">
+    <p class="desc">How do you want to moderate new comments?</p>
+    <div class="radio_buttons">
+      <label>
+        <%= f.radio_button :moderation_method, :none %>
+        Don't moderate, approve all comments automatically.
+      </label>
+      <label>
+        <%= f.radio_button :moderation_method, :akismet %>
+        Check spam with Akismet, approve automatically if no spam detected.
+      </label>
+      <label>
+        <%= f.radio_button :moderation_method, :manual %>
+        Manually approve all comments.
+      </label>
+    </div>
+  </div>
+  
+  <%= f.submit 'Next step &raquo;'.html_safe %>
+<% end %>

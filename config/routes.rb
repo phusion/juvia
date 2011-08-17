@@ -10,7 +10,12 @@ Juvia::Application.routes.draw do
         get :preview
       end
     end
-    resources :sites
+    resources :sites do
+      member do
+        get :created
+        get :install
+      end
+    end
     resources :users do
       get :comments
       get :sites
@@ -18,6 +23,7 @@ Juvia::Application.routes.draw do
   end
   
   match 'admin/dashboard(/:action)', :to => 'admin/dashboard', :as => :dashboard
+  match 'test/:action', :to => 'test' if Rails.env.test?
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

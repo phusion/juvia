@@ -1,7 +1,6 @@
 class Admin::SitesController < ApplicationController
   layout 'admin'
   
-  before_filter :require_admin!
   before_filter :set_navigation_ids
   
   # GET /admin/sites
@@ -45,14 +44,15 @@ class Admin::SitesController < ApplicationController
   # POST /admin/sites
   # POST /admin/sites.json
   def create
-    @site = Site.new(params[:admin_site])
+    @site = Site.new(params[:site])
+    @site.user = current_user
 
     respond_to do |format|
       if @site.save
-        format.html { redirect_to @site, :notice => 'Site was successfully created.' }
+        format.html { redirect_to created_admin_site_path(@site) }
         format.json { render :json => @site, :status => :created, :location => @site }
       else
-        format.html { render action: "new" }
+        format.html { render :action => "new" }
         format.json { render :json => @site.errors, :status => :unprocessable_entity }
       end
     end
@@ -64,11 +64,11 @@ class Admin::SitesController < ApplicationController
     @site = Site.find(params[:id])
 
     respond_to do |format|
-      if @site.update_attributes(params[:admin_site])
-        format.html { redirect_to @site, :notice => 'Site was successfully updated.' }
+      if @site.update_attributes(params[:site])
+        format.html { redirect_to [:admin, @site], :notice => 'Site was successfully updated.' }
         format.json { head :ok }
       else
-        format.html { render action: "edit" }
+        format.html { render :action => "edit" }
         format.json { render :json => @site.errors, :status => :unprocessable_entity }
       end
     end
@@ -81,7 +81,7 @@ class Admin::SitesController < ApplicationController
     @site.destroy
 
     respond_to do |format|
-      format.html { redirect_to admin_sites_url }
+      format.html { redirect_to admin_sites_path }
       format.json { head :ok }
     end
   end

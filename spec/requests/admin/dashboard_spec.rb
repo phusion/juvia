@@ -1,3 +1,4 @@
+# encoding: utf-8
 require File.expand_path(File.dirname(__FILE__) + "/../../spec_helper")
 
 describe "Admin::Dashboard" do
@@ -12,18 +13,22 @@ describe "Admin::Dashboard" do
   end
   
   describe "setting up a site" do
-    it "works" do
+    before :each do
+      login(admin)
       visit '/admin/dashboard/new_site'
+    end
+    
+    it "works" do
       page.should have_content("So you want to embed comments on a bunch of web pages")
       fill_in 'site[name]', :with => 'Foo'
-      fill_in 'site[moderation_type]'
-      click_button 'Next step &raquo;'
-      page.should have_content("Your site has been created. Here's how you embed comments in your web pages.")
+      choose 'Manually approve all comments.'
+      click_button 'Next step »'
+      page.should have_content("Your site has been created! Here's how you embed comments in your web pages.")
       Site.find_by_name('Foo').should_not be_nil
     end
     
     it "refuses to create the site upon errors" do
-      click_button 'Next step &raquo;'
+      click_button 'Next step »'
       page.should have_content("prohibited this site from being created")
       page.should have_content("So you want to embed comments on a bunch of web pages")
     end

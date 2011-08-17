@@ -23,6 +23,10 @@ class Admin::DashboardController < ApplicationController
   def create_admin
     #raise if User.where(:admin => true).count > 0
   end
+  
+  def new_site
+    @site = Site.new
+  end
 
 private
   def set_navigation_ids
