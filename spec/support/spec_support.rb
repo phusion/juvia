@@ -1,4 +1,14 @@
 module SpecSupport
+  def login(user)
+    if example.metadata[:type] == :request
+      raise "Not yet implemented"
+    elsif example.metadata[:type] == :controller
+      raise "Please use sign_in instead in controller specs"
+    else
+      raise "Test type #{example.metadata[:type]} not supported"
+    end
+  end
+  
   def visit_html(html)
     File.open('public/_test.html', 'w') do |f|
       f.write(html)

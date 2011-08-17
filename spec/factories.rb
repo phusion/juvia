@@ -12,9 +12,35 @@ FactoryGirl.define do
     password_confirmation 123456
   end
   
+  factory :morishima, :class => User do
+    email 'morishima@morishima.jp'
+    password 123456
+    password_confirmation 123456
+  end
+  
   factory :hatsuneshima, :class => Site do
     name 'Hatsuneshima'
     key 'hatsuneshima'
+  end
+  
+  factory :site1, :class => Site do
+    name 'Site 1'
+    key 'site1'
+  end
+  
+  factory :site2, :class => Site do
+    name 'Site 2'
+    key 'site2'
+  end
+  
+  factory :site3, :class => Site do
+    name 'Site 3'
+    key 'site3'
+  end
+  
+  factory :site4, :class => Site do
+    name 'Site 4'
+    key 'site4'
   end
   
   factory :topic do
@@ -34,6 +60,10 @@ end
 module FactoryHelpers
   def kotori(attrs = {})
     @kotori ||= FactoryGirl.create(:kotori, attrs)
+  end
+  
+  def morishima(attrs = {})
+    @morishima ||= FactoryGirl.create(:morishima, attrs)
   end
   
   def hatsuneshima(attrs = {})

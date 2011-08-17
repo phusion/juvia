@@ -32,5 +32,6 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'factory_girl_rails'
   gem 'launchy'
+  gem 'spork', '0.9.0.rc9', :require => false
 end
 
