@@ -1,7 +1,7 @@
 <h1>Welcome to Juvia</h1>
 Let's setup an administrator account first!
 
-<%= form_for(@user, :url => { :action => 'create_admin' }) do |f| %>
+<%= form_for(@user, :url => { :action => 'create_admin' }, :method => 'put') do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being created:</h2>

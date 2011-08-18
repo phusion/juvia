@@ -22,7 +22,12 @@ Juvia::Application.routes.draw do
     end
   end
   
-  match 'admin/dashboard(/:action)', :to => 'admin/dashboard', :as => :dashboard
+  get 'admin/dashboard', :to => 'admin/dashboard#index', :as => :dashboard
+  get 'admin/dashboard/new_admin', :to => 'admin/dashboard#new_admin'
+  put 'admin/dashboard/create_admin', :to => 'admin/dashboard#create_admin'
+  get 'admin/dashboard/new_site', :to => 'admin/dashboard#new_site'
+  put 'admin/dashboard/create_site', :to => 'admin/dashboard#create_site'
+  
   match 'test/:action', :to => 'test' if Rails.env.test?
 
   # The priority is based upon order of creation:

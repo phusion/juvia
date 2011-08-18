@@ -2,7 +2,19 @@
 <h1>Let's get started!</h1>
 <p>So you want to embed comments on a bunch of web pages.</p>
 
-<%= form_for([:admin, @site], :class => 'new_site') do |f| %>
+<%= form_for(@site, :url => { :action => 'create_site' }, :method => 'put', :class => 'new_site') do |f| %>
+  <% if @site.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@site.errors.count, "error") %> prohibited this site from being created:</h2>
+
+      <ul>
+      <% @site.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
   <div class="field">
     <p class="desc"><label for="site_name">What's your site's name?</label></p>
     <p>Enter just one. If you have more you can add them later.</p>

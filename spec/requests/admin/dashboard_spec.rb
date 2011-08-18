@@ -32,11 +32,12 @@ describe "Admin::Dashboard" do
       click_button 'Create account & login'
       user = User.first
       user.email.should == 'a@a.com'
+      user.should be_admin
       page.should have_css("#debug .current_user", :text => user.id.to_s)
       page.should have_content("So you want to embed comments on a bunch of web pages")
     end
     
-    it "refuses to create the account on error" do
+    it "refuses to create the account opon errors" do
       visit root_path
       click_button 'Create account & login'
       page.should have_css("#error_explanation")

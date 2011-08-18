@@ -38,4 +38,12 @@ describe Admin::DashboardController do
     
     include_examples "requires authentication"
   end
+  
+  describe "create_site" do
+    def visit_normally
+      put :create_site
+    end
+    
+    include_examples "requires authentication"
+  end
 end

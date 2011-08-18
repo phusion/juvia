@@ -9,6 +9,7 @@ end
 
 Spork.each_run do
   # This code will be run each time you run your specs.
+  ActiveSupport::Dependencies.clear
 end
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
@@ -22,6 +23,7 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 Capybara.javascript_driver = :webkit
 DatabaseCleaner.logger = Rails.logger
+DatabaseCleaner.strategy = :truncation
 
 RSpec.configure do |config|
   config.include FactoryHelpers
@@ -38,11 +40,6 @@ RSpec.configure do |config|
   config.mock_with :rspec
   
   config.before(:each) do
-    if example.metadata[:type] == :request
-      DatabaseCleaner.strategy = :truncation
-    else
-      DatabaseCleaner.strategy = :transaction
-    end
     DatabaseCleaner.start
   end
 

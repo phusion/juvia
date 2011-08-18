@@ -35,6 +35,16 @@ class Admin::DashboardController < ApplicationController
   def new_site
     @site = Site.new
   end
+  
+  def create_site
+    @site = Site.new(params[:site])
+    @site.user = current_user
+    if @site.save
+      redirect_to created_admin_site_path(@site)
+    else
+      render :action => 'new_site'
+    end
+  end
 
 private
   def set_navigation_ids
