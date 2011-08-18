@@ -7,9 +7,9 @@ class Admin::DashboardController < ApplicationController
   
   def index
     if User.where(:admin => true).count == 0
-      redirect_to :action => 'setup_admin'
-    elsif Site.count == 0
-      redirect_to :action => 'welcome'
+      redirect_to :action => 'new_admin'
+    elsif current_user && current_user.accessible_sites.count == 0
+      redirect_to :action => 'new_site'
     else
       redirect_to admin_comments_path
     end
@@ -22,6 +22,14 @@ class Admin::DashboardController < ApplicationController
   
   def create_admin
     #raise if User.where(:admin => true).count > 0
+    @user = User.new(params[:user])
+    @user.admin = true
+    if @user.save
+      sign_in(@user)
+      redirect_to dashboard_path
+    else
+      render :action => 'new_admin'
+    end
   end
   
   def new_site

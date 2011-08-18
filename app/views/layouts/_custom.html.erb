@@ -78,5 +78,10 @@
   </div>
 </footer>
 
+<% if Rails.env.test? %>
+  <div style="display: none" id="debug">
+    <div class="current_user"><%= current_user.id if current_user %></div>
+  </div>
+<% end %>
 </body>
 </html>
