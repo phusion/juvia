@@ -55,6 +55,10 @@ footer {
 }
 
 
+p {
+	margin-bottom: 1em;
+}
+
 .container > .row > *:first-child {
 	> h1:first-child,
 	> h2:first-child {
@@ -250,6 +254,30 @@ footer {
 		}
 	}
 } // .comments.list
+
+#error_explanation {
+	background: #f9aaaa;
+	border: solid 1px #f36969;
+	padding: 12px;
+	font-size: 80%;
+	margin-left: 18px;
+	margin-right: 18px;
+	@include BorderRadius(3px);
+	@include BoxShadow(0px 0px 2px black);
+	
+	h2 {
+		font-size: 120%;
+		margin: 0 0 0.5em 0;
+	}
+	
+	ul {
+		margin: 0.5em 0 0 1em;
+	}
+	
+	ul, li {
+		font-size: inherit;
+	}
+}
 
 form.comment {
 	textarea {
