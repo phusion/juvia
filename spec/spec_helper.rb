@@ -9,12 +9,19 @@ end
 
 Spork.each_run do
   # This code will be run each time you run your specs.
-  ActiveSupport::Dependencies.clear
+  require 'factory_girl_rails'
+  RSpec.configure do |config|
+    config.include FactoryHelpers
+  end
 end
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
+require 'capybara'
+require 'capybara-webkit'
+require 'database_cleaner'
+require 'launchy'
 require 'rspec/rails'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -26,7 +33,6 @@ DatabaseCleaner.logger = Rails.logger
 DatabaseCleaner.strategy = :truncation
 
 RSpec.configure do |config|
-  config.include FactoryHelpers
   config.include SpecSupport
   config.include Devise::TestHelpers, :type => :controller
   

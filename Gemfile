@@ -30,12 +30,12 @@ end
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :development, :test do
-  gem 'rspec-rails', '~> 2.4'
-  gem 'capybara'
-  gem 'capybara-webkit', :git => 'git://github.com/FooBarWidget/capybara-webkit.git'
-  gem 'database_cleaner'
-  gem 'factory_girl_rails'
-  gem 'launchy'
+  gem 'rspec-rails', '~> 2.4', :require => false
+  gem 'capybara', :require => false
+  gem 'capybara-webkit', :git => 'git://github.com/FooBarWidget/capybara-webkit.git', :require => false
+  gem 'database_cleaner', :require => false
+  gem 'factory_girl_rails', :require => false
+  gem 'launchy', :require => false
   gem 'spork', '0.9.0.rc9', :require => false
 end
 
