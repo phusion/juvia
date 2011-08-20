@@ -257,13 +257,13 @@ p {
 
 #error_explanation {
 	background: #f9aaaa;
-	border: solid 1px #f36969;
+	border: solid 1px #f37979;
 	padding: 12px;
 	font-size: 80%;
 	margin-left: 18px;
 	margin-right: 18px;
 	@include BorderRadius(3px);
-	@include BoxShadow(0px 0px 2px black);
+	@include BoxShadow(0px 0px 1px black);
 	
 	h2 {
 		font-size: 120%;

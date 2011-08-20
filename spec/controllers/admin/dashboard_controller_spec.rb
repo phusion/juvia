@@ -11,7 +11,7 @@ describe Admin::DashboardController do
     it "errors out if the system already has administrators" do
       admin
       visit_normally
-      pending
+      response.should render_template('shared/forbidden')
     end
   end
   
@@ -27,7 +27,7 @@ describe Admin::DashboardController do
     it "errors out if the system already has administrators" do
       admin
       visit_normally
-      pending
+      response.should render_template('shared/forbidden')
     end
   end
   

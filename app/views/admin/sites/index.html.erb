@@ -1,23 +1,17 @@
-<h1>Listing sites</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
+<div class="sites">
 <% @sites.each do |site| %>
-  <tr>
-    <td><%= site.name %>
-    <td><%= link_to 'Show', [:admin, site] %></td>
-    <td><%= link_to 'Edit', edit_admin_site_path(site) %></td>
-    <td><%= link_to 'Destroy', [:admin, site], :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+  <%= div_for site do %>
+    <div class="name">
+      <%= link_to site.name, [:admin, site] %>
+    </div>
+    <div class="details">
+      <%= site.comments.count %> comments over
+      <%= site.topics.count %> topics
+    </div>
+    <div class="actions">
+      <%= link_to 'Edit', edit_admin_site_path(site) %>
+      <%= link_to 'Destroy', [:admin, site], :confirm => 'Are you sure?', :method => :delete %>
+    </div>
+  <% end %>
 <% end %>
-</table>
-
-<br>
-
-<%= link_to 'New Site', new_admin_site_path %>
+</div>

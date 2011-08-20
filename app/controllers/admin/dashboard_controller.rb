@@ -3,6 +3,7 @@ class Admin::DashboardController < ApplicationController
   
   skip_before_filter :authenticate_user!, :only => [:index, :new_admin, :create_admin]
   before_filter :require_admin!, :except => [:index, :new_admin, :create_admin]
+  before_filter :require_no_admins_defined, :only => [:new_admin, :create_admin]
   before_filter :set_navigation_ids
   
   def index
@@ -16,12 +17,10 @@ class Admin::DashboardController < ApplicationController
   end
   
   def new_admin
-    #raise if User.where(:admin => true).count > 0
     @user = User.new
   end
   
   def create_admin
-    #raise if User.where(:admin => true).count > 0
     @user = User.new(params[:user])
     @user.admin = true
     if @user.save
@@ -47,6 +46,12 @@ class Admin::DashboardController < ApplicationController
   end
 
 private
+  def require_no_admins_defined
+    if User.where(:admin => true).count > 0
+      render :template => 'shared/forbidden'
+    end
+  end
+  
   def set_navigation_ids
     @navigation_ids = [:dashboard]
   end
