@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/FooBarWidget/capybara-webkit.git
-  revision: fe13b0b985f1c656156bdaf888bced9a605eb305
+  revision: 3b025e7115c8f9688e83df47937f53c5ed029e18
   specs:
     capybara-webkit (0.6.0)
       capybara (~> 1.0.0)
@@ -80,7 +80,7 @@ GEM
       em-websocket (>= 0.2.0)
       guard (>= 0.4.0)
       multi_json (~> 1.0.3)
-    hike (1.2.0)
+    hike (1.2.1)
     i18n (0.6.0)
     jquery-rails (1.0.13)
       railties (~> 3.0)
@@ -152,7 +152,7 @@ GEM
       json_pure
       rubyzip
     spork (0.9.0.rc9)
-    sprockets (2.0.0.beta.13)
+    sprockets (2.0.0.beta.14)
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
