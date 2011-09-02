@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0.rc6'
+gem 'rails', '3.1.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -21,6 +21,7 @@ gem 'coffee-script'
 
 # To use debugger
 # gem 'ruby-debug'
+gem 'bcrypt-ruby', :git => 'git://github.com/FooBarWidget/bcrypt-ruby.git'
 
 group :development do
   gem 'guard-livereload'
@@ -32,10 +33,9 @@ end
 group :development, :test do
   gem 'rspec-rails', '~> 2.4'
   gem 'capybara', :require => false
-  gem 'capybara-webkit', :git => 'git://github.com/FooBarWidget/capybara-webkit.git', :require => false
+  gem 'capybara-webkit', :require => false
   gem 'database_cleaner', :require => false
   gem 'factory_girl_rails', :require => false
   gem 'launchy', :require => false
   gem 'spork', '0.9.0.rc9', :require => false
 end
-
