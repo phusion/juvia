@@ -1,9 +1,13 @@
+// -*- Mode: SCSS; tab-width: 4; indent-tabs-mode: true; c-basic-offset: 4 -*-
+
 textarea {
 	width: 580px;
 	height: 200px;
 }
 
-input[type="text"] {
+input[type="text"],
+input[type="number"],
+textarea {
 	background: rgb(232,232,232); /* Old browsers */
 	background: -moz-linear-gradient(top, rgba(232,232,232,1) 0%, rgba(255,255,255,1) 40%, rgba(255,255,255,1) 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(232,232,232,1)), color-stop(40%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,1))); /* Chrome,Safari4+ */
@@ -13,11 +17,10 @@ input[type="text"] {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8e8e8', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
 	background: linear-gradient(top, rgba(232,232,232,1) 0%,rgba(255,255,255,1) 40%,rgba(255,255,255,1) 100%); /* W3C */
 	
-	border: 1px solid #aaaaaa;
+	border: 1px solid #b0b0b0;
 	padding: 4px;
 	font-size: 0.85em;
 	@include BorderRadius(4px);
-	@include BoxShadow(0px 0px 1px gray);
 }
 
 input[type="submit"] {
@@ -31,4 +34,9 @@ form .actions {
 
 form .actions .button {
 	font-size: 0.85em;
+}
+
+form .field {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
 }
