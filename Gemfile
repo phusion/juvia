@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0'
+gem 'rails', '3.1.3'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -22,7 +22,7 @@ gem 'css3buttons'
 
 # To use debugger
 # gem 'ruby-debug'
-gem 'bcrypt-ruby', :git => 'git://github.com/FooBarWidget/bcrypt-ruby.git'
+gem 'bcrypt-ruby'
 
 group :development do
   gem 'guard-livereload'
