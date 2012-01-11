@@ -3,11 +3,21 @@ require File.expand_path(File.dirname(__FILE__) + "/../../spec_helper")
 describe Admin::DashboardController do
   render_views
   
+  describe "index" do
+    def visit_normally
+      get :index
+    end
+
+    include_examples "doesn't require authentication"
+  end
+
   describe "new_admin" do
     def visit_normally
       get :new_admin
     end
-    
+
+    include_examples "doesn't require authentication"
+
     it "errors out if the system already has administrators" do
       admin
       visit_normally
@@ -22,6 +32,15 @@ describe Admin::DashboardController do
         :password => '123456',
         :password_confirmation => '123456'
       }
+    end
+
+    include_examples "doesn't require authentication"
+
+    it "creates a new admin user" do
+      visit_normally
+      user = User.find_by_email('a@a.com')
+      user.should_not be_nil
+      user.should be_admin
     end
     
     it "errors out if the system already has administrators" do
@@ -41,9 +60,28 @@ describe Admin::DashboardController do
   
   describe "create_site" do
     def visit_normally
-      put :create_site
+      put :create_site, :site => {
+        :name => 'foobar'
+      }
     end
     
     include_examples "requires authentication"
+
+    it "creates a new site" do
+      sign_in(admin)
+      visit_normally
+      site = Site.find_by_name('foobar')
+      site.should_not be_nil
+    end
+
+    it "always assigns the created site to the currently logged in user" do
+      sign_in(admin)
+      put :create_site, :site => {
+        :name => 'foobar',
+        :user_id => kotori.id
+      }
+      site = Site.find_by_name('foobar')
+      site.user_id.should == admin.id
+    end
   end
 end
