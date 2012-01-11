@@ -16,6 +16,7 @@ class Comment < ActiveRecord::Base
   
   before_validation :nullify_blank_fields
   before_create :set_moderation_status
+  after_create :update_topic_timestamp
   
   def author_email_md5
     if author_email
@@ -98,6 +99,12 @@ private
       self.moderation_status = :unchecked
     else
       self.moderation_status = :ok
+    end
+  end
+
+  def update_topic_timestamp
+    if topic
+      topic.update_attribute(:last_posted_at, Time.now)
     end
   end
 end

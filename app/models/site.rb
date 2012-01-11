@@ -14,4 +14,8 @@ class Site < ActiveRecord::Base
     :moderation_method, :akismet_key, :as => :admin
   
   default_value_for(:key) { SecureRandom.hex(20).to_i(16).to_s(36) }
+
+  def last_updated_topics
+    topics.order(:last_posted_at => :desc)
+  end
 end

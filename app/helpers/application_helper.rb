@@ -19,4 +19,21 @@ module ApplicationHelper
   def render_markdown(str)
     BlueCloth.new(str, :escape_html => true, :strict_mode => false).to_html.html_safe
   end
+
+  def large_identity_tag(type, content)
+    %Q{<h2 class="identity large">#{image_tag "#{type}-48.png", :width => 48, :height => 48}#{h content}</h2>}.html_safe
+  end
+
+  def small_identity_tag(type, content, link = nil)
+    result = %Q{<span class="identity small">}
+    if link
+      result << %Q{<a href="#{h url_for(link)}">}
+    end
+    result << image_tag("#{type}-22.png", :width => 22, :height => 22)
+    result << h(content)
+    if link
+      result << %Q{</a>}
+    end
+    result.html_safe
+  end
 end

@@ -1,11 +1,11 @@
 <div class="list_with_actions">
   <div class="pre actions">
-    <%= add_button_link_to 'New user', new_admin_user_path %>
+    <%= add_button_link_to 'Create a new user', new_admin_user_path %>
   </div>
 
   <div class="users list">
   <% @users.each do |user| %>
-    <%= div_for user do %>
+    <%= div_for(user, :class => 'item') do %>
       <div class="avatar"><img src="//www.gravatar.com/avatar/<%= user.email_md5 %>?s=58" width="58" height="58"></div>
       <div class="email"><%= user.email %></div>
       <div class="actions">
@@ -21,6 +21,6 @@
   <%= will_paginate @users %>
 
   <div class="post actions">
-    <%= add_button_link_to 'New user', new_admin_user_path %>
+    <%= add_button_link_to 'Create a new user', new_admin_user_path %>
   </div>
 </div>

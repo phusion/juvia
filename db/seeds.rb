@@ -12,7 +12,13 @@ user = User.create!({
     :password_confirmation => '123456',
     :admin => true
   }, :as => :admin)
-site = user.sites.create!(:key => 'testkey', :name => 'Test Site', :url => 'http://test')
+site = user.sites.create!({
+    :key => 'testkey',
+    :name => 'Test Site',
+    :url => 'http://test',
+    :user => user
+  }, :as => :admin)
+site.update_attribute(:key, 'testkey')
 topic = site.topics.create!(:key => 'testtopic', :title => 'Test Topic', :url => 'http://test/testtopic')
 topic.comments.create!(:content => 'hello world',
   :author_ip => '127.0.0.1',

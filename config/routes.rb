@@ -1,4 +1,6 @@
 Juvia::Application.routes.draw do
+  namespace :admin do resources :topics end
+
   match 'api/:action(.:format)', :to => 'api'
   root :to => 'admin/dashboard#index'
   

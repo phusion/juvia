@@ -338,6 +338,21 @@ form.new_site {
 	}
 }
 
+.identity {
+	vertical-align: middle;
+
+	img {
+		display: inline-block;
+		vertical-align: middle;
+		margin: 0;
+		margin-right: 0.5em;
+	}
+
+	&.large {
+		font-size: 20pt;
+	}
+}
+
 
 /*
 _______________________________

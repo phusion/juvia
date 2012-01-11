@@ -40,11 +40,12 @@ ActiveRecord::Schema.define(:version => 20110804201102) do
   end
 
   create_table "topics", :force => true do |t|
-    t.integer  "site_id",    :null => false
-    t.string   "key",        :null => false
-    t.string   "title",      :null => false
-    t.string   "url",        :null => false
-    t.datetime "created_at", :null => false
+    t.integer  "site_id",        :null => false
+    t.string   "key",            :null => false
+    t.string   "title",          :null => false
+    t.string   "url",            :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "last_posted_at"
     t.index ["site_id", "key"], :name => "index_topics_on_site_id_and_key", :unique => true
     t.index ["site_id"], :name => "index_topics_on_site_id"
     t.foreign_key ["site_id"], "sites", ["id"], :on_update => :cascade, :on_delete => :cascade

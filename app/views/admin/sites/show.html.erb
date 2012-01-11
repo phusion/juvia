@@ -1,18 +1,33 @@
-<h2>Site: <%= @site.name %></h2>
+<%= large_identity_tag :site, @site.name %>
+
 <div class="info panel">
-	<p>Key: <%= @site.key %> <%= link_to 'Install' %></p>
-	<p>Owned by: <%= @site.user.email %></p>
-	<div>
-		<%= button_group do %>
-			<%= button_link_to 'Change owner' %>
-			<%= button_link_to 'Change other information' %>
-			<%= button_link_to 'Delete' %>
-		<% end %>
-	</div>
+  <p>Key: <%= @site.key %> <%= link_to 'Install' %></p>
+  <p>Owned by: <%= @site.user.email %></p>
+  <div>
+    <%= button_group do %>
+      <%= button_link_to 'Change owner' %>
+      <%= button_link_to 'Change other information' %>
+      <%= button_link_to 'Delete', [:admin, @site], :confirm => 'Are you sure? All containing comments will also be deleted!', :method => :delete %>
+    <% end %>
+  </div>
 </div>
 
 <h3>Topics</h3>
-...
-
-<h3>Comments</h3>
-...
+<% if @site.topics.empty? %>
+  <p>This site doesn't have any topics yet.</p>
+  <p>You don't have to manually create topics. A topic is automatically
+  created whenever a user posts a comment with a certain topic ID.</p>
+<% else %>
+  <p>You don't have to manually create topics. A topic is automatically
+  created whenever a user posts a comment with a certain topic ID.</p>
+  
+  <div class="list_with_actions">
+    <div class="list">
+      <% @site.last_updated_topics.each do |topic| %>
+        <%= div_for(topic, :class => 'item') do %>
+          <%= small_identity_tag :topic, topic.title, [:admin, topic] %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
