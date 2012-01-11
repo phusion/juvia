@@ -5,23 +5,33 @@
 <script type="text/javascript" src="/assets/jquery-1.6.2.min.js"></script>
 <script type="text/javascript" class="juvia">
 (function() {
-	var container   = '#comments';
-	var site_key    = 'testkey';
-	var topic_key   = 'testtopic';
-	var topic_url   = location.href;
-	var topic_title = document.title || topic_url;
-	
-	var s       = document.createElement('script');
-	s.async     = true;
-	s.type      = 'text/javascript';
-	s.className = 'juvia';
-	s.src = 'http://127.0.0.1:3000/api/show_topic.js' +
-		'?container=' + encodeURIComponent(container) +
-		'&site_key=' + encodeURIComponent(site_key) +
-		'&topic_key=' + encodeURIComponent(topic_key) +
-		'&topic_url=' + encodeURIComponent(topic_url) +
-		'&topic_title=' + encodeURIComponent(topic_title);
-	(document.getElementsByTagName('head')[0] ||
-	 document.getElementsByTagName('body')[0]).appendChild(s);
+    var options = {
+        container  : '#comments',
+        site_key   : 'testkey',
+        topic_key  : 'testtopic',
+        topic_url  : location.href,
+        topic_title: document.title || location.href
+    };
+
+    var API_URL = 'http://127.0.0.1:3000/api/show_topic.js';
+
+    function makeQueryString(options) {
+        var key, params = [];
+        for (key in options) {
+            params.push(
+                encodeURIComponent(key) +
+                '=' +
+                encodeURIComponent(options[key]));
+        }
+        return params.join('&');
+    }
+    
+    var s       = document.createElement('script');
+    s.async     = true;
+    s.type      = 'text/javascript';
+    s.className = 'juvia';
+    s.src       = API_URL + '?' + makeQueryString(options);
+    (document.getElementsByTagName('head')[0] ||
+     document.getElementsByTagName('body')[0]).appendChild(s);
 })();
 </script>

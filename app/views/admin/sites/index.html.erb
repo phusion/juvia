@@ -11,10 +11,18 @@
       <%= add_button_link_to 'Create a new site', new_admin_site_path %>
     </div>
 
-    <div class="sites list">
+    <div class="sites resources list">
     <% @sites.each do |site| %>
-      <%= div_for(site, :class => 'item') do %>
-        <%= small_identity_tag(:site, site.name, [:admin, site]) %>
+      <%= div_for(site, :class => 'item container') do %>
+        <div class="row">
+          <div class="col_9 identity_column">
+            <%= small_identity_tag(:site, site.name, [:admin, site]) %>
+          </div>
+          <div class="col_3 last info_column">
+            <%= site.topics.count %> topics,
+            <%= site.comments.count %> comments
+          </div>
+        </div>
       <% end %>
     <% end %>
     </div>

@@ -36,4 +36,18 @@ module ApplicationHelper
     end
     result.html_safe
   end
+
+  def topic_comments_count_and_last_comment_date(topic)
+    count = topic.comments.count
+    if count == 1
+      result = "1 comment"
+    else
+      result = "#{count} comments"
+    end
+    if count > 0
+      most_recent_comment = topic.comments.first
+      result << ", last one on #{most_recent_comment.created_at.to_s(:long)}"
+    end
+    result
+  end
 end

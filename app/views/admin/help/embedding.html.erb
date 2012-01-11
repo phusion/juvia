@@ -1,0 +1,72 @@
+<h2>Embedding a Juvia comments page</h2>
+
+<h3>Introduction</h3>
+
+<p>Embedding a Juvia comments page only involves embedding some JavaScript code.
+Embedding happens entirely in the browser: the page in which Juvia comments are
+embedded does not require any server-side modifications. Juvia uses various
+cross-site request techniques in order to pull this off.</p>
+
+<p>A few options must be set before the JavaScript actually works.</p>
+
+<div>
+<textarea readonly style="font-family: monospace">
+&lt;script type="text/javascript" class="juvia"&gt;
+(function() {
+    var options = {
+        container  : '(a CSS path)',
+        site_key   : '(some site key)',
+        topic_key  : '(some topic key)',
+        topic_url  : location.href,
+        topic_title: document.title || location.href
+    };
+
+    var API_URL = 'http://127.0.0.1:3000/api/show_topic.js';
+
+    function makeQueryString(options) {
+        var key, params = [];
+        for (key in options) {
+            params.push(
+                encodeURIComponent(key) +
+                '=' +
+                encodeURIComponent(options[key]));
+        }
+        return params.join('&amp;');
+    }
+    
+    var s       = document.createElement('script');
+    s.async     = true;
+    s.type      = 'text/javascript';
+    s.className = 'juvia';
+    s.src       = API_URL + '?' + makeQueryString(options);
+    (document.getElementsByTagName('head')[0] ||
+     document.getElementsByTagName('body')[0]).appendChild(s);
+})();
+&lt;/script&gt;
+</textarea>
+</div>
+
+Available options are:
+
+<dl>
+<dt>container</dt>
+<dt>site_key</dt>
+<dt>topic_key</dt>
+<dt>topic_url</dt>
+</dl>
+
+<h3>Cross-site requests</h3>
+Access to resources on other domains is usually forbidden by the browser's
+<a href="http://en.wikipedia.org/wiki/Same_origin_policy">same origin policy</a>.
+Newer browsers support a mechanism called
+<a href="http://en.wikipedia.org/wiki/Cross-Origin_Resource_Sharing">Cross-Origin Resource Sharing</a> (CORS)
+which allows browsers to perform AJAX calls to other domains, and Juvia uses
+this whenever possible. On older browsers that don't support CORS, Juvia falls back
+to a trick that involves dynamically creating &lt;script&gt; tags. &lt;script&gt; tags
+are not subject to the same origin policy.
+
+<h3>Ajax support</h3>
+
+<h3>Avoiding bundling of jQuery</h3>
+
+<h3>Omitting the Juvia CSS</h3>

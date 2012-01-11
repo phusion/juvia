@@ -333,6 +333,11 @@ form.new_site {
 		padding-bottom: 0.75em;
 	}
 
+	.item.container {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
 	.item:first-child {
 		border-top: #dddddd 1px solid;
 	}
@@ -350,6 +355,17 @@ form.new_site {
 
 	&.large {
 		font-size: 20pt;
+	}
+}
+
+.resources.list, {
+	.identity_column {
+		font-weight: bold;
+	}
+
+	.info_column {
+		color: #888888;
+		font-size: 90%;
 	}
 }
 
