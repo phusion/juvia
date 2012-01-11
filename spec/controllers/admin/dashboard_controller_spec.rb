@@ -3,7 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + "/../../spec_helper")
 describe Admin::DashboardController do
   render_views
   
-  describe "index" do
+  describe "GET index" do
     def visit_normally
       get :index
     end
@@ -11,7 +11,7 @@ describe Admin::DashboardController do
     include_examples "doesn't require authentication"
   end
 
-  describe "new_admin" do
+  describe "GET new_admin" do
     def visit_normally
       get :new_admin
     end
@@ -25,7 +25,7 @@ describe Admin::DashboardController do
     end
   end
   
-  describe "create_admin" do
+  describe "PUT create_admin" do
     def visit_normally
       put :create_admin, :user => {
         :email => 'a@a.com',
@@ -50,7 +50,7 @@ describe Admin::DashboardController do
     end
   end
   
-  describe "new_site" do
+  describe "GET new_site" do
     def visit_normally
       get :new_site
     end
@@ -58,7 +58,7 @@ describe Admin::DashboardController do
     include_examples "requires authentication"
   end
   
-  describe "create_site" do
+  describe "PUT create_site" do
     def visit_normally
       put :create_site, :site => {
         :name => 'foobar'
@@ -78,7 +78,7 @@ describe Admin::DashboardController do
       sign_in(admin)
       put :create_site, :site => {
         :name => 'foobar',
-        :user_id => kotori.id
+        :user_id => kotori.id.to_s
       }
       site = Site.find_by_name('foobar')
       site.user_id.should == admin.id

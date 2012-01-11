@@ -1,6 +1,7 @@
 class Admin::SitesController < ApplicationController
   layout 'admin'
   
+  before_filter :require_admin!
   before_filter :set_navigation_ids
   
   # GET /admin/sites

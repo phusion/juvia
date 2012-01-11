@@ -1,10 +1,8 @@
 require File.expand_path(File.dirname(__FILE__) + "/../../spec_helper")
 
 describe Admin::SitesController do
-  render_views
-  
-  def valid_attributes
-    {  }
+  def create_site
+    @site ||= FactoryGirl.create(:site1, :user => kotori)
   end
 
   describe "GET index" do
@@ -16,65 +14,101 @@ describe Admin::SitesController do
     include_examples "requires administrator rights"
   end
   
-if false
   describe "GET show" do
+    def visit_normally
+      get :show, :id => create_site.id.to_s
+    end
+
     include_examples "requires authentication"
     include_examples "requires administrator rights"
-    
-    it "assigns the requested admin_site as @admin_site" do
-      site = Admin::Site.create! valid_attributes
+  end
+
+  describe "GET new" do
+    def visit_normally
+      get :new
+    end
+
+    include_examples "requires authentication"
+    include_examples "requires administrator rights"
+  end
+
+  describe "GET edit" do
+    def visit_normally
+      get :edit, :id => create_site.id.to_s
+    end
+
+    include_examples "requires authentication"
+    include_examples "requires administrator rights"
+  end
+end
+
+describe Admin::SitesController do
+  render_views
+
+  before :each do
+    sign_in(admin)
+  end
+
+  def create_site
+    @site ||= FactoryGirl.create(:site1, :user => admin)
+  end
+
+  describe "GET show" do
+    it "assigns the requested site as @site" do
+      site = create_site
       get :show, :id => site.id.to_s
-      assigns(:admin_site).should eq(site)
+      assigns(:site).should eq(site)
     end
   end
 
   describe "GET new" do
-    it "assigns a new admin_site as @admin_site" do
+    it "assigns a new site as @site" do
       get :new
-      assigns(:admin_site).should be_a_new(Admin::Site)
+      assigns(:site).should be_a_new(Site)
     end
   end
 
   describe "GET edit" do
-    it "assigns the requested admin_site as @admin_site" do
-      site = Admin::Site.create! valid_attributes
+    it "assigns the requested site as @site" do
+      site = create_site
       get :edit, :id => site.id.to_s
-      assigns(:admin_site).should eq(site)
+      assigns(:site).should eq(site)
     end
   end
 
+if false
   describe "POST create" do
     describe "with valid params" do
-      it "creates a new Admin::Site" do
+      it "creates a new Site" do
         expect {
-          post :create, :admin_site => valid_attributes
-        }.to change(Admin::Site, :count).by(1)
+          post :create, :site => valid_attributes
+        }.to change(Site, :count).by(1)
       end
 
-      it "assigns a newly created admin_site as @admin_site" do
-        post :create, :admin_site => valid_attributes
-        assigns(:admin_site).should be_a(Admin::Site)
-        assigns(:admin_site).should be_persisted
+      it "assigns a newly created site as @site" do
+        post :create, :site => valid_attributes
+        assigns(:site).should be_a(Site)
+        assigns(:site).should be_persisted
       end
 
-      it "redirects to the created admin_site" do
-        post :create, :admin_site => valid_attributes
-        response.should redirect_to(Admin::Site.last)
+      it "redirects to the created site" do
+        post :create, :site => valid_attributes
+        response.should redirect_to(Site.last)
       end
     end
 
     describe "with invalid params" do
-      it "assigns a newly created but unsaved admin_site as @admin_site" do
+      it "assigns a newly created but unsaved site as @site" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Admin::Site.any_instance.stub(:save).and_return(false)
-        post :create, :admin_site => {}
-        assigns(:admin_site).should be_a_new(Admin::Site)
+        Site.any_instance.stub(:save).and_return(false)
+        post :create, :site => {}
+        assigns(:site).should be_a_new(Site)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Admin::Site.any_instance.stub(:save).and_return(false)
-        post :create, :admin_site => {}
+        Site.any_instance.stub(:save).and_return(false)
+        post :create, :site => {}
         response.should render_template("new")
       end
     end
@@ -82,58 +116,58 @@ if false
 
   describe "PUT update" do
     describe "with valid params" do
-      it "updates the requested admin_site" do
-        site = Admin::Site.create! valid_attributes
-        # Assuming there are no other admin_sites in the database, this
-        # specifies that the Admin::Site created on the previous line
+      it "updates the requested site" do
+        site = create_site
+        # Assuming there are no other sites in the database, this
+        # specifies that the Site created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Admin::Site.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => site.id, :admin_site => {'these' => 'params'}
+        Site.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
+        put :update, :id => site.id, :site => {'these' => 'params'}
       end
 
-      it "assigns the requested admin_site as @admin_site" do
-        site = Admin::Site.create! valid_attributes
-        put :update, :id => site.id, :admin_site => valid_attributes
-        assigns(:admin_site).should eq(site)
+      it "assigns the requested site as @site" do
+        site = create_site
+        put :update, :id => site.id, :site => valid_attributes
+        assigns(:site).should eq(site)
       end
 
-      it "redirects to the admin_site" do
-        site = Admin::Site.create! valid_attributes
-        put :update, :id => site.id, :admin_site => valid_attributes
+      it "redirects to the site" do
+        site = create_site
+        put :update, :id => site.id, :site => valid_attributes
         response.should redirect_to(site)
       end
     end
 
     describe "with invalid params" do
-      it "assigns the admin_site as @admin_site" do
-        site = Admin::Site.create! valid_attributes
+      it "assigns the site as @site" do
+        site = create_site
         # Trigger the behavior that occurs when invalid params are submitted
-        Admin::Site.any_instance.stub(:save).and_return(false)
-        put :update, :id => site.id.to_s, :admin_site => {}
-        assigns(:admin_site).should eq(site)
+        Site.any_instance.stub(:save).and_return(false)
+        put :update, :id => site.id.to_s, :site => {}
+        assigns(:site).should eq(site)
       end
 
       it "re-renders the 'edit' template" do
-        site = Admin::Site.create! valid_attributes
+        site = create_site
         # Trigger the behavior that occurs when invalid params are submitted
-        Admin::Site.any_instance.stub(:save).and_return(false)
-        put :update, :id => site.id.to_s, :admin_site => {}
+        Site.any_instance.stub(:save).and_return(false)
+        put :update, :id => site.id.to_s, :site => {}
         response.should render_template("edit")
       end
     end
   end
 
   describe "DELETE destroy" do
-    it "destroys the requested admin_site" do
-      site = Admin::Site.create! valid_attributes
+    it "destroys the requested site" do
+      site = create_site
       expect {
         delete :destroy, :id => site.id.to_s
-      }.to change(Admin::Site, :count).by(-1)
+      }.to change(Site, :count).by(-1)
     end
 
-    it "redirects to the admin_sites list" do
-      site = Admin::Site.create! valid_attributes
+    it "redirects to the sites list" do
+      site = create_site
       delete :destroy, :id => site.id.to_s
       response.should redirect_to(admin_sites_url)
     end
