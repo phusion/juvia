@@ -1,2 +1,18 @@
-<%= link_to 'Edit', edit_admin_site_path(@site) %> |
-<%= link_to 'Back', admin_sites_path %>
+<h2>Site: <%= @site.name %></h2>
+<div class="info panel">
+	<p>Key: <%= @site.key %> <%= link_to 'Install' %></p>
+	<p>Owned by: <%= @site.user.email %></p>
+	<div>
+		<%= button_group do %>
+			<%= button_link_to 'Change owner' %>
+			<%= button_link_to 'Change other information' %>
+			<%= button_link_to 'Delete' %>
+		<% end %>
+	</div>
+</div>
+
+<h3>Topics</h3>
+...
+
+<h3>Comments</h3>
+...
