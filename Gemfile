@@ -13,8 +13,6 @@ gem 'bluecloth'
 gem 'devise'
 gem 'jquery-rails', '>= 1.0.12'
 gem 'will_paginate', '~> 3.0.pre4'
-gem 'sass-rails'
-gem 'coffee-script'
 gem 'css3buttons'
 
 # Deploy with Capistrano
@@ -39,4 +37,12 @@ group :development, :test do
   gem 'factory_girl_rails', :require => false
   gem 'launchy', :require => false
   gem 'spork', '0.9.0.rc9', :require => false
+end
+
+# Gems used only for assets and not required
+# in production environments by default.
+group :assets do
+  gem 'sass-rails',   '~> 3.1.5'
+  gem 'coffee-rails', '~> 3.1.1'
+  gem 'uglifier', '>= 1.0.3'
 end
