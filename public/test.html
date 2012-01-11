@@ -25,12 +25,19 @@
         }
         return params.join('&');
     }
+
+    if (!('_juviaRequestCounter' in window)) {
+        window._juviaRequestCounter = 0;
+    }
     
     var s       = document.createElement('script');
     s.async     = true;
     s.type      = 'text/javascript';
     s.className = 'juvia';
-    s.src       = API_URL + '?' + makeQueryString(options);
+    s.src       = API_URL +
+        '?_c=' + window._juviaRequestCounter +
+        '&' + makeQueryString(options);
+    window._juviaRequestCounter++;
     (document.getElementsByTagName('head')[0] ||
      document.getElementsByTagName('body')[0]).appendChild(s);
 })();

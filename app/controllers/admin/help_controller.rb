@@ -1,5 +1,5 @@
 class Admin::HelpController < ApplicationController
-  layout 'admin'
+  layout 'help'
   
   skip_before_filter :authenticate_user!
   before_filter :set_navigation_ids

@@ -57,10 +57,6 @@ footer {
 }
 
 
-p {
-	margin-bottom: 1em;
-}
-
 .container > .row > *:first-child {
 	> h1:first-child,
 	> h2:first-child {
@@ -131,6 +127,17 @@ p {
 	}
 } // #sections_bar
 
+
+.resources.list, {
+	.identity_column {
+		font-weight: bold;
+	}
+
+	.info_column {
+		color: #888888;
+		font-size: 90%;
+	}
+} // .resources.list
 
 .users.list {
 	.user:first-child {
@@ -358,15 +365,8 @@ form.new_site {
 	}
 }
 
-.resources.list, {
-	.identity_column {
-		font-weight: bold;
-	}
-
-	.info_column {
-		color: #888888;
-		font-size: 90%;
-	}
+.help.page {
+	max-width: 750px;
 }
 
 

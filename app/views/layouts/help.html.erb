@@ -1,0 +1,12 @@
+<%= render :layout => 'layouts/custom' do %>
+  <% if user_signed_in? %>
+    <%= render :partial => 'layouts/admin_sections_bar' %>
+  <% end %>
+  <div class="container">
+    <div class="row">
+      <div class="col_12 clearleft omega help page">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+<% end %>

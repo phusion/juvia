@@ -5,13 +5,17 @@
 <p>Embedding a Juvia comments page only involves embedding some JavaScript code.
 Embedding happens entirely in the browser: the page in which Juvia comments are
 embedded does not require any server-side modifications. Juvia uses various
-cross-site request techniques in order to pull this off.</p>
+cross-domain request techniques in order to pull this off.</p>
+
+<p>Juvia does not use any <code>iframe</code>s. The HTML for displaying the comments
+and the form is directly embedded inside the page. In order to work well with AJAX
+web pages, Juvia never reloads the current page, nor does it ever redirect to another
+page.</p>
 
 <p>A few options must be set before the JavaScript actually works.</p>
 
 <div>
-<textarea readonly style="font-family: monospace">
-&lt;script type="text/javascript" class="juvia"&gt;
+<textarea readonly style="font-family: monospace">&lt;script type="text/javascript" class="juvia"&gt;
 (function() {
     var options = {
         container  : '(a CSS path)',
@@ -34,38 +38,61 @@ cross-site request techniques in order to pull this off.</p>
         return params.join('&amp;');
     }
     
+    if (!('_juviaRequestCounter' in window)) {
+        window._juviaRequestCounter = 0;
+    }
+    
     var s       = document.createElement('script');
     s.async     = true;
     s.type      = 'text/javascript';
     s.className = 'juvia';
-    s.src       = API_URL + '?' + makeQueryString(options);
+    s.src       = API_URL +
+        '?_c=' + window._juviaRequestCounter +
+        '&amp;' + makeQueryString(options);
+    window._juviaRequestCounter++;
     (document.getElementsByTagName('head')[0] ||
      document.getElementsByTagName('body')[0]).appendChild(s);
 })();
-&lt;/script&gt;
-</textarea>
+&lt;/script&gt;</textarea>
 </div>
 
 Available options are:
 
 <dl>
-<dt>container</dt>
-<dt>site_key</dt>
-<dt>topic_key</dt>
-<dt>topic_url</dt>
+    <dt>container</dt>
+    <dd>The CSS path of the DOM element to embed the Juvia comments page in, e.g. <code>#comments</code>.</dd>
+
+    <dt>site_key</dt>
+    <dd>The site key. You can see this in the admin panel.</dd>
+
+    <dt>topic_key</dt>
+    <dd>The topic key. Its only purpose is to serve as a containing group for comments.
+        This can be any arbitrary string.</dd>
+
+    <dt>topic_url</dt>
+    <dt>topic_title</dt>
 </dl>
 
-<h3>Cross-site requests</h3>
-Access to resources on other domains is usually forbidden by the browser's
+<h3>Cross-domain requests</h3>
+<p>Fetching from and posting to on other domains is usually forbidden by the browser's
 <a href="http://en.wikipedia.org/wiki/Same_origin_policy">same origin policy</a>.
 Newer browsers support a mechanism called
-<a href="http://en.wikipedia.org/wiki/Cross-Origin_Resource_Sharing">Cross-Origin Resource Sharing</a> (CORS)
-which allows browsers to perform AJAX calls to other domains, and Juvia uses
-this whenever possible. On older browsers that don't support CORS, Juvia falls back
-to a trick that involves dynamically creating &lt;script&gt; tags. &lt;script&gt; tags
-are not subject to the same origin policy.
+<a href="http://en.wikipedia.org/wiki/Cross-Origin_Resource_Sharing">Cross-Origin Resource Sharing</a>
+(CORS) which allows browsers to perform AJAX calls to other domains, and Juvia uses
+this <a href="http://caniuse.com/cors">whenever possible</a>.</p>
 
-<h3>Ajax support</h3>
+<p>On older browsers that don't support CORS, Juvia falls back to a
+<a href="http://en.wikipedia.org/wiki/JSONP">JSONP</a>-like technique that
+involves injecting <code>script</code> tags to perform cross-domain requests.
+Request parameters are embedded in the tag's URL. However, because browsers
+<a href="http://stackoverflow.com/questions/812925/what-is-the-maximum-possible-length-of-a-query-string">impose a limit</a>
+on the maximum size of URLs, only a limited amount of data can be posted.
+The lowest common denominator seems to be Internet Explorer which imposes
+a limit of 2083 characters. This means that on non-CORS capable browsers,
+the user will be unable to post large comments. In order to reduce the
+impact of this problem, Juvia compresses the comment text with zlib.</p>
+
+<h3>AJAX support</h3>
 
 <h3>Avoiding bundling of jQuery</h3>
 

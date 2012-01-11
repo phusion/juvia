@@ -101,8 +101,8 @@ if (!Juvia) {
 			
 			// Make sure that each loadScript() call generates a unique URL,
 			// otherwise the browser may not actually perform the request.
-			url += '?_c=' + this.loadScriptCounter;
-			this.loadScriptCounter++;
+			url += '?_c=' + window._juviaRequestCounter;
+			window._juviaRequestCounter++;
 			
 			var paramString = $.param(options);
 			if (paramString.length > 0) {
@@ -368,8 +368,8 @@ if (!Juvia) {
 	
 	/********* Initialization *********/
 	
-	if (!('loadScriptCounter' in Juvia)) {
-		Juvia.loadScriptCounter = 0;
+	if (!('_juviaRequestCounter' in window)) {
+		window._juviaRequestCounter = 0;
 	}
 	
 	// Checks whether browser supports Cross-Origin Resource Sharing.
