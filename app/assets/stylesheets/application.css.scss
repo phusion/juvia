@@ -1,5 +1,7 @@
 // -*- Mode: SCSS; tab-width: 4; indent-tabs-mode: true; c-basic-offset: 4 -*-
+//= require css3buttons/without-reset
 
+@import "css3buttons_fixes";
 @import "comment_content";
 @import "css3_utils";
 @import "nice_forms";
@@ -316,6 +318,23 @@ form.new_site {
 	
 	.radio_buttons {
 		margin-left: 8px;
+	}
+}
+
+.list_with_actions {
+	.list {
+		margin-top: 1em;
+		margin-bottom: 1em;
+	}
+
+	.item {
+		border-bottom: #dddddd 1px solid;
+		padding-top: 0.75em;
+		padding-bottom: 0.75em;
+	}
+
+	.item:first-child {
+		border-top: #dddddd 1px solid;
 	}
 }
 

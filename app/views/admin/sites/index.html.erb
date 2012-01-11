@@ -1,17 +1,36 @@
-<div class="sites">
-<% @sites.each do |site| %>
-  <%= div_for site do %>
-    <div class="name">
-      <%= link_to site.name, [:admin, site] %>
+<% if @sites.empty? %>
+  <div class="sites empty">
+    You haven't registered any sites.
+    <p>
+      <%= add_button_link_to 'Create a new site', new_admin_site_path %>
+    </p>
+  </div>
+<% else %>
+  <div class="list_with_actions">
+    <div class="pre actions">
+      <%= add_button_link_to 'Create a new site', new_admin_site_path %>
     </div>
-    <div class="details">
-      <%= site.comments.count %> comments over
-      <%= site.topics.count %> topics
+
+    <div class="sites list">
+    <% @sites.each do |site| %>
+      <%= div_for(site, :class => 'item') do %>
+        <div class="name">
+          <%= link_to site.name, [:admin, site] %>
+        </div>
+        <div class="details">
+          <%= site.comments.count %> comments over
+          <%= site.topics.count %> topics
+        </div>
+        <div class="actions">
+          <%= link_to 'Edit', edit_admin_site_path(site) %>
+          <%= link_to 'Delete', [:admin, site], :confirm => 'Are you sure? All containing comments will also be deleted!', :method => :delete %>
+        </div>
+      <% end %>
+    <% end %>
     </div>
-    <div class="actions">
-      <%= link_to 'Edit', edit_admin_site_path(site) %>
-      <%= link_to 'Destroy', [:admin, site], :confirm => 'Are you sure?', :method => :delete %>
+
+    <div class="post actions">
+      <%= add_button_link_to 'Create a new site', new_admin_site_path %>
     </div>
-  <% end %>
+  </div>
 <% end %>
-</div>

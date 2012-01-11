@@ -15,6 +15,7 @@ gem 'jquery-rails', '>= 1.0.12'
 gem 'will_paginate', '~> 3.0.pre4'
 gem 'sass-rails'
 gem 'coffee-script'
+gem 'css3buttons'
 
 # Deploy with Capistrano
 # gem 'capistrano'

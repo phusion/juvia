@@ -55,6 +55,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.1.2)
+    css3buttons (1.0.1)
+      actionpack (>= 3.0.0)
     database_cleaner (0.6.7)
     default_value_for (1.0.5)
     devise (1.4.4)
@@ -182,6 +184,7 @@ DEPENDENCIES
   capybara
   capybara-webkit
   coffee-script
+  css3buttons
   database_cleaner
   default_value_for
   devise

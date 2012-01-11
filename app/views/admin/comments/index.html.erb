@@ -1,4 +1,8 @@
 <% @title = "Comments" %>
 <div class="comments list">
-<%= render @comments %>
+	<% if @comments.empty? %>
+		No comments have been posted.
+	<% else %>
+		<%= render @comments %>
+	<% end %>
 </div>

@@ -12,7 +12,7 @@ class Admin::DashboardController < ApplicationController
     elsif current_user && current_user.accessible_sites.count == 0
       redirect_to :action => 'new_site'
     else
-      redirect_to admin_comments_path
+      redirect_to admin_sites_path
     end
   end
   

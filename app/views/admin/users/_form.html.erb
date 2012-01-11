@@ -32,6 +32,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= positive_button_submit_tag(@user.new_record? ? 'Create' : 'Update') %>
+    <%= button_link_to 'Cancel', admin_users_path %>
   </div>
 <% end %>

@@ -1,20 +1,26 @@
-<%= link_to 'New user', new_admin_user_path %>
+<div class="list_with_actions">
+  <div class="pre actions">
+    <%= add_button_link_to 'New user', new_admin_user_path %>
+  </div>
 
-<div class="users list">
-<% @users.each do |user| %>
-  <%= div_for user do %>
-    <div class="avatar"><img src="//www.gravatar.com/avatar/<%= user.email_md5 %>?s=58" width="58" height="58"></div>
-    <div class="email"><%= user.email %></div>
-    <div class="actions">
-      <%= link_to 'Sites', admin_user_sites_path(user) %>
-      <%= link_to 'Comments', admin_user_comments_path(user) %>
-      <%= link_to 'Edit', edit_admin_user_path(user) %>
-      <%= link_to 'Delete', admin_user_path(user), :confirm => 'Are you sure?', :method => :delete %>
-    </div>
+  <div class="users list">
+  <% @users.each do |user| %>
+    <%= div_for user do %>
+      <div class="avatar"><img src="//www.gravatar.com/avatar/<%= user.email_md5 %>?s=58" width="58" height="58"></div>
+      <div class="email"><%= user.email %></div>
+      <div class="actions">
+        <%= link_to 'Sites', admin_user_sites_path(user) %>
+        <%= link_to 'Comments', admin_user_comments_path(user) %>
+        <%= link_to 'Edit', edit_admin_user_path(user) %>
+        <%= link_to 'Delete', admin_user_path(user), :confirm => 'Are you sure?', :method => :delete %>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
+  </div>
+
+  <%= will_paginate @users %>
+
+  <div class="post actions">
+    <%= add_button_link_to 'New user', new_admin_user_path %>
+  </div>
 </div>
-
-<%= will_paginate @users %>
-
-<%= link_to 'New user', new_admin_user_path %>
