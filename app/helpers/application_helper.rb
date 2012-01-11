@@ -50,4 +50,12 @@ module ApplicationHelper
     end
     result
   end
+
+  def html_unsafe(buffer)
+    if buffer.html_safe?
+      "" << buffer
+    else
+      buffer
+    end
+  end
 end

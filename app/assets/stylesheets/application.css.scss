@@ -369,6 +369,18 @@ form.new_site {
 	max-width: 750px;
 }
 
+code {
+	background: #f4f4f4;
+	border: solid 1px #dfdfdf;
+	padding: 2px 3px 2px 3px;
+	font-family: Monospace;
+	@include BorderRadius(6px);
+}
+
+dd {
+	margin-left: 1.5em;
+}
+
 
 /*
 _______________________________

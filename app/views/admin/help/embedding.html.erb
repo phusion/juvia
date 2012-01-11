@@ -15,49 +15,18 @@ page.</p>
 <p>A few options must be set before the JavaScript actually works.</p>
 
 <div>
-<textarea readonly style="font-family: monospace">&lt;script type="text/javascript" class="juvia"&gt;
-(function() {
-    var options = {
-        container  : '(a CSS path)',
-        site_key   : '(some site key)',
-        topic_key  : '(some topic key)',
-        topic_url  : location.href,
-        topic_title: document.title || location.href
-    };
-
-    var API_URL = 'http://127.0.0.1:3000/api/show_topic.js';
-
-    function makeQueryString(options) {
-        var key, params = [];
-        for (key in options) {
-            params.push(
-                encodeURIComponent(key) +
-                '=' +
-                encodeURIComponent(options[key]));
+<textarea readonly style="font-family: monospace"><%= html_unsafe(
+    render(:partial => 'admin/help/code',
+        :locals => {
+            :container => '(a CSS path)',
+            :site_key  => '(some site key)',
+            :topic_key => '(some topic key)'
         }
-        return params.join('&amp;');
-    }
-    
-    if (!('_juviaRequestCounter' in window)) {
-        window._juviaRequestCounter = 0;
-    }
-    
-    var s       = document.createElement('script');
-    s.async     = true;
-    s.type      = 'text/javascript';
-    s.className = 'juvia';
-    s.src       = API_URL +
-        '?_c=' + window._juviaRequestCounter +
-        '&amp;' + makeQueryString(options);
-    window._juviaRequestCounter++;
-    (document.getElementsByTagName('head')[0] ||
-     document.getElementsByTagName('body')[0]).appendChild(s);
-})();
-&lt;/script&gt;</textarea>
+    ))
+%></textarea>
 </div>
 
 Available options are:
-
 <dl>
     <dt>container</dt>
     <dd>The CSS path of the DOM element to embed the Juvia comments page in, e.g. <code>#comments</code>.</dd>
@@ -70,7 +39,10 @@ Available options are:
         This can be any arbitrary string.</dd>
 
     <dt>topic_url</dt>
+    <dd>???</dd>
+
     <dt>topic_title</dt>
+    <dd>???</dd>
 </dl>
 
 <h3>Cross-domain requests</h3>
