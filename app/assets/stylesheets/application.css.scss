@@ -24,8 +24,8 @@ header {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cfe7fa', endColorstr='#6393c1',GradientType=0 ); /* IE6-9 */
 	background: linear-gradient(top, rgba(207,231,250,1) 0%,rgba(99,147,193,1) 100%); /* W3C */
 	
-	height: 40px;
-	margin-bottom: 20px;
+	height: 48px;
+	margin-bottom: 48px;
 	border-bottom: solid 2px #487cac;
 
 	nav {
@@ -36,6 +36,45 @@ header {
 		}
 	}
 } // header
+
+#site_logo {
+	$margin_top: 8px;
+
+	.product_creator {
+		display: none;
+	}
+
+	.product_logo {
+		display: inline-block;
+		margin-top: 8px;
+		vertical-align: top;
+
+		img {
+			margin: 0;
+			display: block;
+		}
+	}
+
+	.product_name {
+		color: black;
+		font-size: 20pt;
+		font-weight: bold;
+		display: inline-block;
+		margin-top: 12px;
+		margin-left: 4px;
+	}
+
+	.product_desc {
+		display: inline-block;
+		color: #34404C;
+		font-size: 14pt;
+	}
+
+	a, a:visited, a:hover {
+		color: inherited;
+		text-decoration: none;
+	}
+}
 
 footer {
 	background: rgb(90,108,123); /* Old browsers */
