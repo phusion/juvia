@@ -40,7 +40,9 @@
   <%= csrf_meta_tag %>
   
   <!-- Page build tools - only needed while creating a site, remove when launching - Gray box colors and page debugging tools -->
-  <%= stylesheet_link_tag 'build' %>
+  <% if Rails.env.development? %>
+    <%= stylesheet_link_tag 'build' %>
+  <% end %>
 </head>
 <body>
 
