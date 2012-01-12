@@ -23,6 +23,13 @@ textarea {
 	@include BorderRadius(4px);
 }
 
+textarea.code {
+	font-family: Monospace;
+	font-size: 10pt;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
 input[type="submit"] {
 	font-size: 0.85em;
 	padding: 6px 12px 6px 12px;

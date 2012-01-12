@@ -7,9 +7,7 @@
         topic_url  : location.href,
         topic_title: document.title || location.href
     };
-    
-    var API_URL = 'http://127.0.0.1:3000/api/show_topic.js';
-    
+
     function makeQueryString(options) {
         var key, params = [];
         for (key in options) {
@@ -18,21 +16,29 @@
                 '=' +
                 encodeURIComponent(options[key]));
         }
-        return params.join('&amp;');
+        return params.join('&');
     }
-    
-    if (!('_juviaRequestCounter' in window)) {
-        window._juviaRequestCounter = 0;
+
+    function makeApiUrl(options) {
+        // Makes sure that each call generates a unique URL, otherwise
+        // the browser may not actually perform the request.
+        if (!('_juviaRequestCounter' in window)) {
+            window._juviaRequestCounter = 0;
+        }
+
+        var result =
+            '<%= request.protocol %><%= request.host_with_port %>/api/show_topic.js' +
+            '?_c=' + window._juviaRequestCounter +
+            '&' + makeQueryString(options);
+        window._juviaRequestCounter++;
+        return result;
     }
-    
+
     var s       = document.createElement('script');
     s.async     = true;
     s.type      = 'text/javascript';
     s.className = 'juvia';
-    s.src       = API_URL +
-        '?_c=' + window._juviaRequestCounter +
-        '&amp;' + makeQueryString(options);
-    window._juviaRequestCounter++;
+    s.src       = makeApiUrl(options);
     (document.getElementsByTagName('head')[0] ||
      document.getElementsByTagName('body')[0]).appendChild(s);
 })();

@@ -1,8 +1,17 @@
 <%= large_identity_tag :site, @site.name %>
 
 <div class="info panel">
-  <p>Key: <%= @site.key %> <%= link_to 'Install' %></p>
+  <p>Key: <%= @site.key %> <%= button_link_to 'Show embedding code', 'javascript:void(showEmbeddingCode())' %></p>
   <p>Owned by: <%= @site.user.email %></p>
+  <textarea readonly class="code" style="display: block; height: 3em" onclick="this.select()"><%= html_unsafe(
+    render(:partial => 'admin/help/code.txt',
+        :locals => {
+            :container => '(a CSS path)',
+            :site_key  => @site.key,
+            :topic_key => '(some topic key)'
+        }
+    ))
+%></textarea>
   <div>
     <%= button_group do %>
       <%= button_link_to 'Change owner' %>

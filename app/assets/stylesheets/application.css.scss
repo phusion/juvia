@@ -54,6 +54,10 @@ footer {
 	padding-top: 24px;
 	padding-bottom: 24px;
 	color: #222;
+
+	a, a:visited {
+		color: #029;
+	}
 }
 
 
@@ -367,6 +371,10 @@ form.new_site {
 
 .help.page {
 	max-width: 750px;
+
+	ol {
+		list-style: decimal;
+	}
 }
 
 code {
