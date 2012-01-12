@@ -10,7 +10,6 @@
       <div class="section <%= maybe_active(:users) %>">
         <%= link_to "Users (#{User.count})", admin_users_path %>
       </div>
-      <div class="section <%= maybe_active(:system_settings) %>"><a>System Settings</a></div>
     </div>
     <div class="actions col_2 omega">
       <div class="action"><%= link_to 'New user', new_admin_user_path %></div>

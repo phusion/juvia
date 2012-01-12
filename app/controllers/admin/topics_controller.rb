@@ -1,4 +1,6 @@
 class Admin::TopicsController < ApplicationController
+  layout 'admin'
+
   # GET /admin/topics
   # GET /admin/topics.json
   def index
