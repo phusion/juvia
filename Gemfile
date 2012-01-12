@@ -14,6 +14,7 @@ gem 'devise'
 gem 'jquery-rails', '>= 1.0.12'
 gem 'will_paginate', '~> 3.0.pre4'
 gem 'css3buttons'
+gem 'cancan'
 
 # Deploy with Capistrano
 # gem 'capistrano'

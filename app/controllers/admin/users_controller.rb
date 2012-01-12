@@ -3,10 +3,15 @@ module Admin
 class UsersController < ApplicationController
   layout 'admin'
   
-  before_filter :require_admin!
+  skip_authorization_check :only => :index
   before_filter :set_navigation_ids
   
   def index
+    if !can?(:create, User)
+      redirect_to dashboard_path
+      return
+    end
+
     @users = User.order('email').page(params[:page])
 
     respond_to do |format|
@@ -17,6 +22,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    authorize! :read, @user
 
     respond_to do |format|
       format.json { render :json => @user }
@@ -25,15 +31,18 @@ class UsersController < ApplicationController
   
   def sites
     @user = User.find(params[:user_id])
+    authorize! :read, @user
     @sites = @user.sites.page(params[:page])
   end
   
   def comments
     @user = User.find(params[:user_id])
+    authorize! :read, @user
     @comments = @user.comments.page(params[:page])
   end
 
   def new
+    authorize! :create, User
     @user = User.new
 
     respond_to do |format|
@@ -44,10 +53,12 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    authorize! :update, @user
   end
 
   def create
-    @user = User.new(params[:user], :as => :admin)
+    authorize! :create, User
+    @user = User.new(params[:user], :as => current_user.role)
 
     respond_to do |format|
       if @user.save
@@ -62,9 +73,10 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    authorize! :update, @user
 
     respond_to do |format|
-      if @user.update_attributes(params[:user], :as => :admin)
+      if @user.update_attributes(params[:user], :as => current_user.role)
         format.html { redirect_to(admin_users_path, :notice => 'User was successfully updated.') }
         format.json { head :ok }
       else
@@ -76,6 +88,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
+    authorize! :delete, @user
     @user.destroy
 
     respond_to do |format|

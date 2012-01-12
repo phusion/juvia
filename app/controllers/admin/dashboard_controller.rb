@@ -2,6 +2,7 @@ class Admin::DashboardController < ApplicationController
   layout 'admin'
   
   skip_before_filter :authenticate_user!, :only => [:index, :new_admin, :create_admin]
+  skip_authorization_check
   before_filter :require_admin!, :except => [:index, :new_admin, :create_admin]
   before_filter :require_no_admins_defined, :only => [:new_admin, :create_admin]
   before_filter :set_navigation_ids

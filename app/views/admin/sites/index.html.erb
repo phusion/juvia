@@ -1,9 +1,7 @@
 <% if @sites.empty? %>
   <div class="sites empty">
-    You haven't registered any sites.
-    <p>
-      <%= add_button_link_to 'Create a new site', new_admin_site_path %>
-    </p>
+    <p>You haven't registered any sites.</p>
+    <p><%= add_button_link_to 'Create a new site', new_admin_site_path %></p>
   </div>
 <% else %>
   <div class="list_with_actions">

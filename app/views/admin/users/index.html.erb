@@ -1,7 +1,9 @@
 <div class="list_with_actions">
-  <div class="pre actions">
-    <%= add_button_link_to 'Create a new user', new_admin_user_path %>
-  </div>
+  <% if can?(:create, User) %>
+    <div class="pre actions">
+      <%= add_button_link_to 'Create a new user', new_admin_user_path %>
+    </div>
+  <% end %>
 
   <div class="users list">
   <% @users.each do |user| %>
@@ -20,7 +22,9 @@
 
   <%= will_paginate @users %>
 
-  <div class="post actions">
-    <%= add_button_link_to 'Create a new user', new_admin_user_path %>
-  </div>
+  <% if can?(:create, User) %>
+    <div class="pre actions">
+      <%= add_button_link_to 'Create a new user', new_admin_user_path %>
+    </div>
+  <% end %>
 </div>

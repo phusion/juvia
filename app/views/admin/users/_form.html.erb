@@ -26,13 +26,18 @@
     <div class="value"><%= f.password_field :password_confirmation %></div>
   </div>
   
-  <div class="checkbox field">
-    <%= f.check_box :admin %>
-    <%= f.label :admin, 'Administrator rights' %>
-  </div>
+  <% if can?(:make_admin, @user) %>
+    <div class="checkbox field">
+      <%= f.check_box :admin %>
+      <%= f.label :admin, 'Administrator rights' %>
+    </div>
+  <% end %>
 
   <div class="actions">
     <%= positive_button_submit_tag(@user.new_record? ? 'Create' : 'Update') %>
     <%= button_link_to 'Cancel', admin_users_path %>
+    <% if can?(:delete, @user) %>
+      <%= danger_button_link_to 'Delete', [:admin, @user], :method => :delete, :confirm => 'Are you sure?' %>
+    <% end %>
   </div>
 <% end %>

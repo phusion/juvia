@@ -6,7 +6,8 @@ class Admin::SitesController < ApplicationController
   # GET /admin/sites
   # GET /admin/sites.json
   def index
-    @sites = Site.order('name').page(params[:page])
+    authorize! :read, Site
+    @sites = Site.accessible_by(current_ability).order('name').page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -18,6 +19,7 @@ class Admin::SitesController < ApplicationController
   # GET /admin/sites/1.json
   def show
     @site = Site.find(params[:id])
+    authorize! :read, @site
 
     respond_to do |format|
       format.html # show.html.erb
@@ -28,6 +30,7 @@ class Admin::SitesController < ApplicationController
   # GET /admin/sites/new
   # GET /admin/sites/new.json
   def new
+    authorize! :create, Site
     @site = Site.new
 
     respond_to do |format|
@@ -39,12 +42,14 @@ class Admin::SitesController < ApplicationController
   # GET /admin/sites/1/edit
   def edit
     @site = Site.find(params[:id])
+    authorize! :update, @site
   end
 
   # POST /admin/sites
   # POST /admin/sites.json
   def create
-    @site = Site.new(params[:site])
+    authorize! :create, Site
+    @site = Site.new(params[:site], :as => current_user.role)
     @site.user = current_user
 
     respond_to do |format|
@@ -62,9 +67,10 @@ class Admin::SitesController < ApplicationController
   # PUT /admin/sites/1.json
   def update
     @site = Site.find(params[:id])
+    authorize! :update, @site
 
     respond_to do |format|
-      if @site.update_attributes(params[:site])
+      if @site.update_attributes(params[:site], :as => current_user.role)
         format.html { redirect_to [:admin, @site], :notice => 'Site was successfully updated.' }
         format.json { head :ok }
       else
@@ -78,6 +84,7 @@ class Admin::SitesController < ApplicationController
   # DELETE /admin/sites/1.json
   def destroy
     @site = Site.find(params[:id])
+    authorize! :delete, @site
     @site.destroy
 
     respond_to do |format|

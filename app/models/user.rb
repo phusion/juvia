@@ -45,6 +45,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  def role
+    if admin?
+      :admin
+    else
+      nil
+    end
+  end
+
 private
   def nullify_blank_password_on_update
     if !new_record?
