@@ -25,7 +25,7 @@ header {
 	background: linear-gradient(top, rgba(207,231,250,1) 0%,rgba(99,147,193,1) 100%); /* W3C */
 	
 	height: 48px;
-	margin-bottom: 48px;
+	margin-bottom: 24px;
 	border-bottom: solid 2px #487cac;
 
 	nav {
@@ -33,13 +33,18 @@ header {
 		
 		div {
 			display: inline-block;
+			margin-left: 1.5em;
+			margin-top: 13px;
+		}
+
+		a, a:visited {
+			color: #221544;
+			font-weight: bold;
 		}
 	}
 } // header
 
 #site_logo {
-	$margin_top: 8px;
-
 	.product_creator {
 		display: none;
 	}
@@ -62,12 +67,14 @@ header {
 		display: inline-block;
 		margin-top: 12px;
 		margin-left: 4px;
+		vertical-align: top;
 	}
 
 	.product_desc {
 		display: inline-block;
 		color: #34404C;
 		font-size: 14pt;
+		margin-top: 13px;
 	}
 
 	a, a:visited, a:hover {
