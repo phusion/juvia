@@ -1,4 +1,4 @@
-= About Juvia
+# About Juvia
 
 Juvia is an open source commenting system. It allows you to outsource your commenting needs to an external system so that you don't have to build your own commenting system for each website or each web app. Embedding a Juvia commenting page only involves pasting a JavaScript snippet into your web page.
 
