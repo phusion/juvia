@@ -433,6 +433,42 @@ form.new_site {
 	}
 }
 
+.site_info.panel {
+	background: #f2f2f2;
+	border: solid 1px #cccccc;
+	@include BorderRadius(8px);
+
+	> .container {
+		margin: 1em;
+		padding: 0;
+	}
+
+	input {
+		width: 25em;
+		font-family: Monospace;
+	}
+
+	.col_12 {
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+
+.info.list {
+	.label, .actions {
+		margin-top: 1em;
+	}
+
+	> :first-child {
+		margin-top: 0;
+	}
+
+	input {
+		width: 25em;
+		font-family: Monospace;
+	}
+}
+
 code {
 	background: #f4f4f4;
 	border: solid 1px #dfdfdf;

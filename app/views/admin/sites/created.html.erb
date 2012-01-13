@@ -1,2 +1,17 @@
-<h1>Your site has been created!</h1>
-Here's how you embed comments in your web pages.
+<% @title = "Your site has been created!" %>
+<h1>Your site "<%= @site.name %>" has been registered!</h1>
+
+<p>Paste the following snippet into your web pages to embed comments:</p>
+
+<textarea readonly class="code" onclick="this.select()" id="embedding_code"><%= html_unsafe(
+  render(:partial => 'admin/help/code.txt',
+      :locals => {
+          :site_key  => @site.key
+      }
+  ))
+%></textarea>
+
+<p>Make sure you set the <strong>container</strong> option to the CSS path of the container that you wish to embed comments in!</p>
+
+<%= positive_button_link_to 'Roger that!', [:admin, @site] %>
+<%= button_link_to 'Teach me more about embedding', '/admin/help/embedding' %>

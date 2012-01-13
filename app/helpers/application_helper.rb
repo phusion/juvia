@@ -20,6 +20,14 @@ module ApplicationHelper
     BlueCloth.new(str, :escape_html => true, :strict_mode => false).to_html.html_safe
   end
 
+  def escape_js_string(str)
+    if str
+      "'#{escape_javascript str}'"
+    else
+      nil
+    end
+  end
+
   def large_identity_tag(type, content)
     %Q{<h2 class="identity large">#{image_tag "#{type}-48.png", :width => 48, :height => 48}#{h content}</h2>}.html_safe
   end

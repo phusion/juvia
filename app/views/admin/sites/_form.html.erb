@@ -16,8 +16,26 @@
     <div class="value"><%= f.text_field :name %></div>
   </div>
 
+  <div class="field">
+    <div class="label">How do you want to moderate new comments?</div>
+    <div class="value radio_buttons">
+      <label>
+        <%= f.radio_button :moderation_method, :none %>
+        Don't moderate, approve all comments automatically.
+      </label>
+      <label>
+        <%= f.radio_button :moderation_method, :akismet %>
+        Check spam with Akismet, approve automatically if no spam detected.
+      </label>
+      <label>
+        <%= f.radio_button :moderation_method, :manual %>
+        Manually approve all comments.
+      </label>
+    </div>
+  </div>
+
   <div class="actions">
     <%= primary_button_submit_tag(@site.new_record? ? 'Create' : 'Update') %>
-    <%= button_link_to 'Cancel', admin_sites_path %>
+    <%= button_link_to 'Cancel', [:admin, @site] %>
   </div>
 <% end %>

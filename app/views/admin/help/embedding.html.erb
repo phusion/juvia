@@ -21,15 +21,9 @@ and the form is directly embedded inside the page. In order to work well with AJ
 web pages, Juvia never reloads the current page, nor does it ever redirect to another
 page.</p>
 
-<textarea readonly class="code" style="display: block"><%= html_unsafe(
-    render(:partial => 'admin/help/code.txt',
-        :locals => {
-            :container => '(a CSS path)',
-            :site_key  => '(some site key)',
-            :topic_key => '(some topic key)'
-        }
-    ))
-%></textarea>
+<p><textarea readonly class="code" style="display: block"><%= html_unsafe(
+    render(:partial => 'admin/help/code.txt'))
+%></textarea></p>
 
 <p>The beginning of the JavaScript is where the options are. Some of them must be set
 before the JavaScript works properly.</p>

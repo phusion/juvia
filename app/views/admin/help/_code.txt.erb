@@ -1,9 +1,9 @@
 <script type="text/javascript" class="juvia">
 (function() {
     var options = {
-        container  : '<%= local_assigns[:container] %>',
-        site_key   : '<%= local_assigns[:site_key] %>',
-        topic_key  : '<%= local_assigns[:topic_key] %>',
+        container  : <%= escape_js_string(local_assigns[:container]) || "'(a CSS path)'" %>,
+        site_key   : <%= escape_js_string(local_assigns[:site_key]) || "'(some site key)'" %>,
+        topic_key  : <%= escape_js_string(local_assigns[:topic_key]) || "location.path" %>,
         topic_url  : location.href,
         topic_title: document.title || location.href
     };

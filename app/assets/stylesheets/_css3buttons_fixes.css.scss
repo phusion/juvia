@@ -7,13 +7,17 @@ a.button:visited {
 		color: #900;
 	}
 
+	&.safe {
+		color: white;
+	}
+
 	&:hover, &:focus, &:active, &.active {
 		color: white;
 	}
 }
 
 // Fix pill button styling when it's the only button in a button group.
-.button-group > .button.pill:first-child:last-child,
-.button-group li:first-child:last-child > .button.pill {
+.button-group > .button.pill:only-child,
+.button-group li:only-child > .button.pill {
 	@include BorderRadius(50em);
 }

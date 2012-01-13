@@ -1,23 +1,69 @@
+<% @title = @site.name %>
 <%= large_identity_tag :site, @site.name %>
 
-<div class="info panel">
-  <p>Key: <%= @site.key %> <%= button_link_to 'Show embedding code', 'javascript:void(showEmbeddingCode())' %></p>
-  <p>Owned by: <%= @site.user.email %></p>
-  <textarea readonly class="code" style="display: block; height: 3em" onclick="this.select()"><%= html_unsafe(
-    render(:partial => 'admin/help/code.txt',
-        :locals => {
-            :container => '(a CSS path)',
-            :site_key  => @site.key,
-            :topic_key => '(some topic key)'
-        }
-    ))
-%></textarea>
-  <div>
-    <%= button_group do %>
-      <%= button_link_to 'Change owner' %>
-      <%= button_link_to 'Change other information' %>
-      <%= button_link_to 'Delete', [:admin, @site], :confirm => 'Are you sure? All containing comments will also be deleted!', :method => :delete %>
-    <% end %>
+<script type="text/javascript">
+function showEmbeddingCode() {
+  $('#embedding_code').css('display', 'block');
+  $('#show_embedding_code').hide();
+  $('#hide_embedding_code').show();
+}
+
+function hideEmbeddingCode() {
+  $('#embedding_code').hide();
+  $('#show_embedding_code').show();
+  $('#hide_embedding_code').hide();
+}
+</script>
+
+<div class="site_info panel">
+  <div class="container">
+    <div class="row">
+      <div class="col_2">
+        <strong>Owner</strong><br>
+        <%= link_to @site.user.email, [:admin, @site.user] %>
+      </div>
+      <div class="col_3">
+        <strong>Moderation method</strong><br>
+        foo
+      </div>
+      <div class="col_3 post_4 omega">
+        <strong>URL</strong><br>
+        <% if @site.url %>
+          <%= link_to @site.url, @site.url %>
+        <% else %>
+          None
+        <% end %>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 1em">
+      <div class="col_12 omega">
+        <strong>Site key</strong><br>
+        <input type="text" readonly value="<%= @site.key %>" onclick="this.select()">
+        <%= button_link_to 'Show embedding code',
+          'javascript:void(showEmbeddingCode())',
+          :id => 'show_embedding_code' %>
+        <%= button_link_to 'Hide embedding code',
+          'javascript:void(hideEmbeddingCode())',
+          :id => 'hide_embedding_code', :style => "display: none; margin-left: 0" %>
+        <%= button_link_to 'Embedding help', '/admin/help/embedding', :style => 'margin-left: 0' %>
+        <textarea readonly class="code" style="margin-top: 0.5em; display: none" onclick="this.select()" id="embedding_code"><%= html_unsafe(
+          render(:partial => 'admin/help/code.txt',
+              :locals => {
+                  :site_key  => @site.key
+              }
+          ))
+        %></textarea>
+      </div>
+    </div>
+    <div class="row actions" style="margin-top: 1em">
+      <div class="col_12 omega">
+        <strong>Actions</strong><br>
+        <%= edit_button_link_to 'Edit', edit_admin_site_path(@site) %>
+        <%= danger_remove_button_link_to 'Delete', [:admin, @site],
+          :confirm => 'Are you sure? All topics and comments for this site will also be deleted!',
+          :method => :delete %>
+      </div>
+    </div>
   </div>
 </div>
 

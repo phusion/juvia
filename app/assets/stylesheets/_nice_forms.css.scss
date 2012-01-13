@@ -28,8 +28,6 @@ textarea {
 textarea.code {
 	font-family: Monospace;
 	font-size: 10pt;
-	margin-top: 1em;
-	margin-bottom: 1em;
 }
 
 input[type="submit"] {
@@ -48,4 +46,12 @@ form .actions .button {
 form .field {
 	margin-top: 0.5em;
 	margin-bottom: 0.5em;
+}
+
+form .field .radio_buttons {
+	margin-left: 8px;
+
+	label {
+		display: block;
+	}
 }
