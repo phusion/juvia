@@ -8,6 +8,7 @@ class Site < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :key
   validates_presence_of :moderation_method
+  validates_presence_of :url, :if => :moderation_method_is_akismet?
   validates_presence_of :akismet_key, :if => :moderation_method_is_akismet?
 
   before_validation :nullify_blank_fields
@@ -25,6 +26,7 @@ class Site < ActiveRecord::Base
 private
   def nullify_blank_fields
     self.url = nil if url.blank?
+    self.akismet_key = nil if akismet_key.blank?
   end
 
   def moderation_method_is_akismet?

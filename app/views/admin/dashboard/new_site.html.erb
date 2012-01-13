@@ -39,7 +39,12 @@
     </div>
   </div>
 
-  <div class="field" id="akismet_key">
+  <div class="akismet_required field">
+    <p class="desc"><label for="site_url">Site URL</label></p>
+    <%= f.text_field :url %>
+  </div>
+
+  <div class="akismet_required field">
     <p class="desc"><label for="site_akismet_key">Akismet key</label></p>
     <%= f.text_field :akismet_key %>
   </div>
@@ -50,9 +55,9 @@
 <script>
 function moderationMethodChanged() {
   if ($('#site_moderation_method_akismet').prop('checked')) {
-    $('#akismet_key').show();
+    $('.akismet_required.field').show();
   } else {
-    $('#akismet_key').hide();
+    $('.akismet_required.field').hide();
   }
 }
 

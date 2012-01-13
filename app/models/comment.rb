@@ -3,6 +3,9 @@ require 'net/http'
 require 'cgi'
 
 class Comment < ActiveRecord::Base
+  class AkismetError < StandardError
+  end
+
   belongs_to :topic, :inverse_of => :comments
   
   acts_as_enum :moderation_status, [:ok, :unchecked]
@@ -29,17 +32,18 @@ class Comment < ActiveRecord::Base
   def spam?
     response = call_akismet('comment-check', akismet_params)
     if response.body == 'invalid'
-      message = "Akismet error"
-      if response.headers['X-akismet-debug-help']
-        message << ": " << response.headers['X-akismet-debug-help']
+      if response['X-akismet-debug-help']
+        message = "Akismet server error: " << response['X-akismet-debug-help']
+      else
+        message = "Unknown Akismet server error, maybe your API key is wrong"
       end
-      raise(message)
+      raise AkismetError, message
     elsif response.body == 'true'
       true
     elsif response.body == 'false'
       false
     else
-      raise "Akismet error: #{response.body}"
+      raise AkismetError, "Akismet server error: #{response.body}"
     end
   end
   
@@ -63,7 +67,7 @@ private
   end
   
   def akismet_params
-    raise "Site URL required for Akismet check" if topic.site.url.blank?
+    raise AkismetError, "Site URL required for Akismet check" if topic.site.url.blank?
     params = {
       :blog => topic.site.url,
       :user_ip => author_ip,
@@ -78,14 +82,14 @@ private
   end
   
   def call_akismet(function_name, params)
-    raise "Akismet key required" if topic.site.akismet_key.blank?
+    raise AkismetError, "Akismet key required" if topic.site.akismet_key.blank?
     uri = URI.parse("http://#{topic.site.akismet_key}.rest.akismet.com/1.1/#{function_name}")
     post_data = params.map { |k, v| "#{k}=#{CGI.escape(v.to_s)}" }.join('&')
     response = Net::HTTP.start(uri.host, uri.port) do |http|
       http.post(uri.path, post_data, AKISMET_HEADERS)
     end
     if response.code != "200"
-      raise "Akismet internal error #{response.code}"
+      raise AkismetError, "Akismet internal error #{response.code}"
     else
       response
     end
