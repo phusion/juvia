@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   before_filter :set_navigation_ids
   
   def index
-    if !can?(:create, User)
+    if !can?(:list, User)
       redirect_to dashboard_path
       return
     end

@@ -11,3 +11,9 @@ a.button:visited {
 		color: white;
 	}
 }
+
+// Fix pill button styling when it's the only button in a button group.
+.button-group > .button.pill:first-child:last-child,
+.button-group li:first-child:last-child > .button.pill {
+	@include BorderRadius(50em);
+}

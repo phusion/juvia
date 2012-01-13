@@ -12,10 +12,10 @@ Juvia is similar to [Disqus](http://www.disqus.com/) and [IntenseDebate](http://
 2. Configure your database details by editing config/database.yml. An example is provided in config/database.yml.example. Only edit the information under the 'production' section.
 3. Configure other things by editing config/application.yml. An example is provided in config/application.yml.example. Only edit the information under the 'production' section.
 4. Run `bundle install --deployment --without=development`
-5. Run `bundle exec rake db:schema:load db:seed RAILS_ENV=production`
+5. Run `bundle exec rake db:schema:load RAILS_ENV=production`
 6. Deploy this application to Phusion Passenger or whatever application server you prefer.
 
-You can now access Juvia through the address that you configured. The initial administrator account is `admin@localhost` with password `admin`. Be sure to change this as soon as possible!
+You can now access Juvia through the address that you configured. It will ask you to create an initial administrator account and to register a site.
 
 ## Upgrade
 

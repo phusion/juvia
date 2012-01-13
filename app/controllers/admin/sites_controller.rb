@@ -7,7 +7,7 @@ class Admin::SitesController < ApplicationController
   # GET /admin/sites.json
   def index
     authorize! :read, Site
-    @sites = Site.accessible_by(current_ability).order('name').page(params[:page])
+    @sites = Site.accessible_by(current_ability, :read).order('name').page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -45,6 +45,11 @@ class Admin::SitesController < ApplicationController
     authorize! :update, @site
   end
 
+  def created
+    @site = Site.find(params[:id])
+    authorize! :read, @site
+  end
+
   # POST /admin/sites
   # POST /admin/sites.json
   def create
@@ -54,7 +59,7 @@ class Admin::SitesController < ApplicationController
 
     respond_to do |format|
       if @site.save
-        format.html { redirect_to created_admin_site_path(@site) }
+        format.html { redirect_to [:admin, @site] }
         format.json { render :json => @site, :status => :created, :location => @site }
       else
         format.html { render :action => "new" }

@@ -4,7 +4,8 @@ class Admin::TopicsController < ApplicationController
   # GET /admin/topics
   # GET /admin/topics.json
   def index
-    @topics = Topic.all
+    authorize! :read, Topic, :user_id => current_user.id
+    @topics = Topic.accessible_by(current_ability).all
 
     respond_to do |format|
       format.html # index.html.erb

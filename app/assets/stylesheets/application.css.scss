@@ -1,9 +1,9 @@
 // -*- Mode: SCSS; tab-width: 4; indent-tabs-mode: true; c-basic-offset: 4 -*-
 //= require css3buttons/without-reset
 
-@import "css3buttons_fixes";
 @import "comment_content";
 @import "css3_utils";
+@import "css3buttons_fixes";
 @import "nice_forms";
 
 html {
@@ -171,9 +171,19 @@ footer {
 			font-weight: bold;
 		}
 	}
-	
-	.action {
-		display: inline-block;
+
+	.actions {
+		text-align: right;
+
+		.button-group {
+			margin-top: 10px;
+			margin-right: 10px;
+		}
+
+		.button {
+			width: 6em;
+			text-align: center;
+		}
 	}
 } // #sections_bar
 
