@@ -6,13 +6,13 @@
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en-us" class="no-js"> <!--<![endif]-->
 
 <head>
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" >
-  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" />
+  <meta charset="utf-8" />
 
   <title><% if @title %><%= @title %> - <% end %>Juvia</title>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <link rel="shortcut icon" href="/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/favicon.ico" />
 
   <!-- The Columnal Grid (1140px wide base, load first), Type and image presets, and mobile stylesheet -->
   <%= stylesheet_link_tag 'columnal' %>
@@ -76,8 +76,8 @@
 <footer class="container">
   <div class="row">
     <div class="col_12 clearleft omega">
-      <a href="https://github.com/FooBarWidget/juvia">Juvia</a> is created by <a href="http://www.phusion.nl/">Phusion</a> and is open source.
-      Feedback, bug reports, fork &amp; contribute at <a href="https://github.com/FooBarWidget/juvia">Github</a>.
+      <a href="<%= JUVIA_GITHUB_PAGE %>">Juvia</a> is created by <a href="http://www.phusion.nl/">Phusion</a> and is open source.
+      Feedback, bug reports, fork &amp; contribute at <a href="<%= JUVIA_GITHUB_PAGE %>">Github</a>.
     </div>
   </div>
 </footer>

@@ -5,6 +5,10 @@
  *
  *******************************************************/
 
+.field_with_errors {
+	display: inline;
+}
+
 textarea {
 	width: 580px;
 	height: 200px;
@@ -35,25 +39,8 @@ input[type="submit"] {
 	padding: 6px 12px 6px 12px;
 }
 
-form .actions {
-	margin-top: 1em;
-}
-
 form .actions .button {
 	font-size: 0.85em;
-}
-
-form .field {
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
-}
-
-form .field .radio_buttons {
-	margin-left: 8px;
-
-	label {
-		display: block;
-	}
 }
 
 
@@ -63,4 +50,8 @@ form .field .radio_buttons {
 textarea.code {
 	font-family: Monospace;
 	font-size: 10pt;
+}
+
+.radio_option {
+	font-weight: normal;
 }

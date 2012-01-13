@@ -11,6 +11,8 @@ require 'uri'
 # or test environments.
 Bundler.require *Rails.groups(:assets) if defined?(Bundler)
 
+JUVIA_GITHUB_PAGE = "https://github.com/FooBarWidget/juvia"
+
 module Juvia
   class Application < Rails::Application
     require File.expand_path('../../lib/app_config', __FILE__)

@@ -11,32 +11,32 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <div class="label"><%= f.label :email %></div>
-    <div class="value"><%= f.text_field :email %></div>
+  <div class="para">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
   </div>
   
-  <div class="field">
-    <div class="label"><%= f.label :password,
+  <div class="para">
+    <%= f.label :password,
       @user.new_record? ?
       nil :
-      "Change password (leave blank if you don't want to change it)" %></div>
-    <div class="value"><%= f.password_field :password %></div>
+      "Change password (leave blank if you don't want to change it)" %><br />
+    <%= f.password_field :password %>
   </div>
   
-  <div class="field">
-    <div class="label"><%= f.label :password_confirmation, 'Confirm password' %></div>
-    <div class="value"><%= f.password_field :password_confirmation %></div>
+  <div class="para">
+    <%= f.label :password_confirmation, 'Confirm password' %><br />
+    <%= f.password_field :password_confirmation %>
   </div>
   
   <% if can?(:make_admin, @user) %>
-    <div class="checkbox field">
+    <div class="para">
       <%= f.check_box :admin %>
       <%= f.label :admin, 'Administrator rights' %>
     </div>
   <% end %>
 
-  <div class="actions">
+  <div class="para actions">
     <%= primary_button_submit_tag(@user.new_record? ? 'Create' : 'Update') %>
     <%= button_link_to 'Cancel', admin_users_path %>
     <% if can?(:delete, @user) && !@user.new_record? %>

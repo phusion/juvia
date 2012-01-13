@@ -364,32 +364,9 @@ form.comment {
 	}
 }
 
-form.new_site {
-	p {
-		margin-top: 0.25em;
-		margin-bottom: 0.25em;
-	}
-	
-	label {
-		display: block;
-	}
-	
+form.dashboard_new_site {
 	input[type="text"] {
 		width: 30em;
-	}
-	
-	.field {
-		margin-top: 1em;
-		margin-bottom: 1em;
-	}
-	
-	.desc {
-		font-size: 120%;
-		font-weight: bold;
-	}
-	
-	.radio_buttons {
-		margin-left: 8px;
 	}
 }
 
@@ -475,10 +452,6 @@ code {
 	border: solid 1px #dfdfdf;
 	padding: 3px 4px 3px 4px;
 	@include BorderRadius(6px);
-}
-
-dd {
-	margin-left: 1.5em;
 }
 
 

@@ -7,7 +7,7 @@ if (!Juvia) {
 
 (function(Juvia) {
 	var RawDeflate;
-	<%= File.read("#{Rails.root}/app/assets/javascripts/jquery-1.6.2.min.js").html_safe %>
+	<%= File.read("#{Rails.root}/app/assets/javascripts/jquery-1.7.1.min.js").html_safe %>
 	<%= File.read("#{Rails.root}/app/assets/javascripts/jquery.delayed-observer.js").html_safe %>
 	<%= File.read("#{Rails.root}/app/assets/javascripts/jquery.example.min.js").html_safe %>
 	<%= File.read("#{Rails.root}/app/assets/javascripts/rawdeflate.js").html_safe %>
@@ -88,7 +88,7 @@ if (!Juvia) {
 	}
 	
 	Juvia.loadScript = function(path, options) {
-		var url = '<%= escape_javascript(@base_url) %>';
+		var url = '<%= escape_javascript(request.protocol + request.host_with_port) %>';
 		url += path;
 		
 		if (this.supportsCors) {

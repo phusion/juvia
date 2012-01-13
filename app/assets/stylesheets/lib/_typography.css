@@ -12,18 +12,32 @@ body {
 
 /*********** Text elements ***********/
 
-blockquote  { margin: 1.5em; color: #666; font-style: italic; }
 b,dfn       { font-weight: bold; }
 em,dfn      { font-style: italic; }
 sup, sub    { line-height: 0; }
 
 abbr,
 acronym     { border-bottom: 1px dotted #666; }
-address     { margin: 0 0 1.5em; font-style: italic; }
+address     { font-style: italic; }
 del         { color:#666; }
 
-pre         { margin: 1.5em 0; white-space: pre; }
+pre         { margin: 1.6em 0; white-space: pre; }
 pre,code,tt { font: 100% 'andale mono', 'lucida console', monospace; line-height: 1.5; }
+
+label       { font-weight: bold; }
+input[type="checkbox"] + label,
+input[type="checkbox"] + .field_with_errors > label {
+    font-weight: normal;
+}
+
+/*
+ * The .para class simulates the styling of the 'p' element
+ * but doesn't follow p's auto-closing parsing rules.
+ */
+.para          { margin-bottom: 1.6em; }
+.para + .para, p + .para, .para + p, .para + ul {margin-top: -.8em;}
+h1 + .para, h2 + .para, h3 + .para, h4 + .para, h5 + .para, h6 + .para { margin-top: 0;} /* fix for weird Chrome collapse bug */
+.reverse .para { color: #aaa; }
 
 
 /*********** Lists ***********/
@@ -74,3 +88,8 @@ caption     { background: #eee; }
 
 .top        { margin-top:0; padding-top:0; }
 .bottom     { margin-bottom:0; padding-bottom:0; }
+
+.indent   { margin-left:0.4em; }
+.indent_2 { margin-left:0.8em; }
+.indent_3 { margin-left:1.2em; }
+.indent_4 { margin-left:1.6em; }
