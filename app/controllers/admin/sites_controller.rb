@@ -50,6 +50,11 @@ class Admin::SitesController < ApplicationController
     authorize! :read, @site
   end
 
+  def test
+    @site = Site.find(params[:id])
+    authorize! :read, @site
+  end
+
   # POST /admin/sites
   # POST /admin/sites.json
   def create

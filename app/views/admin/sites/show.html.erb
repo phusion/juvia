@@ -24,7 +24,15 @@ function hideEmbeddingCode() {
       </div>
       <div class="col_3">
         <strong>Moderation method</strong><br>
-        foo
+        <% if @site.moderation_method == :none %>
+          None
+        <% elsif @site.moderation_method == :akismet %>
+          Automatically with Akismet
+        <% elsif @site.moderation_method == :manual %>
+          Manual
+        <% else %>
+          <% raise "Unknown moderation method #{@site.moderation_method.inspect}" %>
+        <% end %>
       </div>
       <div class="col_3 post_4 omega">
         <strong>URL</strong><br>
@@ -58,6 +66,7 @@ function hideEmbeddingCode() {
     <div class="row actions" style="margin-top: 1em">
       <div class="col_12 omega">
         <strong>Actions</strong><br>
+        <%= button_link_to 'Test site: see how a comment page looks like', test_admin_site_path(@site) %>
         <%= edit_button_link_to 'Edit', edit_admin_site_path(@site) %>
         <%= danger_remove_button_link_to 'Delete', [:admin, @site],
           :confirm => 'Are you sure? All topics and comments for this site will also be deleted!',

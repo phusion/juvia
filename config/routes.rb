@@ -15,7 +15,7 @@ Juvia::Application.routes.draw do
     resources :sites do
       member do
         get :created
-        get :install
+        get :test
       end
     end
     resources :users do
