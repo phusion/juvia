@@ -17,7 +17,7 @@
   
   <div class="field">
     <p class="desc"><label for="site_name">What's your site's name?</label></p>
-    <p>Enter just one. If you have more you can add them later.</p>
+    <p>Enter just one. If you have more sites you can register those later.</p>
     <%= f.text_field :name %>
   </div>
   
@@ -30,7 +30,7 @@
       </label>
       <label>
         <%= f.radio_button :moderation_method, :akismet %>
-        Check spam with Akismet, approve automatically if no spam detected.
+        Check spam with <a href="http://akismet.com/">Akismet</a>, approve automatically if no spam detected.
       </label>
       <label>
         <%= f.radio_button :moderation_method, :manual %>
@@ -38,6 +38,26 @@
       </label>
     </div>
   </div>
+
+  <div class="field" id="akismet_key">
+    <p class="desc"><label for="site_akismet_key">Akismet key</label></p>
+    <%= f.text_field :akismet_key %>
+  </div>
   
   <%= arrowright_button_submit_tag 'Next step &raquo;'.html_safe %>
 <% end %>
+
+<script>
+function moderationMethodChanged() {
+  if ($('#site_moderation_method_akismet').prop('checked')) {
+    $('#akismet_key').show();
+  } else {
+    $('#akismet_key').hide();
+  }
+}
+
+$(document).ready(function() {
+  moderationMethodChanged();
+  $('.new_site .radio_buttons label').change(moderationMethodChanged);
+})
+</script>

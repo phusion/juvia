@@ -17,7 +17,10 @@
   </div>
   
   <div class="field">
-    <div class="label"><%= f.label :password %></div>
+    <div class="label"><%= f.label :password,
+      @user.new_record? ?
+      nil :
+      "Change password (leave blank if you don't want to change it)" %></div>
     <div class="value"><%= f.password_field :password %></div>
   </div>
   
@@ -34,9 +37,9 @@
   <% end %>
 
   <div class="actions">
-    <%= positive_button_submit_tag(@user.new_record? ? 'Create' : 'Update') %>
+    <%= primary_button_submit_tag(@user.new_record? ? 'Create' : 'Update') %>
     <%= button_link_to 'Cancel', admin_users_path %>
-    <% if can?(:delete, @user) %>
+    <% if can?(:delete, @user) && !@user.new_record? %>
       <%= danger_button_link_to 'Delete', [:admin, @user], :method => :delete, :confirm => 'Are you sure?' %>
     <% end %>
   </div>

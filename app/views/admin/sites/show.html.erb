@@ -66,7 +66,7 @@ function hideEmbeddingCode() {
     <div class="row actions" style="margin-top: 1em">
       <div class="col_12 omega">
         <strong>Actions</strong><br>
-        <%= button_link_to 'Test site: see how a comment page looks like', test_admin_site_path(@site) %>
+        <%= comment_button_link_to 'Test site: see how a comment page looks like', test_admin_site_path(@site) %>
         <%= edit_button_link_to 'Edit', edit_admin_site_path(@site) %>
         <%= danger_remove_button_link_to 'Delete', [:admin, @site],
           :confirm => 'Are you sure? All topics and comments for this site will also be deleted!',

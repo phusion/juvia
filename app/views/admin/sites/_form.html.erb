@@ -25,13 +25,18 @@
       </label>
       <label>
         <%= f.radio_button :moderation_method, :akismet %>
-        Check spam with Akismet, approve automatically if no spam detected.
+        Check spam with <a href="http://akismet.com/">Akismet</a>, approve automatically if no spam detected.
       </label>
       <label>
         <%= f.radio_button :moderation_method, :manual %>
         Manually approve all comments.
       </label>
     </div>
+  </div>
+
+  <div class="field">
+    <div class="label"><%= f.label :akismet_key %></div>
+    <div class="value"><%= f.text_field :akismet_key %></div>
   </div>
 
   <div class="actions">

@@ -56,6 +56,9 @@ class ApiController < ApplicationController
         render :partial => 'site_not_found'
       end
     end
+  rescue => e
+    log_exception(e)
+    render :partial => 'internal_error'
   end
   
   def preview_comment
@@ -102,5 +105,10 @@ private
     result = Zlib::Inflate.inflate(str.unpack('m').first)
     result.force_encoding('utf-8') if result.respond_to?(:force_encoding)
     result
+  end
+
+  def log_exception(e)
+    logger.error("#{e.class} (#{e}):\n  " <<
+      e.backtrace.join("\n  "))
   end
 end

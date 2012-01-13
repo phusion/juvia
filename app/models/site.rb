@@ -8,6 +8,9 @@ class Site < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :key
   validates_presence_of :moderation_method
+  validates_presence_of :akismet_key, :if => :moderation_method_is_akismet?
+
+  before_validation :nullify_blank_fields
   
   attr_accessible :name, :url, :moderation_method, :akismet_key
   attr_accessible :user, :user_id, :name, :key, :url,
@@ -17,5 +20,14 @@ class Site < ActiveRecord::Base
 
   def last_updated_topics
     topics.order(:last_posted_at => :desc)
+  end
+
+private
+  def nullify_blank_fields
+    self.url = nil if url.blank?
+  end
+
+  def moderation_method_is_akismet?
+    moderation_method == :akismet
   end
 end

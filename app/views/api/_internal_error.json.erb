@@ -1,0 +1,10 @@
+<%= {
+	:status    => 'error',
+	:message   => 'Internal server error.',
+
+	:action    => 'ShowError',
+	:container => @container,
+	:site_key  => @site_key,
+	:topic_key => @topic_key,
+	:html      => render(:partial => 'internal_error.html', :locals => { :topic => @topic })
+}.to_json.html_safe %>
