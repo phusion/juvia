@@ -16,23 +16,22 @@
                 var el = $(this);
                 var op = options || {};
                 
-                el.data('oldval', el.val());
-                el.data('delay', delay || 0.5);
-                el.data('condition', op.condition || function() { return ($(this).data('oldval') == $(this).val()); });
-                el.data('callback', callback);
+                var timer;
+                var oldval = el.val();
+                var condition = op.condition || function() {
+                    return $(this).val() == oldval;
+                }
+                delay = delay || 0.5;
                 
                 function changeHandler() {
-                    if (el.data('condition').apply(el)) {
-                        return;
-                    } else {
-                        if (el.data('timer')) {
-                            clearTimeout(el.data('timer'));
+                    if (!condition.apply(el)) {
+                        if (timer) {
+                            clearTimeout(timer);
                         }
-                        var id = setTimeout(function() {
-                            el.data('callback').apply(el);
-                        }, el.data('delay') * 1000);
-                        el.data('timer', id);
-                        el.data('oldval', el.val());
+                        timer = setTimeout(function() {
+                            callback.apply(el);
+                        }, delay * 1000);
+                        oldval = el.val();
                     }
                 }
                 

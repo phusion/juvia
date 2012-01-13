@@ -55,7 +55,7 @@ if (!Juvia) {
 			});
 			
 			var textarea = $('.juvia-textarea-field textarea', addCommentForm);
-			$('textarea').delayedObserver(function() {
+			textarea.delayedObserver(function() {
 				self.previewComment(this);
 			});
 			

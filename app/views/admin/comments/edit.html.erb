@@ -16,11 +16,12 @@
   <%= f.text_area :content %>
   
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => 'primary button' %>
+    <%= button_link_to 'Cancel', admin_comments_path %>
   </div>
   
   <div class="preview">
-    <h2>Preview</h2>
+    <h3>Preview</h3>
     <div class="content">
       <%= render_markdown(@comment.content) %>
     </div>

@@ -314,17 +314,8 @@ footer {
 		}
 
 		.actions {
-			border-top: 1px solid #d0d0d0;
-			padding-top: 8px;
+			margin-top: 8px;
 			font-size: 85%;
-		}
-
-		.actions a {
-			margin-right: 1em;
-		}
-
-		.actions .approve {
-			font-weight: bold;
 		}
 	}
 } // .comments.list
@@ -452,6 +443,12 @@ code {
 	border: solid 1px #dfdfdf;
 	padding: 3px 4px 3px 4px;
 	@include BorderRadius(6px);
+}
+
+pre code {
+	background: inherit;
+	border: none;
+	padding: 0;
 }
 
 

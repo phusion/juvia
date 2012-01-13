@@ -1,4 +1,4 @@
-<%= div_for(comment) do %>
+<%= div_for(comment, 'data-comment-id' => comment.id, :class => "moderation_status_#{comment.moderation_status}") do %>
   <div class="metadata">
     <div class="avatar">
 		  <img src="//www.gravatar.com/avatar/<%= comment.author_email_md5 %>?s=64"
@@ -19,16 +19,21 @@
   <div class="content">
     <%= render_markdown(comment.content) %>
   </div>
-  <div class="actions">
-    <%= link_to 'Edit', edit_admin_comment_path(comment, :return_to => request.fullpath) %>
-    <% if comment.moderation_status == :ok %>
-      <%= link_to 'Spam & delete', [:admin, comment], :method => 'delete', :confirm => 'Are you sure?' %>
-    <% elsif comment.moderation_status == :unchecked %>
-      <%= link_to 'Approve', approve_admin_comment_path(comment), :method => 'post', :class => 'approve' %>
-      <%= link_to 'Spam & delete', [:admin, comment], :method => 'delete', :confirm => 'Are you sure?' %>
-    <% else %>
-      <% raise "Bug: unknown moderation status #{comment.moderation_status.inspect}" %>
+  <div class="actions button-container">
+    <% if comment.moderation_status == :unchecked %>
+      <%= positive_primary_approve_button_link_to 'Approve', 'javascript:void(approveComment())' %>
     <% end %>
-    <%= link_to 'Delete', [:admin, comment], :method => 'delete', :confirm => 'Are you sure?' %>
+    <%= edit_button_link_to 'Edit', edit_admin_comment_path(comment, :return_to => request.fullpath) %>
+    <%= button_group do %>
+      <% if comment.moderation_status == :ok %>
+        <%= remove_button_link_to 'Mark as spam & delete', [:admin, comment], :method => 'delete', :confirm => 'Are you sure?' %>
+      <% elsif comment.moderation_status == :unchecked %>
+        <%= button_link_to 'Approve', approve_admin_comment_path(comment), :method => 'post', :class => 'approve' %>
+        <%= remove_button_link_to 'Mark as spam & delete', [:admin, comment], :method => 'delete', :confirm => 'Are you sure?' %>
+      <% else %>
+        <% raise "Bug: unknown moderation status #{comment.moderation_status.inspect}" %>
+      <% end %>
+      <%= remove_button_link_to 'Delete', [:admin, comment], :method => 'delete', :confirm => 'Are you sure?' %>
+    <% end %>
   </div>
 <% end %>
