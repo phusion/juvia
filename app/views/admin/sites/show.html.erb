@@ -18,11 +18,11 @@ function hideEmbeddingCode() {
 <div class="site_info panel">
   <div class="container">
     <div class="row">
-      <div class="col_2">
+      <div class="col_4">
         <strong>Owner</strong><br>
         <%= link_to @site.user.email, [:admin, @site.user] %>
       </div>
-      <div class="col_3">
+      <div class="col_4">
         <strong>Moderation method</strong><br>
         <% if @site.moderation_method == :none %>
           None
@@ -34,7 +34,7 @@ function hideEmbeddingCode() {
           <% raise "Unknown moderation method #{@site.moderation_method.inspect}" %>
         <% end %>
       </div>
-      <div class="col_3 post_4 omega">
+      <div class="col_4 omega">
         <strong>URL</strong><br>
         <% if @site.url %>
           <%= link_to @site.url, @site.url %>

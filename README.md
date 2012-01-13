@@ -6,6 +6,13 @@ Juvia is an open source commenting system. It allows you to outsource your comme
 
 Juvia is similar to [Disqus](http://www.disqus.com/) and [IntenseDebate](http://intensedebate.com/). However both of them seem to be designed in the early 2000s before the rise of AJAX: trying to integrate either of them in an AJAX web application results in many wasted afternoons and a screen full of inexplicable JavaScript errors. Juvia offers full support for AJAX web pages and any JavaScript is written in such a way that it avoids conflicts with the page's existing JavaScripts.
 
+Juvia currently also makes no effort to support nested comments. I believe nested comments only make sense for extremely active discussion forums. Instead, Juvia strives for simplicity.
+
+Other notable highlights:
+
+ * Moderation support, either manually or automatically via [Akismet](http://akismet.com/).
+ * Multi-user support. With this I don't mean commenters but users who operate the Juvia admin panel. Each user account is isolated and can only see and manage its own sites, topics and comments, except for administrators who can see and manage everything.
+
 ## Installation
 
 1. Clone this repository into a desired directory.
