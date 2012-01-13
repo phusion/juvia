@@ -1,10 +1,11 @@
 // -*- Mode: SCSS; tab-width: 4; indent-tabs-mode: true; c-basic-offset: 4 -*-
 //= require css3buttons/without-reset
 
+@import "lib/css3";
+@import "lib/typography";
+@import "lib/forms";
+@import "lib/css3buttons_fixes";
 @import "comment_content";
-@import "css3_utils";
-@import "css3buttons_fixes";
-@import "nice_forms";
 
 html {
 	background: rgb(127,151,171);
@@ -423,18 +424,14 @@ form.new_site {
 		margin: 0;
 		margin-right: 0.5em;
 	}
+}
 
-	&.large {
-		font-size: 20pt;
-	}
+.large_identity {
+	font-size: 20pt;
 }
 
 .help.page {
 	max-width: 750px;
-
-	ol {
-		list-style: decimal;
-	}
 }
 
 .site_info.panel {
@@ -476,8 +473,7 @@ form.new_site {
 code {
 	background: #f4f4f4;
 	border: solid 1px #dfdfdf;
-	padding: 2px 3px 2px 3px;
-	font-family: Monospace;
+	padding: 3px 4px 3px 4px;
 	@include BorderRadius(6px);
 }
 

@@ -1,4 +1,9 @@
-// -*- Mode: SCSS; tab-width: 4; indent-tabs-mode: true; c-basic-offset: 4 -*-
+/*******************************************************
+ *
+ *  Beautiful default styling for forms.
+ *  To be applied after Columnal.
+ *
+ *******************************************************/
 
 textarea {
 	width: 580px;
@@ -25,11 +30,6 @@ textarea {
 	@include BorderRadius(4px);
 }
 
-textarea.code {
-	font-family: Monospace;
-	font-size: 10pt;
-}
-
 input[type="submit"] {
 	font-size: 0.85em;
 	padding: 6px 12px 6px 12px;
@@ -54,4 +54,13 @@ form .field .radio_buttons {
 	label {
 		display: block;
 	}
+}
+
+
+/*********** Misc classes ***********/
+
+// A textarea containing code to be displayed in a Monospace font.
+textarea.code {
+	font-family: Monospace;
+	font-size: 10pt;
 }

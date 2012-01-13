@@ -29,11 +29,11 @@ module ApplicationHelper
   end
 
   def large_identity_tag(type, content)
-    %Q{<h2 class="identity large">#{image_tag "#{type}-48.png", :width => 48, :height => 48}#{h content}</h2>}.html_safe
+    %Q{<h2 class="large_identity identity">#{image_tag "#{type}-48.png", :width => 48, :height => 48}#{h content}</h2>}.html_safe
   end
 
   def small_identity_tag(type, content, link = nil)
-    result = %Q{<span class="identity small">}
+    result = %Q{<span class="small_identity identity">}
     if link
       result << %Q{<a href="#{h url_for(link)}">}
     end
