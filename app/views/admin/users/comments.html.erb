@@ -1,5 +1,0 @@
-<h1 class="no-top-margin">Comments belonging to <%= link_to @user.email, admin_users_path(:anchor => "user_#{@user.id}") %></h1>
-
-<div class="comments list">
-<%= render :partial => 'admin/comments/comment', :collection => @comments %>
-</div>

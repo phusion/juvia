@@ -1,0 +1,10 @@
+<%= div_for(topic, :class => 'item container') do %>
+  <div class="row">
+    <div class="col_8 identity_column">
+      <%= small_identity_tag :topic, topic.title, [:admin, topic] %>
+    </div>
+    <div class="col_4 last info_column">
+      <%= topic_comments_count_and_last_comment_date(topic) %>
+    </div>
+  </div>
+<% end %>

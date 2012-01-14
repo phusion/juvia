@@ -5,17 +5,14 @@
     </div>
   <% end %>
 
-  <div class="users list">
+  <div class="users resources list">
   <% @users.each do |user| %>
     <%= div_for(user, :class => 'item') do %>
-      <div class="avatar"><img src="//www.gravatar.com/avatar/<%= user.email_md5 %>?s=58" width="58" height="58"></div>
-      <div class="email"><%= user.email %></div>
-      <div class="actions">
-        <%= link_to 'Sites', admin_user_sites_path(user) %>
-        <%= link_to 'Comments', admin_user_comments_path(user) %>
-        <%= link_to 'Edit', edit_admin_user_path(user) %>
-        <%= link_to 'Delete', admin_user_path(user), :confirm => 'Are you sure?', :method => :delete %>
-      </div>
+      <div class="avatar"><img src="//www.gravatar.com/avatar/<%= user.email_md5 %>?s=22" width="22" height="22"></div>
+      <div class="email"><%= link_to user.email, [:admin, user] %></div>
+      <% if user.admin? %>
+        <div class="admin">admin</div>
+      <% end %>
     <% end %>
   <% end %>
   </div>

@@ -23,24 +23,15 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     authorize! :read, @user
+    @sites    = @user.sites
+    @topics   = @user.topics
 
     respond_to do |format|
+      format.html
       format.json { render :json => @user }
     end
   end
   
-  def sites
-    @user = User.find(params[:user_id])
-    authorize! :read, @user
-    @sites = @user.sites.page(params[:page])
-  end
-  
-  def comments
-    @user = User.find(params[:user_id])
-    authorize! :read, @user
-    @comments = @user.comments.page(params[:page])
-  end
-
   def new
     authorize! :create, User
     @user = User.new

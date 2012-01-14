@@ -195,6 +195,24 @@ footer {
 
 
 .resources.list, {
+	margin-top: 1em;
+	margin-bottom: 1em;
+
+	.item {
+		border-bottom: #dddddd 1px solid;
+		padding-top: 0.75em;
+		padding-bottom: 0.75em;
+	}
+
+	.item.container {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	.item:first-child {
+		border-top: #dddddd 1px solid;
+	}
+
 	.identity_column {
 		font-weight: bold;
 	}
@@ -211,35 +229,29 @@ footer {
 	}
 	
 	.user {
-		min-height: 58px;
-		margin-top: 16px;
-		
 		.avatar {
-			float: left;
-			margin-left: 0;
-			line-height: 0;
+			display: inline;
 		}
 		
 		.avatar img {
+			vertical-align: middle;
 			margin: 0;
-		}
-		
-		> div {
-			margin-left: 74px;
+			margin-right: 0.25em;
 		}
 		
 		.email {
-			font-size: 140%;
-			line-height: 1.5em;
+			display: inline;
+			font-weight: bold;
 		}
-		
-		.actions a {
-			font-size: 85%;
-			margin-right: 0.7em;
+
+		.admin {
+			display: inline;
+			font-size: 70%;
+			vertical-align: super;
+			color: red;
 		}
 	}
 } // .users.list
-
 
 .comments.list {
 	.comment {
@@ -342,6 +354,16 @@ footer {
 	}
 } // .comments.list
 
+.list_with_actions {
+	> .actions:first-child {
+		margin-bottom: 1em;
+	}
+
+	> .actions:last-child {
+		margin-top: 1em;
+	}
+}
+
 #error_explanation {
 	background: #f9aaaa;
 	border: solid 1px #f37979;
@@ -380,28 +402,6 @@ form.comment {
 form.dashboard_new_site {
 	input[type="text"] {
 		width: 30em;
-	}
-}
-
-.list_with_actions {
-	.list {
-		margin-top: 1em;
-		margin-bottom: 1em;
-	}
-
-	.item {
-		border-bottom: #dddddd 1px solid;
-		padding-top: 0.75em;
-		padding-bottom: 0.75em;
-	}
-
-	.item.container {
-		padding-left: 0;
-		padding-right: 0;
-	}
-
-	.item:first-child {
-		border-top: #dddddd 1px solid;
 	}
 }
 

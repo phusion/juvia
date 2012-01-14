@@ -19,10 +19,7 @@ Juvia::Application.routes.draw do
         get :test
       end
     end
-    resources :users do
-      get :comments
-      get :sites
-    end
+    resources :users
     resources :topics
   end
   

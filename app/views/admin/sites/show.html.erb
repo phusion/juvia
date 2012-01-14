@@ -85,20 +85,7 @@ function hideEmbeddingCode() {
   <p>You don't have to manually create topics. A topic is automatically
   created whenever a user posts a comment with a certain topic ID.</p>
   
-  <div class="list_with_actions">
-    <div class="topics resources list">
-      <% @site.last_updated_topics.each do |topic| %>
-        <%= div_for(topic, :class => 'item container') do %>
-          <div class="row">
-            <div class="col_8 identity_column">
-              <%= small_identity_tag :topic, topic.title, [:admin, topic] %>
-            </div>
-            <div class="col_4 last info_column">
-              <%= topic_comments_count_and_last_comment_date(topic) %>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
+  <div class="topics resources list">
+    <%= render :partial => 'admin/topics/topic', :collection => @site.last_updated_topics %>
   </div>
 <% end %>

@@ -39,8 +39,10 @@
   <div class="para actions">
     <%= primary_button_submit_tag(@user.new_record? ? 'Create' : 'Update') %>
     <%= button_link_to 'Cancel', admin_users_path %>
-    <% if can?(:delete, @user) && !@user.new_record? %>
-      <%= danger_button_link_to 'Delete', [:admin, @user], :method => :delete, :confirm => 'Are you sure?' %>
+    <% if can?(:destroy, @user) && !@user.new_record? %>
+      <%= danger_button_link_to 'Delete', [:admin, @user],
+        :method => :delete,
+        :confirm => 'Are you sure? All sites, comments and topics belonging to this user will also be deleted!' %>
     <% end %>
   </div>
 <% end %>
