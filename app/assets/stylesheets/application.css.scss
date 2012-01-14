@@ -247,11 +247,29 @@ footer {
 		$metadata_padding: 8px;
 		$spacing: 18px;
 		
+		position: relative;
 		min-height: $avatar_size;
 		margin-bottom: 24px;
-		
-		.metadata, .content, .actions {
+
+		> .arrow {
+			position: absolute;
+			margin-left: $avatar_size + $spacing - 6px;
+			margin-top: 4px;
+			width: 0;
+			height: 0;
+			border-color: transparent #e2e2e2 transparent transparent;
+			border-style: solid;
+			border-width: 6px 6px 6px 0;
+		}
+
+		> .shell {
 			margin-left: $avatar_size + $spacing;
+			background: #efefef;
+			@include BorderRadius(3px);
+			@include BoxShadow(1px 1px 2px #555555);
+			margin-right: 2px; // So that the shadow isn't cut off.
+			// Prevent the .actions bottom margin from collapsing with another element.
+			padding-bottom: 1px;
 		}
 		
 		.metadata, .actions {
@@ -270,9 +288,7 @@ footer {
 			
 			font-size: 90%;
 			padding: $metadata_padding;
-			@include BorderRadius(3px);
-			@include BoxShadow(1px 1px 2px #555555);
-			margin-right: 2px; // So that the shadow isn't cut off.
+			@include BorderRadius(3px 3px 0 0);
 		}
 		
 		.avatar {
@@ -306,8 +322,7 @@ footer {
 		}
 
 		.content {
-			margin-top: 10px;
-			margin-bottom: 10px;
+			margin: 10px;
 		}
 
 		.content > *:first-child {
@@ -319,7 +334,9 @@ footer {
 		}
 
 		.actions {
-			margin-top: 8px;
+			margin: 8px;
+			// Account for the .shell padding-bottom margin anti-collapsing technique.
+			margin-bottom: 7px;
 			font-size: 85%;
 		}
 	}

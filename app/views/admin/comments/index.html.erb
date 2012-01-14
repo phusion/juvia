@@ -1,10 +1,10 @@
 <% @title = "Comments" %>
 <div class="comments list">
-	<% if @comments.empty? %>
-		No comments have been posted.
-	<% else %>
-		<%= render :partial => 'admin/comments/comment',
-			:collection => @comments,
-			:locals => { :show_topic => true } %>
-	<% end %>
+  <% if @comments.empty? %>
+    No comments have been posted.
+  <% else %>
+    <%= render :partial => 'admin/comments/comment',
+      :collection => @comments,
+      :locals => { :show_topic => true } %>
+  <% end %>
 </div>
