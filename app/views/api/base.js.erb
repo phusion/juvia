@@ -130,6 +130,7 @@ if (!Juvia) {
 	Juvia.handleLoadTopic = function(options) {
 		var $container = $(options.container);
 		$container.html(options.html);
+		this.restoreCommentBox($container.find('> .juvia-container'));
 		if (options.css && $('style.juvia').length == 0) {
 			var style = document.createElement('style');
 			var rules = document.createTextNode(options.css);
@@ -159,6 +160,7 @@ if (!Juvia) {
 		
 		container.find('form')[0].reset();
 		this.setSubmitting(container, false);
+		this.saveCommentBox(container);
 		this.smoothlyScrollTo(comment.offset().top - 20);
 		comment.hide().fadeIn(2000);
 	}
@@ -205,6 +207,7 @@ if (!Juvia) {
 		var form = event.target;
 		var $container = $(form).closest('.juvia-container');
 		this.setSubmitting($container, true);
+		this.saveCommentBox($container);
 		this.loadScript('/api/add_comment', {
 			site_key    : $container.data('site-key'),
 			topic_key   : $container.data('topic-key'),
@@ -218,6 +221,7 @@ if (!Juvia) {
 	
 	Juvia.previewComment = function(formElement) {
 		var $container = $(formElement).closest('.juvia-container');
+		this.saveCommentBox($container);
 		this.loadScript('/api/preview_comment', {
 			site_key : $container.data('site-key'),
 			topic_key: $container.data('topic-key'),
@@ -233,6 +237,38 @@ if (!Juvia) {
 		} else {
 			container.find('.juvia-submit-button').show();
 			container.find('.juvia-submitting-button').hide();
+		}
+	}
+
+	/* The browser does not save the content of the Juvia comments box when
+	 * the user reloads the page. In order to prevent data loss we implement
+	 * our own saving capabilities. The text box is saved into localStorage
+	 * with a key that depends on the site key and the topic key.
+	 */
+
+	Juvia.getTextBoxStorageKey = function(container) {
+		return 'juvia_text/' +
+			container.data('site-key') + '/' +
+			container.data('topic-key');
+	}
+
+	Juvia.saveCommentBox = function(container) {
+		if (window.localStorage) {
+			var key = this.getTextBoxStorageKey(container);
+			var value = $('textarea[name="content"]', container).val();
+			window.localStorage.setItem(key, value);
+		}
+	}
+
+	Juvia.restoreCommentBox = function(container) {
+		if (window.localStorage) {
+			var key = this.getTextBoxStorageKey(container);
+			var value = window.localStorage.getItem(key);
+			if (value !== undefined && value !== null) {
+				var textarea = $('textarea[name="content"]', container);
+				textarea.val(value);
+				this.previewComment(textarea);
+			}
 		}
 	}
 	

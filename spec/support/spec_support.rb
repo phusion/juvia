@@ -53,4 +53,17 @@ module SpecSupport
       </script>
     ^)
   end
+
+  def eventually(max_wait = 5, sleep_time = 0.01)
+    deadline = Time.now + max_wait
+    while Time.now < deadline
+      result = yield
+      if result
+        return result
+      else
+        sleep(sleep_time)
+      end
+    end
+    fail "Something that should eventually happen never happened"
+  end
 end
