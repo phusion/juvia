@@ -5,8 +5,6 @@ gem 'rails', '3.1.3'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3-ruby', :require => 'sqlite3'
-
 gem 'schema_plus'
 gem 'default_value_for'
 gem 'bluecloth'
@@ -32,6 +30,7 @@ end
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :development, :test do
+  gem 'sqlite3-ruby', :require => 'sqlite3'
   gem 'rspec-rails', '~> 2.4'
   gem 'capybara', :require => false
   gem 'capybara-webkit', :require => false
@@ -47,4 +46,9 @@ group :assets do
   gem 'sass-rails',   '~> 3.1.5'
   gem 'coffee-rails', '~> 3.1.1'
   gem 'uglifier', '>= 1.0.3'
+end
+
+group :production do
+  gem 'mysql2'
+  # gem 'pg'
 end
