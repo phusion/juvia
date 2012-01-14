@@ -242,7 +242,7 @@ if (!Juvia) {
 
 	/* The browser does not save the content of the Juvia comments box when
 	 * the user reloads the page. In order to prevent data loss we implement
-	 * our own saving capabilities. The text box is saved into localStorage
+	 * our own saving capabilities. The text box is saved into sessionStorage
 	 * with a key that depends on the site key and the topic key.
 	 */
 
@@ -252,18 +252,56 @@ if (!Juvia) {
 			container.data('topic-key');
 	}
 
+	Juvia.clearAllTextBoxStorage = function(container) {
+		var i, key, keysToRemove = [];
+		for (key in window.sessionStorage) {
+			if (key.match(/^juvia_text\//)) {
+				keysToRemove.push(key);
+			}
+		}
+		for (i = 0; i < keysToRemove.length; i++) {
+			window.sessionStorage.removeItem(keysToRemove[i]);
+		}
+	}
+
 	Juvia.saveCommentBox = function(container) {
-		if (window.localStorage) {
+		if (window.sessionStorage) {
 			var key = this.getTextBoxStorageKey(container);
 			var value = $('textarea[name="content"]', container).val();
-			window.localStorage.setItem(key, value);
+			if (value == '') {
+				window.sessionStorage.removeItem(key);
+			} else {
+				try {
+					window.sessionStorage.setItem(key, value);
+				} catch (e) {
+					if (console) {
+						console.warn(e);
+					}
+					/* It looks like we're hitting the quota limit.
+					 * Try to free up some space and try again.
+					 *
+					 * Even though the standard says that it's supposed to
+					 * throw QuotaExceededError, browsers currently don't
+					 * actually do that. Instead they throw some kind of
+					 * internal exception type. So we don't bother checking
+					 * for the exception type.
+					 * http://stackoverflow.com/questions/3027142/calculating-usage-of-localstorage-space
+					 */
+					this.clearAllTextBoxStorage(container);
+					try {
+						window.sessionStorage.setItem(key, value);
+					} catch (e) {
+						console.warn(e);
+					}
+				}
+			}
 		}
 	}
 
 	Juvia.restoreCommentBox = function(container) {
-		if (window.localStorage) {
+		if (window.sessionStorage) {
 			var key = this.getTextBoxStorageKey(container);
-			var value = window.localStorage.getItem(key);
+			var value = window.sessionStorage.getItem(key);
 			if (value !== undefined && value !== null) {
 				var textarea = $('textarea[name="content"]', container);
 				textarea.val(value);
