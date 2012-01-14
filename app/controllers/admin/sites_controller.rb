@@ -94,7 +94,7 @@ class Admin::SitesController < ApplicationController
   # DELETE /admin/sites/1.json
   def destroy
     @site = Site.find(params[:id])
-    authorize! :delete, @site
+    authorize! :destroy, @site
     @site.destroy
 
     respond_to do |format|

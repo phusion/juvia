@@ -20,7 +20,7 @@
     </tr>
     <tr>
       <td class="align_right label pad_right">Actions</td>
-      <td><%= remove_button_link_to 'Delete', [:admin, @topic],
+      <td><%= remove_button_link_to 'Delete entire topic', [:admin, @topic],
         :method => :delete,
         :confirm => 'Are you sure? All containing comments will also be removed!' %></td>
     </tr>

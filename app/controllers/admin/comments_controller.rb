@@ -48,7 +48,7 @@ class Admin::CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    authorize! :delete, @comment
+    authorize! :destroy, @comment
     @comment.transaction do
       if params[:spam] && @comment.site.moderation_method == :akismet
         @comment.report_spam
