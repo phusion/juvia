@@ -20,6 +20,7 @@ function hideEmbeddingCode() {
     <div class="row">
       <div class="col_4">
         <strong>Owner</strong><br>
+        <img src="//www.gravatar.com/avatar/<%= @site.user.email_md5 %>?s=22" width="22" height="22" style="display: inline-block; margin: 0 0.25em 0 0; vertical-align: middle">
         <%= link_to @site.user.email, [:admin, @site.user] %>
       </div>
       <div class="col_4">

@@ -3,7 +3,7 @@ module Admin
 class UsersController < ApplicationController
   layout 'admin'
   
-  skip_authorization_check :only => :index
+  skip_authorization_check :only => [:index, :edit]
   before_filter :set_navigation_ids
   
   def index
@@ -43,8 +43,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
-    authorize! :update, @user
+    redirect_to admin_user_path(params[:id])
   end
 
   def create
