@@ -18,13 +18,8 @@ private
   end
   
   def save_return_to_url
-    session[:return_to] ||= begin
-      path = params[:return_to]
-      if path && path =~ /\A\//
-        path
-      else
-        nil
-      end
+    if (path = params[:return_to]) && path =~ /\A\//
+      session[:return_to] = path
     end
   end
   

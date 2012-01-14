@@ -3,7 +3,7 @@ class Admin::CommentsController < ApplicationController
 
   skip_authorization_check :only => :preview
   before_filter :set_navigation_ids
-  before_filter :save_return_to_url, :only => [:new, :edit]
+  before_filter :save_return_to_url, :only => [:new, :edit, :approve, :destroy]
   
   def index
     authorize! :read, Comment
@@ -19,7 +19,7 @@ class Admin::CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     authorize! :update, @comment
     if @comment.update_attributes(params[:comment], :as => current_user.role)
-      redirect_back
+      redirect_back(admin_comments_path)
     else
       render :action => 'edit'
     end
@@ -27,6 +27,31 @@ class Admin::CommentsController < ApplicationController
   
   def preview
     render :text => ApplicationHelper.render_markdown(params[:content])
+  end
+
+  def approve
+    @comment = Comment.find(params[:id])
+    authorize! :update, @comment
+    @comment.transaction do
+      @comment.moderation_status = :ok
+      if @comment.site.moderation_method == :akismet
+        @comment.report_ham
+      end
+      @comment.save!
+    end
+    redirect_back(admin_comments_path)
+  end
+
+  def destroy
+    @comment = Comment.find(params[:id])
+    authorize! :delete, @comment
+    @comment.transaction do
+      if params[:spam] && @comment.site.moderation_method == :akismet
+        @comment.report_spam
+      end
+      @comment.destroy
+    end
+    redirect_back(admin_comments_path)
   end
 
 private

@@ -15,11 +15,11 @@ describe "Admin::Dashboard" do
       page.should have_content("So you want to embed comments on a bunch of web pages.")
     end
     
-    it "redirects to the comments page if the user is logged in, there are administrators and the current user has sites" do
+    it "redirects to the sites page if the user is logged in, there are administrators and the current user has sites" do
       FactoryGirl.create(:site1, :user => admin)
       login(admin)
       visit root_path
-      current_url.should == admin_comments_url
+      current_url.should == admin_sites_url
     end
   end
   
@@ -56,7 +56,7 @@ describe "Admin::Dashboard" do
       fill_in 'site[name]', :with => 'Foo'
       choose 'Manually approve all comments.'
       click_button 'Next step »'
-      page.should have_content("Your site has been created! Here's how you embed comments in your web pages.")
+      page.should have_content("Your site \"Foo\" has been registered!")
       Site.find_by_name('Foo').should_not be_nil
     end
     

@@ -1,6 +1,11 @@
 require File.expand_path(File.dirname(__FILE__) + "/../../spec_helper")
 
 describe Admin::SitesController do
+  def valid_attributes
+    { :name => 'Foo',
+      :url => 'http://foo.local/' }
+  end
+
   def create_site
     @site ||= FactoryGirl.create(:site1, :user => kotori)
   end
@@ -11,7 +16,6 @@ describe Admin::SitesController do
     end
     
     include_examples "requires authentication"
-    include_examples "requires administrator rights"
   end
   
   describe "GET show" do
@@ -20,7 +24,6 @@ describe Admin::SitesController do
     end
 
     include_examples "requires authentication"
-    include_examples "requires administrator rights"
   end
 
   describe "GET new" do
@@ -29,7 +32,6 @@ describe Admin::SitesController do
     end
 
     include_examples "requires authentication"
-    include_examples "requires administrator rights"
   end
 
   describe "GET edit" do
@@ -38,7 +40,46 @@ describe Admin::SitesController do
     end
 
     include_examples "requires authentication"
-    include_examples "requires administrator rights"
+  end
+
+  describe "POST create" do
+    def visit_normally
+      post :create, :site => valid_attributes
+    end
+
+    include_examples "requires authentication"
+  end
+
+  describe "PUT update" do
+    def visit_normally
+      put :update, :id => create_site.id.to_s, :site => valid_attributes
+    end
+
+    include_examples "requires authentication"
+  end
+
+  describe "DELETE destroy" do
+    def visit_normally
+      delete :destroy, :id => create_site.id.to_s
+    end
+
+    include_examples "requires authentication"
+  end
+
+  describe "GET created" do
+    def visit_normally
+      get :created, :id => create_site.id.to_s
+    end
+
+    include_examples "requires authentication"
+  end
+
+  describe "GET test" do
+    def visit_normally
+      get :test, :id => create_site.id.to_s
+    end
+
+    include_examples "requires authentication"
   end
 end
 
@@ -47,6 +88,11 @@ describe Admin::SitesController do
 
   before :each do
     sign_in(admin)
+  end
+
+  def valid_attributes
+    { :name => 'Foo',
+      :url => 'http://foo.local/' }
   end
 
   def create_site
@@ -76,7 +122,6 @@ describe Admin::SitesController do
     end
   end
 
-if false
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Site" do
@@ -93,7 +138,7 @@ if false
 
       it "redirects to the created site" do
         post :create, :site => valid_attributes
-        response.should redirect_to(Site.last)
+        response.should redirect_to([:admin, Site.last])
       end
     end
 
@@ -122,8 +167,8 @@ if false
         # specifies that the Site created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Site.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => site.id, :site => {'these' => 'params'}
+        Site.any_instance.should_receive(:update_attributes).with({ 'name' => 'bar' }, :as => :admin)
+        put :update, :id => site.id, :site => { 'name' => 'bar' }
       end
 
       it "assigns the requested site as @site" do
@@ -135,7 +180,7 @@ if false
       it "redirects to the site" do
         site = create_site
         put :update, :id => site.id, :site => valid_attributes
-        response.should redirect_to(site)
+        response.should redirect_to([:admin, site])
       end
     end
 
@@ -172,5 +217,22 @@ if false
       response.should redirect_to(admin_sites_url)
     end
   end
-end
+
+  describe "GET created" do
+    it "displays embedding instructions" do
+      site = create_site
+      get :created, :id => site.id.to_s
+      response.body.should include("Paste the following snippet into your web pages to embed comments")
+      response.body.should include(site.key)
+    end
+  end
+
+  describe "GET test" do
+    it "displays a test page" do
+      site = create_site
+      get :test, :id => site.id.to_s
+      response.body.should include("Test page for site")
+      response.body.should include(site.key)
+    end
+  end
 end

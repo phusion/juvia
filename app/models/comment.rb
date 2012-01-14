@@ -8,7 +8,7 @@ class Comment < ActiveRecord::Base
 
   belongs_to :topic, :inverse_of => :comments
   
-  acts_as_enum :moderation_status, [:ok, :unchecked]
+  acts_as_enum :moderation_status, [:ok, :unchecked, :spam]
   
   scope :visible, where(:moderation_status => moderation_status(:ok))
   
@@ -47,11 +47,11 @@ class Comment < ActiveRecord::Base
     end
   end
   
-  def ham!
+  def report_ham
     call_akismet('submit-ham', akismet_params)
   end
   
-  def spam!
+  def report_spam
     call_akismet('submit-spam', akismet_params)
   end
 

@@ -1,0 +1,14 @@
+.box {
+	background: #f2f2f2;
+	border: solid 1px #cccccc;
+	@include BorderRadius(8px);
+
+	> .container,
+	> .shell {
+		margin: 1em;
+		padding: 0;
+	}
+
+	p, .para { margin-bottom: 1em; }
+	p + p, .para + .para, p + .para, .para + p, p + ul, .para + ul {margin-top: -.5em;}
+}

@@ -4,6 +4,7 @@
 @import "lib/css3";
 @import "lib/typography";
 @import "lib/forms";
+@import "lib/boxes";
 @import "lib/css3buttons_fixes";
 @import "comment_content";
 
@@ -402,16 +403,7 @@ form.dashboard_new_site {
 	max-width: 750px;
 }
 
-.site_info.panel {
-	background: #f2f2f2;
-	border: solid 1px #cccccc;
-	@include BorderRadius(8px);
-
-	> .container {
-		margin: 1em;
-		padding: 0;
-	}
-
+.site_info.box {
 	input {
 		width: 25em;
 		font-family: Monospace;

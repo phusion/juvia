@@ -13,14 +13,14 @@
     </div>
   <% end %>
   
-  <%= f.text_area :content %>
+  <div class="para"><%= f.text_area :content %></div>
   
-  <div class="actions">
+  <div class="para actions">
     <%= f.submit :class => 'primary button' %>
-    <%= button_link_to 'Cancel', admin_comments_path %>
+    <%= button_link_to 'Cancel', session[:return_to] || admin_comments_path %>
   </div>
   
-  <div class="preview">
+  <div class="para preview">
     <h3>Preview</h3>
     <div class="content">
       <%= render_markdown(@comment.content) %>

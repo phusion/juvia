@@ -73,6 +73,25 @@ tbody tr.even td  { background: #e5ecf9; }
 tfoot       { font-style: italic; }
 caption     { background: #eee; }
 
+table.nostripes {
+    tbody tr:nth-child(even) td, 
+    tbody tr.even td  { background: inherit; }
+}
+
+table.compact {
+    border-collapse: collapse;
+    td { padding: 0; }
+    td.pad_right { padding-right: 1em; }
+}
+
+table.vertical_align {
+    td { vertical-align: middle; }
+}
+
+td.label {
+    font-weight: bold;
+}
+
 
 /*********** Misc classes ***********/
 
@@ -89,7 +108,12 @@ caption     { background: #eee; }
 .top        { margin-top:0; padding-top:0; }
 .bottom     { margin-bottom:0; padding-bottom:0; }
 
-.indent   { margin-left:0.4em; }
-.indent_2 { margin-left:0.8em; }
-.indent_3 { margin-left:1.2em; }
-.indent_4 { margin-left:1.6em; }
+.indent     { margin-left:0.4em; }
+.indent_2   { margin-left:0.8em; }
+.indent_3   { margin-left:1.2em; }
+.indent_4   { margin-left:1.6em; }
+
+.prevent_margin_collapse { padding-top: -1px; }
+
+.align_right { text-align: right; }
+.pad_right   { padding-right: 1em; }

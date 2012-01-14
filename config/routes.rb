@@ -1,6 +1,4 @@
 Juvia::Application.routes.draw do
-  namespace :admin do resources :topics end
-
   match 'api/:action(.:format)', :to => 'api'
   root :to => 'admin/dashboard#index'
   
@@ -10,6 +8,9 @@ Juvia::Application.routes.draw do
     resources :comments do
       collection do
         get :preview
+      end
+      member do
+        put :approve
       end
     end
     resources :sites do
@@ -22,6 +23,7 @@ Juvia::Application.routes.draw do
       get :comments
       get :sites
     end
+    resources :topics
   end
   
   get 'admin/dashboard', :to => 'admin/dashboard#index', :as => :dashboard
