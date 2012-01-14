@@ -20,7 +20,8 @@ Other notable highlights:
 3. Configure other things by editing config/application.yml. An example is provided in config/application.yml.example. Only edit the information under the 'production' section.
 4. Run `bundle install --without='development test' --path=help`
 5. Run `bundle exec rake db:schema:load RAILS_ENV=production`
-6. Deploy this application to Phusion Passenger or whatever application server you prefer.
+6. Run `bundle exec rake assets:precompile RAILS_ENV=production RAILS_GROUPS=assets`
+7. Deploy this application to Phusion Passenger or whatever application server you prefer.
 
 You can now access Juvia through the address that you configured. It will ask you to create an initial administrator account and to register a site.
 
@@ -29,4 +30,5 @@ You can now access Juvia through the address that you configured. It will ask yo
 1. Run `git fetch && git reset --hard origin/master`
 2. Run `bundle install --without='development test' --path=help`
 3. Run `bundle exec rake db:migrate RAILS_ENV=production`
-4. Run `touch tmp/restart.txt` (if you're using Phusion Passenger) or restart your application server.
+4. Run `bundle exec rake assets:precompile RAILS_ENV=production RAILS_GROUPS=assets`
+5. Run `touch tmp/restart.txt` (if you're using Phusion Passenger) or restart your application server.
