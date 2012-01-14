@@ -11,6 +11,7 @@ class Comment < ActiveRecord::Base
   acts_as_enum :moderation_status, [:ok, :unchecked, :spam]
   
   scope :visible, where(:moderation_status => moderation_status(:ok))
+  scope :requiring_moderation, where("moderation_status != #{moderation_status(:ok)}")
   
   validates_presence_of :content
   validates_presence_of :author_ip
@@ -21,6 +22,10 @@ class Comment < ActiveRecord::Base
   before_create :set_moderation_status
   after_create :update_topic_timestamp
   
+  def site
+    topic.site
+  end
+
   def author_email_md5
     if author_email
       Digest::MD5.hexdigest(author_email.downcase)
