@@ -100,10 +100,17 @@ describe Admin::SitesController do
   end
 
   describe "GET show" do
+    before :each do
+      create_site
+    end
+
+    def visit_normally
+      get :show, :id => @site.id.to_s
+    end
+
     it "assigns the requested site as @site" do
-      site = create_site
-      get :show, :id => site.id.to_s
-      assigns(:site).should eq(site)
+      visit_normally
+      assigns(:site).should eq(@site)
     end
   end
 

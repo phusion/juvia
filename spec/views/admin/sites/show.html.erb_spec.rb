@@ -2,10 +2,18 @@ require File.expand_path(File.dirname(__FILE__) + "/../../../spec_helper")
 
 describe "admin/sites/show.html.erb" do
   before(:each) do
-    @admin_site = assign(:admin_site, stub_model(Admin::Site))
+    login(kotori)
+    @site = assign(:site, FactoryGirl.create(:site1, :user => kotori))
+    @topic = FactoryGirl.create(:topic, :site => @site)
   end
 
-  it "renders attributes in <p>" do
+  it "shows the site key" do
     render
+    rendered.should include(@site.key)
+  end
+
+  it "shows a list of topics" do
+    render
+    rendered.should have_selector('.topics.list')
   end
 end
