@@ -3,6 +3,8 @@
 	<% if @comments.empty? %>
 		No comments have been posted.
 	<% else %>
-		<%= render @comments %>
+		<%= render :partial => 'admin/comments/comment',
+			:collection => @comments,
+			:locals => { :show_topic => true } %>
 	<% end %>
 </div>

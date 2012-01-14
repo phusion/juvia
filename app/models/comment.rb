@@ -21,6 +21,7 @@ class Comment < ActiveRecord::Base
   before_validation :nullify_blank_fields
   before_create :set_moderation_status
   after_create :update_topic_timestamp
+  after_create :notify_moderators
   
   def site
     topic.site
@@ -115,5 +116,9 @@ private
     if topic
       topic.update_attribute(:last_posted_at, Time.now)
     end
+  end
+
+  def notify_moderators
+    Mailer.comment_posted(self).deliver
   end
 end

@@ -7,7 +7,7 @@ class Admin::CommentsController < ApplicationController
   
   def index
     authorize! :read, Comment
-    @comments = Comment.order('created_at DESC').page(params[:page])
+    @comments = Comment.order('created_at DESC').includes(:topic).page(params[:page])
   end
   
   def edit

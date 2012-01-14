@@ -13,8 +13,13 @@
 	    <% end %>
 	  </div>
 	  <div class="creation-time">
-	    wrote on <span class="value"><%= comment.created_at.strftime("%B %d %Y, %H:%M") %></span>:
+	    wrote on <span class="value"><%= comment.created_at.strftime("%B %d %Y, %H:%M") %></span>
 	  </div>
+    <% if local_assigns[:show_topic] %>
+      <div class="associated-topic">
+        (<%= link_to comment.topic.title, [:admin, comment.topic] %>)
+      </div>
+    <% end %>
 	</div>
   <div class="content">
     <%= render_markdown(comment.content) %>
