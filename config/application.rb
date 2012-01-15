@@ -11,7 +11,7 @@ require 'uri'
 # or test environments.
 Bundler.require *Rails.groups(:assets) if defined?(Bundler)
 
-JUVIA_GITHUB_PAGE = "https://github.com/FooBarWidget/juvia"
+JUVIA_GITHUB_PAGE = "https://github.com/phusion/juvia"
 
 module Juvia
   class Application < Rails::Application

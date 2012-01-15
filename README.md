@@ -1,6 +1,6 @@
 # About Juvia
 
-![Logo](https://github.com/FooBarWidget/juvia/raw/master/app/assets/images/logo-128.png)
+![Logo](https://github.com/phusion/juvia/raw/master/app/assets/images/logo-128.png)
 
 Juvia is an open source commenting system. It allows you to outsource your commenting needs to an external system so that you don't have to build your own commenting system for each website or each web app. Embedding a Juvia commenting page only involves pasting a JavaScript snippet into your web page.
 
