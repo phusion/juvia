@@ -45,4 +45,5 @@ Juvia currently suits my need so I may or may not work on these things in the fu
  * A better logo. I drew the current one in Inkscape in about an hour but I'm sure real artists can do better.
  * Juvia works fine but we need more tests to prevent things from breaking in the future.
  * Document the `list_topics` API call.
+ * A Quote/Reply button for each comment.
  * Import/export support. Not sure whether this is necessary, the user may as well backup the entire database.
