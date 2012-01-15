@@ -6,6 +6,11 @@
 	font-family: 'Helvetica', 'Arial', 'Sans Serif';
 	font-size: 11pt;
 	line-height: normal;
+
+	// Override conflicting styles from some websites.
+	h1, h2, h3, h4 {
+		float: none;
+	}
 }
 
 .juvia-comment {
