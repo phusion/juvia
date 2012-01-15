@@ -14,6 +14,10 @@ Other notable highlights:
  * Multi-user support. With this I don't mean commenters but users who operate the Juvia admin panel. Each user account is isolated and can only see and manage its own sites, topics and comments, except for administrators who can see and manage everything.
  * Email notification of new comments.
 
+## Demo
+
+You can see Juvia in action at (the demo site)[http://juvia-demo.phusion.nl]. Post comments at (http://juvia-demo.phusion.nl/admin/sites/1/test)[this test comments page]. The demo site is reset every 24 hours.
+
 ## Installation
 
 1. Clone this repository into a desired directory and `cd` to it.
