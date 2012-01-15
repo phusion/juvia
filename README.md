@@ -12,6 +12,7 @@ Other notable highlights:
 
  * Moderation support, either manually or automatically via [Akismet](http://akismet.com/).
  * Multi-user support. With this I don't mean commenters but users who operate the Juvia admin panel. Each user account is isolated and can only see and manage its own sites, topics and comments, except for administrators who can see and manage everything.
+ * Email notification of new comments.
 
 ## Installation
 

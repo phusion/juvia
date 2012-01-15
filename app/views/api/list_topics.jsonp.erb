@@ -1,0 +1,5 @@
+<%= jsonp_response(
+  :status    => 'ok',
+  :site_key  => @site_key,
+  :topics    => @site.public_topics_info
+) %>

@@ -1,0 +1,5 @@
+<%= {
+  :status    => 'ok',
+  :site_key  => @site_key,
+  :topics    => @site.public_topics_info
+}.to_json.html_safe %>

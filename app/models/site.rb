@@ -19,6 +19,29 @@ class Site < ActiveRecord::Base
   
   default_value_for(:key) { SecureRandom.hex(20).to_i(16).to_s(36) }
 
+  def public_topics_info
+    result = []
+    sql = %q{
+      SELECT topics.*, COUNT(comments.id) AS comment_count FROM topics
+      LEFT JOIN sites ON sites.id = topics.site_id
+      LEFT JOIN comments ON comments.topic_id = topics.id
+      WHERE sites.id = ?
+      GROUP BY topics.id
+    }
+    topics = Topic.find_by_sql([sql, id])
+    topics.each do |topic|
+      result << {
+        :id    => topic.id,
+        :key   => topic.key,
+        :title => topic.title,
+        :url   => topic.url,
+        :last_posted_at => topic.last_posted_at,
+        :comment_count  => topic['comment_count']
+      }
+    end
+    result
+  end
+
   def last_updated_topics
     topics.order(:last_posted_at => :desc)
   end

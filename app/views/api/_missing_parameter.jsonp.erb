@@ -1,4 +1,4 @@
-<%= {
+<%= jsonp_response(
   :status    => 'error',
   :message   => "Missing required parameter '#{@param_name}'",
   
@@ -7,4 +7,4 @@
   :site_key  => @site_key,
   :topic_key => @topic_key,
   :html      => render(:partial => 'missing_parameter.html', :locals => { :topic => @topic })
-}.to_json.html_safe %>
+) %>
