@@ -37,3 +37,12 @@ You can now access Juvia through the address that you configured. It will ask yo
 3. Upgrade the database schema: `bundle exec rake db:migrate RAILS_ENV=production`
 4. Compile the static assets: `bundle exec rake assets:precompile RAILS_ENV=production RAILS_GROUPS=assets`
 5. Run `touch tmp/restart.txt` (if you're using Phusion Passenger) or restart your application server.
+
+## TODO
+
+Juvia currently suits my need so I may or may not work on these things in the future. But if you want to contribute you are more than welcome to do so!
+
+ * A better logo. I drew the current one in Inkscape in about an hour but I'm sure real artists can do better.
+ * Juvia works fine but we need more tests to prevent things from breaking in the future.
+ * Document the `list_topics` API call.
+ * Import/export support. Not sure whether this is necessary, the user may as well backup the entire database.
