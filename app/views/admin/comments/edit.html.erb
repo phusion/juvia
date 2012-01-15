@@ -12,8 +12,21 @@
       </ul>
     </div>
   <% end %>
+
+  <div class="para">
+    <%= f.label :author_name %><br />
+    <%= f.text_field :author_name %>
+  </div>
+
+  <div class="para">
+    <%= f.label :author_email %><br />
+    <%= f.text_field :author_email %>
+  </div>
   
-  <div class="para"><%= f.text_area :content %></div>
+  <div class="para">
+    <%= f.label :content %><br />
+    <%= f.text_area :content %>
+  </div>
   
   <div class="para actions">
     <%= f.submit :class => 'primary button' %>
