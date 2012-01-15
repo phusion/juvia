@@ -1,12 +1,12 @@
 <%= render :template => 'api/base.js' if @include_base %>
 <%
-	options = {
-		:action    => 'ShowError',
-		:container => @container,
-		:site_key  => @site_key,
-		:topic_key => @topic_key,
-		:html      => render(:partial => 'internal_error.html')
-	}
-	options[:css] = Juvia::Application.assets.find_asset('api.css').body if @include_css
+  options = {
+    :action    => 'ShowError',
+    :container => @container,
+    :site_key  => @site_key,
+    :topic_key => @topic_key,
+    :html      => render(:partial => 'internal_error.html')
+  }
+  options[:css] = Juvia::Application.assets.find_asset('api.css').body if @include_css
 %>
 <%= juvia_handle_response(options) %>

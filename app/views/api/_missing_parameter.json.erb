@@ -1,10 +1,10 @@
 <% {
-	:status    => 'error',
-	:message   => "Missing required parameter '#{@param_name}'",
-	
-	:action    => 'ShowError',
-	:container => @container,
-	:site_key  => @site_key,
-	:topic_key => @topic_key,
-	:html      => render(:partial => 'missing_parameter.html', :locals => { :topic => @topic })
+  :status    => 'error',
+  :message   => "Missing required parameter '#{@param_name}'",
+  
+  :action    => 'ShowError',
+  :container => @container,
+  :site_key  => @site_key,
+  :topic_key => @topic_key,
+  :html      => render(:partial => 'missing_parameter.html', :locals => { :topic => @topic })
 }.to_json.html_safe %>
