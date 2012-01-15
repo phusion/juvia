@@ -38,10 +38,15 @@ if (!Juvia) {
 			$('input[name=author_email]', addCommentForm).example('Your email (optional)',
 				{ className: 'juvia-example-text' });
 			
-			// Must be bound after setting input examples because we
-			// want jquery.example to clear example texts before we
-			// query those fields' values.
-			addCommentForm.submit(self.submitComment);
+			/* Our submit handler is called before jquery.example has cleared the
+			 * example texts. We work around this by calling our actual
+			 * submit handler a short while later.
+			 */
+			addCommentForm.bind('submit', function(event) {
+				setTimeout(function() {
+					self.submitComment(event);
+				}, 1);
+			});
 			
 			$('.juvia-help', this).bind('click', function() {
 				var $this = $(this);
