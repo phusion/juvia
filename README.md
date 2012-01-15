@@ -45,7 +45,10 @@ Juvia currently suits my need so I may or may not work on these things in the fu
  * A better logo. I drew the current one in Inkscape in about an hour but I'm sure real artists can do better.
  * Juvia works fine but we need more tests to prevent things from breaking in the future.
  * Document the `list_topics` API call.
+ * Set rel=nofollow on links inside comments.
  * A Quote/Reply button for each comment.
  * Import/export support. Not sure whether this is necessary, the user may as well backup the entire database.
  * Email notification for commenters.
  * Moderation teams. Currently each site is owned by exactly one user, and only that user or the administrator can moderate comments. And right now only the site's owner is notified by email of new comments.
+ * Better interface for low-resolution screens like mobile phones.
+ * Allow commenters to edit their comments. Of course, this requires some way to authenticate the commenter. Maybe Juvia can send an email with a time-limited authentication code (assuming the commenter specified his email in the first place).
