@@ -58,7 +58,7 @@ if (!Juvia) {
 				});
 				content.show();
 			});
-			
+
 			var textarea = $('.juvia-textarea-field textarea', addCommentForm);
 			textarea.delayedObserver(function() {
 				self.previewComment(this);
@@ -71,6 +71,15 @@ if (!Juvia) {
 				setTimeout(function() {
 					$('input', addCommentForm).blur();
 				}, 1);
+			});
+		});
+
+		$('.juvia-reply-to-comment a:not(.juvia-installed-behavior)').each(function() {
+			var $this = $(this);
+			$this.addClass('juvia-installed-behavior');
+			$this.bind('click', function() {
+				var comment = $(this).closest('.juvia-comment');
+				self.replyToComment(comment);
 			});
 		});
 	}
@@ -243,6 +252,27 @@ if (!Juvia) {
 			container.find('.juvia-submit-button').show();
 			container.find('.juvia-submitting-button').hide();
 		}
+	}
+
+	Juvia.replyToComment = function($comment) {
+		var $container = $comment.closest('.juvia-container');
+		var text = $('.juvia-comment-pure-content', $comment).text();
+		var lines = text.split("\n");
+		var i;
+		for (i = 0; i < lines.length; i++) {
+			lines[i] = '> ' +lines[i];
+		}
+
+		var $textarea  = $('textarea', $container);
+		var authorName = $.trim($('.juvia-author', $comment).text());
+		var newContent = "*" + authorName + " wrote:*\n" + lines.join("\n");
+		if ($textarea.val() != '') {
+			newContent += "\n\n";
+			newContent += $textarea.val();
+		}
+		$textarea.val(newContent);
+		this.smoothlyScrollTo($textarea.offset().top);
+		$textarea.focus();
 	}
 
 	/* The browser does not save the content of the Juvia comments box when

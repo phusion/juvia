@@ -32,7 +32,8 @@
 					administrator.
 				</p>
 			<% end %>
-			<%= render_markdown(comment.content) %>
+			<div class="juvia-comment-pure-content"><%= render_markdown(comment.content) %></div>
+			<p class="juvia-reply-to-comment"><a href="javascript:void(0)">Reply to this comment</a></p>
 		</div>
 	</div>
 </div>

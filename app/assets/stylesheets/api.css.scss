@@ -13,6 +13,21 @@
 	}
 }
 
+.juvia-container blockquote {
+	font-size: 100%;
+	font-style: italic;
+	font-family: Georgia, Serif;
+	border-left: #dddddd 2px solid;
+	margin: 0.5em;
+	padding: 0 0 0 1em;
+	color: #888888;
+
+	p {
+		margin-top: 0.5em;
+		margin-bottom: 0.5em;
+	}
+}
+
 .juvia-comment {
 	min-height: 64px;
 	margin-bottom: 30px;
@@ -59,6 +74,10 @@
 
 .juvia-moderating {
 	font-style: italic;
+}
+
+.juvia-reply-to-comment {
+	font-size: 80%;
 }
 
 .juvia-comment-content,
