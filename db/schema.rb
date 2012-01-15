@@ -57,8 +57,8 @@ ActiveRecord::Schema.define(:version => 20110804201102) do
     t.string   "author_name"
     t.string   "author_email"
     t.string   "author_ip",                        :null => false
-    t.string   "author_user_agent",                :null => false
-    t.string   "referer",                          :null => false
+    t.string   "author_user_agent"
+    t.string   "referer"
     t.text     "content",                          :null => false
     t.datetime "created_at",                       :null => false
     t.index ["topic_id"], :name => "index_comments_on_topic_id"

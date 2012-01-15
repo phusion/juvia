@@ -6,8 +6,8 @@ class CreateComments < ActiveRecord::Migration
       t.string   :author_name
       t.string   :author_email
       t.string   :author_ip, :null => false
-      t.string   :author_user_agent, :null => false
-      t.string   :referer, :null => false
+      t.string   :author_user_agent
+      t.string   :referer
       t.text     :content, :null => false
       t.datetime :created_at, :null => false
     end

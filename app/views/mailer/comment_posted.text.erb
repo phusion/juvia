@@ -8,7 +8,7 @@ Topic     : <%= @comment.topic.title %> (<%= admin_topic_url(@comment.topic) %>)
 Name      : <%= @comment.author_name || 'Anonymous' %>
 Email     : <%= @comment.author_email || 'None given' %>
 IP        : <%= @comment.author_ip %>
-User agent: <%= @comment.author_user_agent %>
-Referer   : <%= @comment.referer %>
+User agent: <%= @comment.author_user_agent || 'Unknown' %>
+Referer   : <%= @comment.referer || 'Unknown' %>
 
 <%= @comment.content %>

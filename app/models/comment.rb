@@ -15,8 +15,6 @@ class Comment < ActiveRecord::Base
   
   validates_presence_of :content
   validates_presence_of :author_ip
-  validates_presence_of :author_user_agent
-  validates_presence_of :referer
   
   before_validation :nullify_blank_fields
   before_create :set_moderation_status
@@ -70,6 +68,8 @@ private
   def nullify_blank_fields
     self.author_name  = nil if author_name.blank?
     self.author_email = nil if author_email.blank?
+    self.author_user_agent = nil if author_user_agent.blank?
+    self.referer = nil if referer.blank?
   end
   
   def akismet_params
