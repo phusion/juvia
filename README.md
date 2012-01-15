@@ -16,7 +16,7 @@ Other notable highlights:
 
 ## Demo
 
-You can see Juvia in action at [the demo site](http://juvia-demo.phusion.nl). Post comments at [this test comments page](http://juvia-demo.phusion.nl/admin/sites/1/test). The demo site is reset every 24 hours.
+You can see Juvia in action at [the demo site](http://juvia-demo.phusion.nl). Login with `a@a.com` / `123456`. Post comments at [this test comments page](http://juvia-demo.phusion.nl/admin/sites/1/test). The demo site is reset every 24 hours.
 
 ## Installation
 
