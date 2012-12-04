@@ -34,7 +34,7 @@ GEM
     bcrypt-ruby (3.0.1)
     bluecloth (2.2.0)
     builder (3.0.4)
-    cancan (1.6.7)
+    cancan (1.6.10)
     capybara (1.1.2)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -193,7 +193,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt-ruby
   bluecloth
-  cancan
+  cancan (~> 1.6.10)
   capybara
   capybara-webkit
   coffee-rails (~> 3.1.1)

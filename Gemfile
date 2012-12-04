@@ -12,7 +12,7 @@ gem 'devise', '~> 1.5.0'
 gem 'jquery-rails', '>= 1.0.12'
 gem 'will_paginate', '~> 3.0.pre4'
 gem 'css3buttons'
-gem 'cancan'
+gem 'cancan', '~> 1.6.10'
 gem 'inherited_resources'
 gem 'rack', '~> 1.3.10' # fix Rack vulnerability
 gem 'nokogiri'
