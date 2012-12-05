@@ -30,7 +30,7 @@
         }
 
         var result =
-            '<%= request.protocol %><%= request.host_with_port %>/api/show_topic.js' +
+            '//<%= request.host_with_port %><%= root_path %>api/show_topic.js' +
             '?_c=' + window._juviaRequestCounter +
             '&' + makeQueryString(options);
         window._juviaRequestCounter++;

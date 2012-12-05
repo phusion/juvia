@@ -10,7 +10,7 @@ reinstallBehavior = (context)->
         textarea.delayedObserver ->
             callback = (html)->
                 $('.preview .content', form).html(html)
-            $.get('/admin/comments/preview', content: textarea.val(), callback) 
+            $.get('./admin/comments/preview', content: textarea.val(), callback) 
 
 $(document).ready ->
     reinstallBehavior()

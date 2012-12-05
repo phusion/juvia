@@ -228,7 +228,7 @@ if (!Juvia) {
 		var $container = $(form).closest('.juvia-container');
 		this.setSubmitting($container, true);
 		this.saveCommentBox($container);
-		this.loadScript('/api/add_comment', {
+		this.loadScript('<%= root_path %>api/add_comment', {
 			site_key    : $container.data('site-key'),
 			topic_key   : $container.data('topic-key'),
 			topic_title : $container.data('topic-title'),
@@ -242,7 +242,7 @@ if (!Juvia) {
 	Juvia.previewComment = function(formElement) {
 		var $container = $(formElement).closest('.juvia-container');
 		this.saveCommentBox($container);
-		this.loadScript('/api/preview_comment', {
+		this.loadScript('<%= root_path %>api/preview_comment', {
 			site_key : $container.data('site-key'),
 			topic_key: $container.data('topic-key'),
 			content  : this.compress($('textarea[name="content"]', $container).val())
