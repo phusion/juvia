@@ -1,0 +1,38 @@
+<% @title = "Import Comments" %>
+<%= form_tag(:import_admin_comments) do |f| %>
+
+  <div class="para">
+    <%= label_tag :site_id %><br />
+    <%= select_tag :site_id, options_from_collection_for_select(@sites, 'id', 'name', params[:site_id].to_i) %>
+  </div>
+
+  <div class="para">
+    <%= label_tag :import_type %><br />
+    <%= select_tag :import_type, options_for_select(@migrators) %>
+  </div>
+
+  <div class="para">
+    <%= label_tag :database_host %><br />
+    <%= text_field_tag :database_host, 'localhost' %>
+  </div>
+
+  <div class="para">
+    <%= label_tag :database_name %><br />
+    <%= text_field_tag :database_name %>
+  </div>
+
+  <div class="para">
+    <%= label_tag :database_user %><br />
+    <%= text_field_tag :database_user %>
+  </div>
+
+  <div class="para">
+    <%= label_tag :database_password %><br />
+    <%= text_field_tag :database_password %>
+  </div>
+
+  <div class="para actions">
+    <%= primary_button_submit_tag('Import') %>
+    <%= button_link_to 'Cancel', admin_comments_path %>
+  </div>
+<% end %>

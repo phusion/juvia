@@ -8,6 +8,8 @@ Juvia::Application.routes.draw do
     resources :comments do
       collection do
         get :preview
+        get :import, :to => 'comments#new_import'
+        post :import, :to => 'comments#import'
       end
       member do
         put :approve
