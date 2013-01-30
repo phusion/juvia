@@ -43,7 +43,7 @@ class Site < ActiveRecord::Base
   end
 
   def last_updated_topics
-    topics.order(:last_posted_at => :desc)
+    topics.order("last_posted_at DESC")
   end
 
 private
