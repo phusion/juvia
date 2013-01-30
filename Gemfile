@@ -24,6 +24,11 @@ gem 'bcrypt-ruby'
 
 group :development do
   gem 'guard-livereload'
+
+  # Gems used for comment import from WordPress
+  # gem 'htmlentities'
+  # gem 'sequel'
+  # gem 'mysqlplus'
 end
 
 # Bundle gems for the local environment. Make sure to
