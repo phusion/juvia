@@ -1,9 +1,9 @@
 <script type="text/javascript" class="juvia">
 (function() {
     var options = {
-        container   : <%= escape_js_string(local_assigns[:container]) || "'(a CSS path)'" %>,
-        site_key    : <%= escape_js_string(local_assigns[:site_key]) || "'(some site key)'" %>,
-        topic_key   : <%= escape_js_string(local_assigns[:topic_key]) || "location.path" %>,
+        container   : <%= raw(escape_js_string(local_assigns[:container]) || "'(a CSS path)'") %>,
+        site_key    : <%= raw(escape_js_string(local_assigns[:site_key]) || "'(some site key)'") %>,
+        topic_key   : <%= raw(escape_js_string(local_assigns[:topic_key]) || "location.pathname") %>,
         topic_url   : location.href,
         topic_title : document.title || location.href,
         include_base: !window.Juvia,
