@@ -13,6 +13,7 @@ Other notable highlights:
  * Moderation support, either manually or automatically via [Akismet](http://akismet.com/).
  * Multi-user support. With this I don't mean commenters but users who operate the Juvia admin panel. Each user account is isolated and can only see and manage its own sites, topics and comments, except for administrators who can see and manage everything.
  * Email notification of new comments.
+ * Wordpress comment import (thanks to JangoSteve).
 
 ## Demo
 
@@ -47,7 +48,7 @@ Juvia currently suits my need so I may or may not work on these things in the fu
  * Document the `list_topics` API call.
  * Set rel=nofollow on links inside comments.
  * A Quote/Reply button for each comment.
- * Import/export support. Not sure whether this is necessary, the user may as well backup the entire database.
+ * Export support. Not sure whether this is necessary, the user may as well backup the entire database.
  * Email notification for commenters.
  * Moderation teams. Currently each site is owned by exactly one user, and only that user or the administrator can moderate comments. And right now only the site's owner is notified by email of new comments.
  * Better interface for low-resolution screens like mobile phones.
