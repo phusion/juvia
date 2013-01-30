@@ -38,10 +38,18 @@ class Topic < ActiveRecord::Base
     end
   end
 
+  def self.alt_key(topic_key)
+    topic_key.match(/\/$/) ? topic_key.chop : "#{topic_key}/"
+  end
+
 private
   def self.find_by_site_key_and_topic_key(site_key, topic_key)
     Topic.
       where('sites.key = ? AND topics.key = ?', site_key, topic_key).
+      joins(:site).
+      first ||
+    Topic.
+      where('sites.key = ? AND topics.key = ?', site_key, alt_key(topic_key)).
       joins(:site).
       first
   end
