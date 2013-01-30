@@ -69,6 +69,7 @@ function hideEmbeddingCode() {
         <strong>Actions</strong><br>
         <%= comment_button_link_to 'Test site: see how a comment page looks like', test_admin_site_path(@site) %>
         <%= edit_button_link_to 'Edit', edit_admin_site_path(@site) %>
+        <%= button_link_to 'Import comments', import_admin_comments_path(:site_id => @site) %>
         <%= danger_remove_button_link_to 'Delete', [:admin, @site],
           :confirm => 'Are you sure? All topics and comments for this site will also be deleted!',
           :method => :delete %>

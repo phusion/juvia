@@ -21,6 +21,7 @@ JUVIA_GITHUB_PAGE = "https://github.com/phusion/juvia"
 module Juvia
   class Application < Rails::Application
     require File.expand_path('../../lib/app_config', __FILE__)
+    require File.expand_path('../../lib/juvia/migrators', __FILE__)
 
     config.required_app_config = [:base_url, :from, :email_method]
 

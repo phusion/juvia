@@ -1,9 +1,10 @@
 class Admin::CommentsController < ApplicationController
   layout 'admin'
 
-  skip_authorization_check :only => :preview
+  skip_authorization_check :only => [:preview, :new_import, :import]
   before_filter :set_navigation_ids
   before_filter :save_return_to_url, :only => [:new, :edit, :approve, :destroy]
+  before_filter :require_admin!, :only => [:new_import, :import]
   
   def index
     authorize! :read, Comment
@@ -56,6 +57,25 @@ class Admin::CommentsController < ApplicationController
       @comment.destroy
     end
     redirect_back(admin_comments_path)
+  end
+
+  def new_import
+    @sites = Site.all
+    @migrators = Juvia::Migrators::PLATFORMS.map{ |p| p.titleize }
+  end
+
+  def import
+    if Juvia::Migrators.process(
+      params[:site_id],
+      params[:import_type],
+      params[:database_name],
+      params[:database_user],
+      params[:database_password],
+      params[:database_host]
+    )
+      flash[:notice] = "Imported!"
+      redirect_to(admin_comments_path)
+    end
   end
 
 private
