@@ -185,7 +185,7 @@ module Juvia
               :author_ip         => comment[:author_ip].to_s,
               :author_user_agent => comment[:user_agent],
               :created_at        => comment[:date],
-              :content           => comcontent,
+              :content           => comcontent
             )
           end
 
