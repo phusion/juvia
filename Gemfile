@@ -14,6 +14,7 @@ gem 'will_paginate', '~> 3.0.pre4'
 gem 'css3buttons'
 gem 'cancan'
 gem 'inherited_resources'
+gem 'rack', '~> 1.3.10' # fix Rack vulnerability
 
 # Deploy with Capistrano
 # gem 'capistrano'
