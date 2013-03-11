@@ -39,6 +39,14 @@ You can now access Juvia through the address that you configured. It will ask yo
 4. Compile the static assets: `bundle exec rake assets:precompile RAILS_ENV=production RAILS_GROUPS=assets`
 5. Run `touch tmp/restart.txt` (if you're using Phusion Passenger) or restart your application server.
 
+## Crytographic verification
+
+I do not release source tarballs for Juvia. Users are expected to get the source code from Github.
+
+From time to time, I create Git tags for milestones. These milestones are signed with the [Phusion Software Signing key](http://www.phusion.nl/about/gpg). After importing this key you can verify Git tags as follows:
+
+    git tag --verify milestone-2013-03-11
+
 ## TODO
 
 Juvia currently suits my need so I may or may not work on these things in the future. But if you want to contribute you are more than welcome to do so!
