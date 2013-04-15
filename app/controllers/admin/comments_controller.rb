@@ -65,6 +65,8 @@ class Admin::CommentsController < ApplicationController
   end
 
   def import
+    options = {:table_prefix => params[:table_prefix],
+      :wp_multisite_id => params[:wp_multisite_id]}
     if Juvia::Migrators.process(
       params[:site_id],
       params[:import_type],
@@ -72,8 +74,7 @@ class Admin::CommentsController < ApplicationController
       params[:database_user],
       params[:database_password],
       params[:database_host],
-      params[:table_prefix],
-      params[:wp_multisite_id]
+      options
     )
       flash[:notice] = "Imported!"
       redirect_to(admin_comments_path)

@@ -6,11 +6,11 @@ module Juvia
       require "juvia/migrators/#{p}"
     end
 
-    def self.process(site_id, migrator, dbname, user, host='localhost', options={})
+    def self.process(site_id, migrator, dbname, user, pass, host='localhost', options={})
       migrator_class = migrator.downcase.gsub(/\s/, '_')
       raise "Not a valid import type: #{migrator_class}" unless PLATFORMS.any?{ |p| p == migrator_class }
 
-      Juvia::Migrators.const_get(migrator_class.camelize).send(:process, site_id, dbname, user, host, options)
+      Juvia::Migrators.const_get(migrator_class.camelize).send(:process, site_id, dbname, user, pass, host, options)
     end
   end
 end

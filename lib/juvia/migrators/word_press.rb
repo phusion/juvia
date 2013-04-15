@@ -91,7 +91,7 @@ module Juvia
 
         px = options[:table_prefix]
         if !options[:wp_multisite_id].blank?
-          mspx = "_#{options[:wp_multisite_id]}"
+          mspx = "#{options[:wp_multisite_id]}_"
         else
           mspx = ''
         end
@@ -135,7 +135,7 @@ module Juvia
       def self.process_post(post, db, options)
         px = options[:table_prefix]
         if !options[:wp_multisite_id].blank?
-          mspx = "_#{options[:wp_multisite_id]}"
+          mspx = "#{options[:wp_multisite_id]}_"
         else
           mspx = ''
         end
