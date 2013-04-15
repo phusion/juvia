@@ -32,12 +32,12 @@
   </div>
 
   <div class="para">
-    Wordpress Table Prefix<br />
+    <%= label_tag :table_prefix %> &mdash; The Wordpress table prefix (usually 'wp_')<br />
     <%= text_field_tag :table_prefix, 'wp_' %>
   </div>
 
   <div class="para">
-    Wordpress Multisite ID<br />
+    <%= label_tag :wp_multisite_id %> &mdash; The Wordpress Multisite site ID<br />
     Leave this field empty if importing from a non-multisite install, or from the base site of a multisite install.<br />
     <%= text_field_tag :wp_multisite_id %>
   </div>
