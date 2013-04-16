@@ -5,7 +5,7 @@ class Admin::CommentsController < ApplicationController
   before_filter :set_navigation_ids
   before_filter :save_return_to_url, :only => [:new, :edit, :approve, :destroy]
   before_filter :require_admin!, :only => [:new_import, :import]
-  
+
   def index
     authorize! :read, Comment
     @all_comments = Comment.
@@ -14,12 +14,12 @@ class Admin::CommentsController < ApplicationController
       includes(:topic)
     @comments = @all_comments.page(params[:page])
   end
-  
+
   def edit
     @comment = Comment.find(params[:id])
     authorize! :update, @comment
   end
-  
+
   def update
     @comment = Comment.find(params[:id])
     authorize! :update, @comment
@@ -29,7 +29,7 @@ class Admin::CommentsController < ApplicationController
       render :action => 'edit'
     end
   end
-  
+
   def preview
     render :text => ApplicationHelper.render_markdown(params[:content])
   end
@@ -65,13 +65,16 @@ class Admin::CommentsController < ApplicationController
   end
 
   def import
+    options = {:table_prefix => params[:table_prefix],
+      :wp_multisite_id => params[:wp_multisite_id]}
     if Juvia::Migrators.process(
       params[:site_id],
       params[:import_type],
       params[:database_name],
       params[:database_user],
       params[:database_password],
-      params[:database_host]
+      params[:database_host],
+      options
     )
       flash[:notice] = "Imported!"
       redirect_to(admin_comments_path)
