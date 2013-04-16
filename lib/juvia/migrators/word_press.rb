@@ -17,17 +17,21 @@ module Juvia
     class WordPress
 
       # Main migrator function. Call this to perform the migration.
-      # 
+      #
       # dbname::  The name of the database
       # user::    The database user name
       # pass::    The database user's password
       # host::    The address of the MySQL database host. Default: 'localhost'
       # options:: A hash table of configuration options.
-      # 
+      #
       # Supported options are:
-      # 
+      #
       # :table_prefix::   Prefix of database tables used by WordPress.
       #                   Default: 'wp_'
+      # :wp_multisite_id::  WP Multisite ID for fetching comments from a
+      #                   specific sub-site. Leave blank for non-multisite
+      #                   installs or the base site of a multisite install
+      #                   Default: ''
       # :clean_entities:: If true, convert non-ASCII characters to HTML
       #                   entities in the posts, comments, titles, and
       #                   names. Requires the 'htmlentities' gem to
@@ -53,10 +57,11 @@ module Juvia
       #                   and :revision. If this is nil or an empty
       #                   array, all posts are migrated regardless of
       #                   status. Default: [:publish].
-      # 
+      #
       def self.process(site_id, dbname, user, pass, host='localhost', options={})
         options = {
           :table_prefix   => 'wp_',
+          :wp_multisite_id   => '',
           :clean_entities => true,
           :comments       => true,
           :categories     => true,
@@ -85,6 +90,11 @@ module Juvia
         end
 
         px = options[:table_prefix]
+        if !options[:wp_multisite_id].blank?
+          mspx = "#{options[:wp_multisite_id]}_"
+        else
+          mspx = ''
+        end
 
         posts_query = "
            SELECT
@@ -102,7 +112,7 @@ module Juvia
              users.user_login    AS `author_login`,
              users.user_email    AS `author_email`,
              users.user_url      AS `author_url`
-           FROM #{px}posts AS `posts`
+           FROM #{px}#{mspx}posts AS `posts`
              LEFT JOIN #{px}users AS `users`
                ON posts.post_author = users.ID"
 
@@ -124,6 +134,11 @@ module Juvia
 
       def self.process_post(post, db, options)
         px = options[:table_prefix]
+        if !options[:wp_multisite_id].blank?
+          mspx = "#{options[:wp_multisite_id]}_"
+        else
+          mspx = ''
+        end
 
         title = post[:title]
         if options[:clean_entities]
@@ -158,7 +173,7 @@ module Juvia
                comment_date         AS `date`,
                comment_date_gmt     AS `date_gmt`,
                comment_content      AS `content`
-             FROM #{px}comments
+             FROM #{px}#{mspx}comments
              WHERE
                comment_post_ID = '#{post[:id]}' AND
                comment_approved != 'spam'"
