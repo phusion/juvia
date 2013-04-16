@@ -23,7 +23,7 @@ module Juvia
     require File.expand_path('../../lib/app_config', __FILE__)
     require File.expand_path('../../lib/juvia/migrators', __FILE__)
 
-    config.required_app_config = [:base_url, :from, :email_method]
+    config.required_app_config = [:base_url, :from, :email_method, :comment_order]
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -55,7 +55,7 @@ module Juvia
 
     # Enable the asset pipeline
     config.assets.enabled = true
-    
+
     initializer "application action_mailer settings", :after => "app_config" do
       uri = URI.parse(config.base_url)
       config.action_mailer.default_url_options = { :host => uri.host }
