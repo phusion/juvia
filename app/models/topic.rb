@@ -1,20 +1,12 @@
 class Topic < ActiveRecord::Base
-
-  # Check desired sort order
-  if Rails.application.config.comment_order == 'earliest-first'
-    orderAbbrev = 'ASC'
-  else
-    orderAbbrev = 'DESC'
-  end
-
   belongs_to :site, :inverse_of => :topics
-  has_many :comments, :order => "created_at #{orderAbbrev}", :inverse_of => :topic
+  has_many :comments, :order => "created_at DESC", :inverse_of => :topic
 
   validates_presence_of :key
   validates_presence_of :title
   validates_presence_of :site_id
   validates_presence_of :url
-
+  
   def self.lookup(site_key, topic_key)
     topic = find_by_site_key_and_topic_key(site_key, topic_key)
     if topic
@@ -28,7 +20,7 @@ class Topic < ActiveRecord::Base
       end
     end
   end
-
+  
   def self.lookup_or_create(site_key, topic_key, topic_title, topic_url)
     topic = find_by_site_key_and_topic_key(site_key, topic_key)
     if topic

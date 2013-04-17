@@ -7,17 +7,13 @@ development:
   # - smtp (connect directly to target SMTP server)
   # - sendmail (use local 'sendmail' command)
   email_method: smtp
-  # Comment sort order - 'latest-first' or 'earliest-first'
-  comment_order: latest-first
 
 test:
   base_url: http://juvia.yoursite.com
   from: juvia@yoursite.com
   email_method: test
-  comment_order: latest-first
 
 production:
   base_url: http://juvia.yoursite.com
   from: juvia@yoursite.com
   email_method: sendmail
-  comment_order: latest-first
