@@ -6,9 +6,6 @@
 	data-comment-order="<%= @comment_order %>">
 <div class="juvia-topic">
 	<% comments = topic.comments.visible.to_a %>
-	<% if @comment_order == 'earliest-first' %>
-	<%   comments.reverse! %>
-	<% end %>
 	<% if comments.size == 1 %>
 		<h3 class="juvia-comment-count-header">1 comment</h3>
 		<div class="juvia-comments">

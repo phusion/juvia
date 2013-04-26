@@ -37,11 +37,14 @@ class ApiController < ApplicationController
     end
 
     prepare!(
-      [:site_key, :topic_key, :container, :topic_title, :topic_url, :comment_order],
+      [:site_key, :topic_key, :container, :topic_title, :topic_url],
       [:html, :js]
     )
 
     if @topic = Topic.lookup(@site_key, @topic_key)
+      if @comment_order == 'earliest-first'
+        @topic.comments.reverse!
+      end
       render
     else
       render :partial => 'site_not_found'
