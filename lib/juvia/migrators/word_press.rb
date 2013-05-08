@@ -154,7 +154,7 @@ module Juvia
 
         topic = Topic.lookup_or_create(
           options[:site].key,
-          topic_url.path,
+          "#{slug}",
           title,
           topic_url.to_s
         )
