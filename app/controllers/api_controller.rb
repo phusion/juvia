@@ -42,9 +42,6 @@ class ApiController < ApplicationController
     )
 
     if @topic = Topic.lookup(@site_key, @topic_key)
-      if @comment_order == 'earliest-first'
-        @topic.comments.reverse!
-      end
       render
     else
       render :partial => 'site_not_found'
