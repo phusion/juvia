@@ -168,7 +168,13 @@ if (!Juvia) {
 			comments.removeClass('juvia-no-comments');
 			comments.html('');
 		}
-		comment.prependTo(comments);
+
+		<% if @comment_order == 'earliest-first' %>
+	        comment.appendTo(comments);
+	    <% else %>
+	    	comment.prependTo(comments);
+	    <% end %>
+	    
 		$('.juvia-preview-empty', container).show();
 		$('.juvia-preview-content', container).hide();
 		
