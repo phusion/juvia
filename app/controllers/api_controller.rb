@@ -30,6 +30,12 @@ class ApiController < ApplicationController
     # Must come before error checking because the error
     # templates depend on @include_base/@include_css.
 
+    if params.has_key?('comment_order')
+      @comment_order = params[:comment_order]
+    else
+      @comment_order = 'latest-first'
+    end
+
     prepare!(
       [:site_key, :topic_key, :container, :topic_title, :topic_url],
       [:html, :js]

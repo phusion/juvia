@@ -6,11 +6,12 @@
 <script type="text/javascript" class="juvia">
 (function() {
     var options = {
-        container  : '#comments',
-        site_key   : '9vdtj58u4j4ir74b1bkkbqhlxhcn7l0',
-        topic_key  : 'test',
-        topic_url  : location.href,
-        topic_title: document.title || location.href
+        container    : '#comments',
+        site_key     : '9vdtj58u4j4ir74b1bkkbqhlxhcn7l0',
+        topic_key    : 'test',
+        topic_url    : location.href,
+        topic_title  : document.title || location.href,
+        comment_order: 'latest-first'
     };
 
     function makeQueryString(options) {
