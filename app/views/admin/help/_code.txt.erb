@@ -1,13 +1,14 @@
 <script type="text/javascript" class="juvia">
 (function() {
     var options = {
-        container   : <%= raw(escape_js_string(local_assigns[:container]) || "'(a CSS path)'") %>,
-        site_key    : <%= raw(escape_js_string(local_assigns[:site_key]) || "'(some site key)'") %>,
-        topic_key   : <%= raw(escape_js_string(local_assigns[:topic_key]) || "location.pathname") %>,
-        topic_url   : location.href,
-        topic_title : document.title || location.href,
-        include_base: !window.Juvia,
-        include_css : !window.Juvia
+        container    : <%= raw(escape_js_string(local_assigns[:container]) || "'(a CSS path)'") %>,
+        site_key     : <%= raw(escape_js_string(local_assigns[:site_key]) || "'(some site key)'") %>,
+        topic_key    : <%= raw(escape_js_string(local_assigns[:topic_key]) || "location.pathname") %>,
+        topic_url    : location.href,
+        topic_title  : document.title || location.href,
+        include_base : !window.Juvia,
+        include_css  : !window.Juvia,
+        comment_order: 'latest-first'
     };
 
     function makeQueryString(options) {
