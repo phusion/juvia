@@ -15,6 +15,7 @@ gem 'css3buttons'
 gem 'cancan'
 gem 'inherited_resources'
 gem 'rack', '~> 1.3.10' # fix Rack vulnerability
+gem 'nokogiri'
 
 # Deploy with Capistrano
 # gem 'capistrano'
