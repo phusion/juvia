@@ -17,12 +17,12 @@ module ApplicationHelper
   end
   
   def render_markdown(str)
-    html = BlueCloth.new(str, :escape_html => true, :strict_mode => false, :auto_links => true).to_html
+    html = BlueCloth.new(str, :pandoc_headers => false, :escape_html => true, :strict_mode => false, :auto_links => true).to_html
     noko = Nokogiri::HTML.parse(html)
     noko.css('a').each do |link|
       link[:rel] = 'nofollow'
     end
-    noko.to_html.html_safe
+    (noko / "body").inner_html.html_safe
   end
 
   def escape_js_string(str)
