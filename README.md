@@ -19,6 +19,10 @@ Other notable highlights:
 
 You can see Juvia in action at [the demo site](http://juvia-demo.phusion.nl). Login with `a@a.com` / `123456`. Post comments at [this test comments page](http://juvia-demo.phusion.nl/admin/sites/1/test). The demo site is reset every 24 hours.
 
+<img src="http://brightbox.com/images/misc/logo.png">
+
+The demo site is hosted on a server by [Brightbox](http://www.brightbox.com).
+
 ## Installation
 
 1. Clone this repository into a desired directory and `cd` to it.
