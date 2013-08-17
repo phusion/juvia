@@ -3,10 +3,6 @@
 @import "comment_content";
 
 .juvia-container {
-	font-family: 'Helvetica', 'Arial', 'Sans Serif';
-	font-size: 11pt;
-	line-height: normal;
-
 	// Override conflicting styles from some websites.
 	h1, h2, h3, h4 {
 		float: none;
@@ -81,7 +77,7 @@
 }
 
 .juvia-comment-content,
-.juvia-preview-conten {
+.juvia-preview-content {
     @include CommentContent;
 }
 
@@ -156,23 +152,6 @@
 	border: solid 1px #ffeebb;
 	margin-bottom: 1em;
 	padding: 8px;
-
-	p {
-		margin-top: 1em;
-		margin-bottom: 1em;
-	}
-
-	pre, code {
-		background: inherit;
-		font-weight: normal;
-		border: none;
-		margin: 0;
-		padding: 0;
-	}
-
-	pre {
-		margin: 1em;
-	}
 }
 
 .juvia-preview-content > *:first-child {
