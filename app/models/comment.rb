@@ -25,6 +25,11 @@ class Comment < ActiveRecord::Base
     topic.site
   end
 
+  def author_email=(value)
+    value = value.to_s.strip
+    write_attribute(:author_email, value.empty? ? nil : value)
+  end
+
   def author_email_md5
     if author_email
       Digest::MD5.hexdigest(author_email.downcase)
