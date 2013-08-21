@@ -55,6 +55,10 @@ From time to time, I create Git tags for milestones. These milestones are signed
 
     git tag --verify milestone-2013-03-11
 
+## Rails helper
+
+James Smith has written a Rails helper gem for embedding Juvia comments into Rails web applications. See [juvia_rails](https://github.com/theodi/juvia_rails).
+
 ## TODO
 
 Juvia currently suits my need so I may or may not work on these things in the future. But if you want to contribute you are more than welcome to do so!
