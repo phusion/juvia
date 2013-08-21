@@ -56,15 +56,15 @@ end
 
 group :mysql do
   # adapter: mysql2
-  gem 'mysql2'
+  gem 'mysql2', :require => false
 end
 
 group :postgres do
   # adapter: postgresql
-  gem 'pg'
+  gem 'pg', :require => false
 end
 
 group :sqlite do
   # adapter: sqlite3
-  gem 'sqlite3'
+  gem 'sqlite3', :require => false
 end
