@@ -15,6 +15,10 @@ Other notable highlights:
  * Email notification of new comments.
  * Wordpress comment import (thanks to JangoSteve).
 
+## Discussion & support
+
+Please join [the Juvia discussion forum](https://groups.google.com/forum/?fromgroups#!forum/juvia).
+
 ## Demo
 
 You can see Juvia in action at [the demo site](http://juvia-demo.phusion.nl). Login with `a@a.com` / `123456`. Post comments at [this test comments page](http://juvia-demo.phusion.nl/admin/sites/1/test). The demo site is reset every 24 hours.
