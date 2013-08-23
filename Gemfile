@@ -71,3 +71,8 @@ group :sqlite do
   # adapter: sqlite3
   gem 'sqlite3', :require => false
 end
+
+group :production do
+  gem 'foreman'
+  gem 'thin'
+end
