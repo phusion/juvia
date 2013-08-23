@@ -31,7 +31,7 @@ The demo site is hosted on a server by [Brightbox](http://www.brightbox.com).
 
 1. Clone this repository into a desired directory and `cd` to it.
 2. Configure your database details by editing config/database.yml. An example is provided in config/database.yml.example. Only edit the information under the 'production' section.
-3. Configure other things by editing config/application.yml. An example is provided in config/application.yml.example. Only edit the information under the 'production' section.
+3. Configure other things by editing config/application.yml. An example is provided in config/application.yml.example. Only edit the information under the 'production' section. You can also set this information in environment variables. See application.yml.example for details.
 4. Install the necessary dependencies: `bundle install --without='development test postgres sqlite' --path=help`
 5. Install the database schema: `bundle exec rake db:schema:load RAILS_ENV=production`
 6. Compile the static assets: `bundle exec rake assets:precompile RAILS_ENV=production RAILS_GROUPS=assets`
