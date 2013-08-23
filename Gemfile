@@ -5,6 +5,8 @@ gem 'rails', '3.1.12'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem 'dotenv-rails'
+
 gem 'schema_plus'
 gem 'default_value_for'
 gem 'bluecloth'

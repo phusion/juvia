@@ -17,3 +17,10 @@ production:
   base_url: http://juvia.yoursite.com
   from: juvia@yoursite.com
   email_method: sendmail
+
+
+# You can also set these in environment variables, or in a .env file
+# JUVIA_BASE_URL=http://juvia.local
+# JUVIA_EMAIL_FROM=from@example.com
+# JUVIA_EMAIL_METHOD=sendmail
+# JUVIA_SESSION_SECRET=secretkeygoeshere

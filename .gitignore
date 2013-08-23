@@ -7,3 +7,5 @@ tmp/restart.txt
 tmp/**/*
 .sass-cache
 public/_test.html
+
+/.env

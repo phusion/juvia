@@ -57,7 +57,7 @@ module Juvia
     config.assets.enabled = true
     
     initializer "application action_mailer settings", :after => "app_config" do
-      uri = URI.parse(config.base_url)
+      uri = URI.parse(ENV['JUVIA_BASE_URL'] || config.base_url)
       config.action_mailer.default_url_options = { :host => uri.host }
       if uri.scheme != "http"
         config.action_mailer.default_url_options[:protocol] = uri.scheme
@@ -66,7 +66,7 @@ module Juvia
         config.action_mailer.default_url_options[:port] = uri.port
       end
 
-      config.action_mailer.delivery_method = config.email_method.to_sym
+      config.action_mailer.delivery_method = (ENV['JUVIA_EMAIL_METHOD'] || config.email_method).to_sym
     end
   end
 end
