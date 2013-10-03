@@ -459,7 +459,7 @@ if (!Juvia) {
 	}
 	
 	Juvia.adler32 = function(data) {
-		const MOD_ADLER = 65521;
+		var MOD_ADLER = 65521; // IE doesn't support const
 		var a = 1, b = 0;
 		var index;
 		
