@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.1.12'
+gem 'rails', '~> 3.1.12'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -8,13 +8,13 @@ gem 'rails', '3.1.12'
 gem 'schema_plus'
 gem 'default_value_for'
 gem 'bluecloth'
-gem 'devise', '~> 1.5.0'
+gem 'devise'
 gem 'jquery-rails', '>= 1.0.12'
 gem 'will_paginate', '~> 3.0.pre4'
 gem 'css3buttons'
 gem 'cancan', '~> 1.6.10'
 gem 'inherited_resources'
-gem 'rack', '~> 1.3.10' # fix Rack vulnerability
+gem 'rack'
 gem 'nokogiri'
 
 # Deploy with Capistrano
