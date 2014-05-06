@@ -1,9 +1,9 @@
-<%= render :template => 'api/base.js' if @include_base %>
+<%= render :template => 'api/base', :formats => [:js] if @include_base %>
 <%
   options = {
     :action    => 'LoadTopic',
     :container => @container,
-    :html      => render(:partial => 'topic.html', :locals => { :topic => @topic })
+    :html      => render(:partial => 'topic', :formats => [:html], :locals => { :topic => @topic })
   }
   options[:css] = Juvia::Application.assets.find_asset('api.css').body if @include_css
 %>

@@ -1,11 +1,11 @@
-<%= render :template => 'api/base.js' if @include_base %>
+<%= render :template => 'api/base', :formats => [:js] if @include_base %>
 <%
   options = {
     :action    => 'ShowError',
     :container => @container,
     :site_key  => @site_key,
     :topic_key => @topic_key,
-    :html      => render(:partial => 'missing_parameter.html', :locals => { :topic => @topic })
+    :html      => render(:partial => 'missing_parameter', :formats => [:html], :locals => { :topic => @topic })
   }
   options[:css] = Juvia::Application.assets.find_asset('api.css').body if @include_css
 %>

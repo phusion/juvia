@@ -3,5 +3,5 @@
   :action    => 'AddComment',
   :site_key  => @site_key,
   :topic_key => @topic_key,
-  :html      => render(:partial => 'api/comment.html', :locals => { :comment => @comment })
+  :html      => render(:partial => 'api/comment', :formats => [:html], :locals => { :comment => @comment })
 }.to_json.html_safe %>

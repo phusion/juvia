@@ -5,7 +5,7 @@
     :container => @container,
     :site_key  => @site_key,
     :topic_key => @topic_key,
-    :html      => render(:partial => 'internal_error.html')
+    :html      => render(:partial => 'internal_error', :formats => [:html])
   }
   options[:css] = Juvia::Application.assets.find_asset('api.css').body if @include_css
 %>
