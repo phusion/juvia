@@ -3,13 +3,8 @@ module SpecSupport
     if example.metadata[:type] == :request
       visit("/test/login?user_id=#{user.id}")
       page.should have_content("ok")
-    elsif example.metadata[:type] == :controller
+    elsif example.metadata[:type] == :controller || example.metadata[:type] == :view
       raise "Please use sign_in instead in controller specs"
-    elsif example.metadata[:type] == :view
-      @ability = Ability.new(user)
-      assign(:current_ability, @ability)
-      controller.stub(:current_user, user)
-      view.stub(:current_user, user)
     else
       raise "Test type #{example.metadata[:type].inspect} not supported"
     end
