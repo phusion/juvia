@@ -47,10 +47,12 @@ private
     Topic.
       where('sites.key = ? AND topics.key = ?', site_key, topic_key).
       joins(:site).
+      select('topics.*').
       first ||
     Topic.
       where('sites.key = ? AND topics.key = ?', site_key, alt_key(topic_key)).
       joins(:site).
+      select('topics.*').
       first
   end
 end
