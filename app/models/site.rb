@@ -14,7 +14,7 @@ class Site < ActiveRecord::Base
   before_validation :nullify_blank_fields
   
   attr_accessible :name, :url, :moderation_method, :akismet_key
-  attr_accessible :user, :user_id, :name, :key, :url,
+  attr_accessible :user, :user_id, :name, :key, :url, :user_notification_email,
     :moderation_method, :akismet_key, :as => :admin
   
   default_value_for(:key) { SecureRandom.hex(20).to_i(16).to_s(36) }
