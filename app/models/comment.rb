@@ -20,6 +20,7 @@ class Comment < ActiveRecord::Base
   before_create :set_moderation_status
   after_create :update_topic_timestamp
   after_create :notify_moderators
+  after_create :notify_users
   
   def site
     topic.site
@@ -124,6 +125,10 @@ private
   end
 
   def notify_moderators
-    Mailer.comment_posted(self).deliver
+    Mailer.comment_posted_for_moderators(self).deliver
+  end
+
+  def notify_users
+    Mailer.comment_posted_for_users(self).deliver
   end
 end

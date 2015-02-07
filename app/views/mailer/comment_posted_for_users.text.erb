@@ -1,0 +1,6 @@
+# A new comment has been posted on "<%= @site.name %>"
+
+Topic     : <%= @comment.topic.title %> (<%= @comment.topic.url %>#juvia-comment-<%= @comment.id %>)
+Name      : <%= @comment.author_name || 'Anonymous' %>
+Contents:
+<%= @comment.content %>

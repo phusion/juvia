@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110804201102) do
+ActiveRecord::Schema.define(:version => 20140914031238) do
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "",    :null => false
@@ -27,17 +27,20 @@ ActiveRecord::Schema.define(:version => 20110804201102) do
   end
 
   create_table "sites", :force => true do |t|
-    t.integer  "user_id",                          :null => false
-    t.string   "key",                              :null => false
-    t.string   "name",                             :null => false
+    t.integer  "user_id",                                 :null => false
+    t.string   "key",                                     :null => false
+    t.string   "name",                                    :null => false
     t.string   "url"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
-    t.integer  "moderation_method", :default => 0, :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
+    t.integer  "moderation_method",       :default => 0,  :null => false
     t.string   "akismet_key"
+    t.string   "user_notification_email", :default => ""
     t.index ["key"], :name => "index_sites_on_key", :unique => true
+    t.index ["user_id"], :name => "fk__sites_user_id"
     t.index ["user_id"], :name => "index_sites_on_user_id"
-    t.foreign_key ["user_id"], "users", ["id"], :on_update => :cascade, :on_delete => :cascade, :name => "sites_ibfk_1"
+    t.index ["user_id"], :name => "ltered_sites_user_id"
+    t.foreign_key ["user_id"], "users", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_sites_user_id"
   end
 
   create_table "topics", :force => true do |t|
