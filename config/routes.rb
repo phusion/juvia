@@ -30,7 +30,7 @@ Juvia::Application.routes.draw do
   put 'admin/dashboard/create_admin', :to => 'admin/dashboard#create_admin'
   get 'admin/dashboard/new_site', :to => 'admin/dashboard#new_site'
   put 'admin/dashboard/create_site', :to => 'admin/dashboard#create_site'
-  get 'admin/help(/:action)', :to => 'admin/help'
+  get 'admin/help(/:action)', :to => 'admin/help', :as => :admin_help
   
   match 'test/:action', :to => 'test' if Rails.env.test?
 

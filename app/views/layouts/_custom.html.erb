@@ -6,13 +6,14 @@
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en-us" class="no-js"> <!--<![endif]-->
 
 <head>
+  <base href="<%= root_path %>">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" />
   <meta charset="utf-8" />
 
   <title><% if @title %><%= @title %> - <% end %>Juvia</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="shortcut icon" href="<%= root_path %>favicon.ico" />
 
   <!-- The Columnal Grid (1140px wide base, load first), Type and image presets, and mobile stylesheet -->
   <%= stylesheet_link_tag 'columnal' %>
@@ -50,9 +51,9 @@
   <div class="row">
     <div id="site_logo" class="col_5 clearleft">
       <a href="http://www.phusion.nl/" class="product_creator">Phusion</a>
-      <a href="/" class="product_logo"><%= image_tag 'logo-96.png', :width => 96, :height => 61, :alt => "Logo" %></a>
-      <a href="/" class="product_name">Juvia</a>
-      <a href="/" class="product_desc">commenting system</a>
+      <a href="<%= root_path %>" class="product_logo"><%= image_tag 'logo-96.png', :width => 96, :height => 61, :alt => "Logo" %></a>
+      <a href="<%= root_path %>" class="product_name">Juvia</a>
+      <a href="<%= root_path %>" class="product_desc">commenting system</a>
     </div>
     <nav class="col_7 omega">
       <% if user_signed_in? %>
@@ -61,7 +62,7 @@
       <% else %>
         <div><%= link_to 'Login', new_user_session_path %></div>
       <% end %>
-      <div><a href="/admin/help" class="<%= maybe_active(:help) %>">Help</a></div>
+      <div><a href="<%= admin_help_path %>" class="<%= maybe_active(:help) %>">Help</a></div>
       <% if user_signed_in? %>
         <div><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></div>
       <% end %>
