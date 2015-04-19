@@ -6,6 +6,8 @@ class Comment < ActiveRecord::Base
   class AkismetError < StandardError
   end
 
+  attr_accessible :author_name, :author_email, :author_ip, :author_user_agent, :referer, :content
+
   belongs_to :topic, :inverse_of => :comments
   
   acts_as_enum :moderation_status, [:ok, :unchecked, :spam]

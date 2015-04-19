@@ -48,7 +48,7 @@ class ApiController < ApplicationController
       render :partial => 'site_not_found'
     end
   end
-  
+
   def add_comment
     prepare!(
       [:site_key, :topic_key, :topic_title, :topic_url, :content],
@@ -56,7 +56,7 @@ class ApiController < ApplicationController
     )
     begin
       @content = decompress(params[:content])
-      
+
       if @content.blank?
         render :partial => 'content_may_not_be_blank'
         return
