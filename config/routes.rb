@@ -1,5 +1,5 @@
 Juvia::Application.routes.draw do
-  match 'api/:action(.:format)', :to => 'api'
+  match 'api/:action(.:format)', :to => 'api', via: [:get, :post, :patch, :put, :delete]
   root :to => 'admin/dashboard#index'
   
   devise_for :users
@@ -32,7 +32,7 @@ Juvia::Application.routes.draw do
   put 'admin/dashboard/create_site', :to => 'admin/dashboard#create_site'
   get 'admin/help(/:action)', :to => 'admin/help'
   
-  match 'test/:action', :to => 'test' if Rails.env.test?
+  match 'test/:action', :to => 'test', via: [:get, :post, :put, :patch, :delete] if Rails.env.test?
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

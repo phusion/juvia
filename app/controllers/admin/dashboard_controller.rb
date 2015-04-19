@@ -1,12 +1,12 @@
 class Admin::DashboardController < ApplicationController
   layout 'admin'
-  
+
   skip_before_filter :authenticate_user!, :only => [:index, :new_admin, :create_admin]
   skip_authorization_check
   before_filter :require_admin!, :except => [:index, :new_admin, :create_admin]
   before_filter :require_no_admins_defined, :only => [:new_admin, :create_admin]
   before_filter :set_navigation_ids
-  
+
   def index
     if User.where(:admin => true).count == 0
       redirect_to :action => 'new_admin'
@@ -16,11 +16,11 @@ class Admin::DashboardController < ApplicationController
       redirect_to admin_sites_path
     end
   end
-  
+
   def new_admin
     @user = User.new
   end
-  
+
   def create_admin
     @user = User.new(params[:user])
     @user.admin = true
@@ -31,11 +31,11 @@ class Admin::DashboardController < ApplicationController
       render :action => 'new_admin'
     end
   end
-  
+
   def new_site
     @site = Site.new
   end
-  
+
   def create_site
     @site = Site.new(params[:site])
     @site.user = current_user
@@ -52,7 +52,7 @@ private
       render :template => 'shared/forbidden'
     end
   end
-  
+
   def set_navigation_ids
     @navigation_ids = [:dashboard]
   end

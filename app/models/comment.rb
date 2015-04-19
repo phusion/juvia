@@ -10,8 +10,8 @@ class Comment < ActiveRecord::Base
   
   acts_as_enum :moderation_status, [:ok, :unchecked, :spam]
   
-  scope :visible, where(:moderation_status => moderation_status(:ok))
-  scope :requiring_moderation, where("moderation_status != #{moderation_status(:ok)}")
+  scope :visible, -> { where(:moderation_status => moderation_status(:ok)) }
+  scope :requiring_moderation, -> { where("moderation_status != #{moderation_status(:ok)}") }
   
   validates_presence_of :content
   validates_presence_of :author_ip

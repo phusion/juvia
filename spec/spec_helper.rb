@@ -26,6 +26,8 @@ Spork.prefork do
     config.include SpecSupport
     config.include Devise::TestHelpers, :type => :controller
     config.include Devise::TestHelpers, :type => :view
+    config.include Capybara::DSL
+    config.include Rails.application.routes.url_helpers
     
     # == Mock Framework
     #

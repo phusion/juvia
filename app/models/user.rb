@@ -1,7 +1,7 @@
 require 'digest/md5'
 
 class User < ActiveRecord::Base
-  has_many :sites, :inverse_of => :user, :order => 'name'
+  has_many :sites, -> { order('name') }, :inverse_of => :user
   has_many :topics, :through => :sites
   
   # Include default devise modules. Others available are:

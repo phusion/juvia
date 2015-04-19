@@ -1,6 +1,6 @@
 class Topic < ActiveRecord::Base
   belongs_to :site, :inverse_of => :topics
-  has_many :comments, :order => "created_at DESC", :inverse_of => :topic
+  has_many :comments, -> { order("created_at DESC") }, :inverse_of => :topic
 
   validates_presence_of :key
   validates_presence_of :title

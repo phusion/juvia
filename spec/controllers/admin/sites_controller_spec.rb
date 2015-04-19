@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + "/../../spec_helper")
 
-describe Admin::SitesController do
+describe Admin::SitesController, type: :controller do
   def valid_attributes
     { :name => 'Foo',
       :url => 'http://foo.local/' }
@@ -83,7 +83,7 @@ describe Admin::SitesController do
   end
 end
 
-describe Admin::SitesController do
+describe Admin::SitesController, type: :controller do
   render_views
 
   before :each do
