@@ -144,6 +144,10 @@ GEM
       ffi (>= 0.5.0)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
+    rspec-activemodel-mocks (1.0.1)
+      activemodel (>= 3.0)
+      activesupport (>= 3.0)
+      rspec-mocks (>= 2.99, < 4.0)
     rspec-core (3.0.4)
       rspec-support (~> 3.0.0)
     rspec-expectations (3.0.4)
@@ -219,6 +223,7 @@ DEPENDENCIES
   pry
   rack
   rails (~> 4.0.0)
+  rspec-activemodel-mocks
   rspec-rails (~> 3.0.0)
   sass-rails
   schema_plus

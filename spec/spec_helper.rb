@@ -28,16 +28,9 @@ Spork.prefork do
     config.include Devise::TestHelpers, :type => :view
     config.include Capybara::DSL
     config.include Rails.application.routes.url_helpers
-    
-    # == Mock Framework
-    #
-    # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
-    #
-    # config.mock_with :mocha
-    # config.mock_with :flexmock
-    # config.mock_with :rr
+
     config.mock_with :rspec
-    
+
     config.before(:each) do
       DatabaseCleaner.start
     end

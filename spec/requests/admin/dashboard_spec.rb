@@ -7,19 +7,23 @@ describe "Admin::Dashboard" do
       visit root_path
       page.should have_content("Let's setup an administrator account first!")
     end
-    
+
     it "offers to setup a site if the logged in user doesn't have any" do
-      login(admin)
       visit root_path
       page.should have_content("Let's get started!")
       page.should have_content("So you want to embed comments on a bunch of web pages.")
     end
-    
-    it "redirects to the sites page if the user is logged in, there are administrators and the current user has sites" do
-      FactoryGirl.create(:site1, :user => admin)
-      login(admin)
-      visit root_path
-      current_url.should == admin_sites_url
+
+    context 'when logged in as an admin' do
+      before do |example|
+        FactoryGirl.create(:site1, :user => admin)
+        login(admin)
+      end
+
+      it "redirects to the sites page if the user is logged in, there are administrators and the current user has sites" do
+        visit root_path
+        current_url.should == admin_sites_url
+      end
     end
   end
   

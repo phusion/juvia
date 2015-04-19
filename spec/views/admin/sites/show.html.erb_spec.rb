@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + "/../../../spec_helper")
 
-describe "admin/sites/show.html.erb" do
+describe "admin/sites/show.html.erb", type: :view do
   before(:each) do
     sign_in(kotori)
     @site = assign(:site, FactoryGirl.create(:site1, :user => kotori))

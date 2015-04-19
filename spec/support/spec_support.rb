@@ -1,5 +1,6 @@
 module SpecSupport
   def login(user)
+    binding.pry
     if example.metadata[:type] == :request
       visit("/test/login?user_id=#{user.id}")
       page.should have_content("ok")

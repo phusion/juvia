@@ -45,6 +45,7 @@ end
 group :development, :test do
   gem 'pry'
   gem 'rspec-rails', '~> 3.0.0'
+  gem 'rspec-activemodel-mocks' # for compatibility
   gem 'capybara', '~> 2.2.0', :require => false
   gem 'capybara-webkit', :require => false
   gem 'database_cleaner', :require => false
