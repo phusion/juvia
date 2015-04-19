@@ -46,14 +46,14 @@ shared_examples "posting new comments with the Javascript API" do
     page.should have_css('.juvia-author', :text => 'Kotori')
   end
   
-  it "resets the form after posting", :js => true, focus: true do
+  it "resets the form after posting", :js => true do
     show_topic(@site_key, @topic_key)
     fill_in 'author_name', :with => 'Kotori'
     fill_in 'author_email', :with => 'kotori@kotori.jp'
     fill_in 'content', :with => 'a *new* comment!'
     click_button 'Submit'
-    page.should have_field('input[name=author_name]', :with => 'Your name (optional)')
-    page.should have_field('input[name=author_email]', :with => 'Your email (optional)')
+    page.should have_field('author_name', :with => 'Your name (optional)')
+    page.should have_field('author_email', :with => 'Your email (optional)')
     page.should have_field('content', :with => '')
   end
   
@@ -201,7 +201,7 @@ describe "Javascript API", "error handling", type: :request do
   end
 
   describe "add_comment" do
-    it "returns an error if a required parameter is blank" do
+    it "returns an error if a required parameter is blank", focus: true do
       post '/api/add_comment.js', :site_key => ''
       response.body.should include("The required parameter <code>site_key</code> wasn't given")
     end
