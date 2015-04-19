@@ -57,7 +57,7 @@ shared_examples "posting new comments with the Javascript API" do
     page.should have_css('textarea', :value => '')
   end
   
-  it "hides the preview box after posting", :js => true do
+  it "hides the preview box after posting", :js => true, focus: true do
     show_topic(@site_key, @topic_key)
     fill_in 'content', :with => 'a *new* comment!'
     page.should have_css('.juvia-preview-content', :visible => true)
@@ -189,7 +189,7 @@ describe "Javascript API", "on browsers without CORS support" do
   include_examples "showing a topic and commenting with the Javascript API"
 end
 
-describe "Javascript API", "error handling" do
+describe "Javascript API", "error handling", type: :request do
   describe "show_topic" do
     it "returns an error if a required parameter is blank", :js => true do
       visit_html(%Q^
@@ -199,10 +199,11 @@ describe "Javascript API", "error handling" do
       page.should have_css('.comments', :text => /The required parameter site_key wasn't given/)
     end
   end
-  
+
   describe "add_comment" do
     it "returns an error if a required parameter is blank" do
       post '/api/add_comment.js', :site_key => ''
+      Capybara::Screenshot.screenshot_and_save_page
       response.body.should include("The required parameter <code>site_key</code> wasn't given")
     end
   end

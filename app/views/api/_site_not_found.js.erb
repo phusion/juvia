@@ -7,6 +7,6 @@
     :topic_key => @topic_key,
     :html      => render(:partial => 'site_not_found', :formats => [:html], :locals => { :topic => @topic })
   }
-  options[:css] = Juvia::Application.assets.find_asset('api.css').body if @include_css
+  options[:css] = Juvia::Application.assets.find_asset('api.css').to_s if @include_css
 %>
 <%= juvia_handle_response(options) %>

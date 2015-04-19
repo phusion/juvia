@@ -48,6 +48,7 @@ group :development, :test do
   gem 'rspec-activemodel-mocks' # for compatibility
   gem 'capybara', '~> 2.2.0', :require => false
   gem 'capybara-webkit', :require => false
+  gem 'capybara-screenshot'
   gem 'database_cleaner', :require => false
   gem 'factory_girl_rails', :require => false
   gem 'launchy', :require => false

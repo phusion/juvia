@@ -1,4 +1,5 @@
 # -*- Mode: Ruby; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+# -*- encoding: utf-8 -*-
 
 require 'zlib'
 
@@ -85,7 +86,7 @@ class ApiController < ApplicationController
       render :partial => 'internal_error'
     end
   end
-  
+
   def preview_comment
     prepare!([], [:html, :js, :json])
     @content = decompress(params[:content])

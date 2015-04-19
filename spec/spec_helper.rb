@@ -8,17 +8,22 @@ Spork.prefork do
   # This file is copied to spec/ when you run 'rails generate rspec:install'
   ENV["RAILS_ENV"] ||= 'test'
   require File.expand_path("../../config/environment", __FILE__)
-  require 'capybara'
+  require 'capybara/rails'
+  require 'capybara/rspec'
+  require 'capybara-screenshot/rspec'
   require 'capybara-webkit'
   require 'database_cleaner'
   require 'launchy'
   require 'rspec/rails'
 
+
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
-  Capybara.javascript_driver = :webkit
+  Capybara.javascript_driver               = :webkit
+  Capybara::Screenshot.autosave_on_failure = false
+
   DatabaseCleaner.logger = Rails.logger
   DatabaseCleaner.strategy = :truncation
 
