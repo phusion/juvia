@@ -126,6 +126,6 @@ private
   end
 
   def notify_moderators
-    Mailer.comment_posted(self).deliver
+    Mailer.comment_posted(self).deliver_now
   end
 end
