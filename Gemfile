@@ -33,6 +33,7 @@ gem 'bcrypt'
 
 group :development do
   gem 'guard-livereload'
+  gem 'web-console'
   gem 'spring'
 
   # Gems used for comment import from WordPress
