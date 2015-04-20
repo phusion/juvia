@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
-ruby '2.2.1'
 
-gem 'rails', '~> 4.2.0'
+gem 'rails', '4.2.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -47,6 +46,7 @@ end
 # and rake tasks are available in development mode:
 group :development, :test do
   gem 'pry'
+  gem 'rspec'
   gem 'rspec-rails', '~> 3.0.0'
   gem 'rspec-activemodel-mocks' # for compatibility
   gem 'capybara', '~> 2.2.0', :require => false
