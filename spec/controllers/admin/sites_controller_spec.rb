@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + "/../../spec_helper")
 
-describe Admin::SitesController do
+describe Admin::SitesController, type: :controller do
   def valid_attributes
     { :name => 'Foo',
       :url => 'http://foo.local/' }
@@ -83,7 +83,7 @@ describe Admin::SitesController do
   end
 end
 
-describe Admin::SitesController do
+describe Admin::SitesController, type: :controller do
   render_views
 
   before :each do
@@ -110,14 +110,14 @@ describe Admin::SitesController do
 
     it "assigns the requested site as @site" do
       visit_normally
-      assigns(:site).should eq(@site)
+      expect(assigns(:site)).to eq(@site)
     end
   end
 
   describe "GET new" do
     it "assigns a new site as @site" do
       get :new
-      assigns(:site).should be_a_new(Site)
+      expect(assigns(:site)).to be_a_new(Site)
     end
   end
 
@@ -125,7 +125,7 @@ describe Admin::SitesController do
     it "assigns the requested site as @site" do
       site = create_site
       get :edit, :id => site.id.to_s
-      assigns(:site).should eq(site)
+      expect(assigns(:site)).to eq(site)
     end
   end
 
@@ -139,29 +139,29 @@ describe Admin::SitesController do
 
       it "assigns a newly created site as @site" do
         post :create, :site => valid_attributes
-        assigns(:site).should be_a(Site)
-        assigns(:site).should be_persisted
+        expect(assigns(:site)).to be_a(Site)
+        expect(assigns(:site)).to be_persisted
       end
 
       it "redirects to the created site" do
         post :create, :site => valid_attributes
-        response.should redirect_to([:admin, Site.last])
+        expect(response).to redirect_to([:admin, Site.last])
       end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved site as @site" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Site.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Site).to receive(:save).and_return(false)
         post :create, :site => {}
-        assigns(:site).should be_a_new(Site)
+        expect(assigns(:site)).to be_a_new(Site)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Site.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Site).to receive(:save).and_return(false)
         post :create, :site => {}
-        response.should render_template("new")
+        expect(response).to render_template("new")
       end
     end
   end
@@ -174,20 +174,20 @@ describe Admin::SitesController do
         # specifies that the Site created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Site.any_instance.should_receive(:update_attributes).with({ 'name' => 'bar' }, :as => :admin)
+        expect_any_instance_of(Site).to receive(:update_attributes).with({ 'name' => 'bar' }, :as => :admin)
         put :update, :id => site.id, :site => { 'name' => 'bar' }
       end
 
       it "assigns the requested site as @site" do
         site = create_site
         put :update, :id => site.id, :site => valid_attributes
-        assigns(:site).should eq(site)
+        expect(assigns(:site)).to eq(site)
       end
 
       it "redirects to the site" do
         site = create_site
         put :update, :id => site.id, :site => valid_attributes
-        response.should redirect_to([:admin, site])
+        expect(response).to redirect_to([:admin, site])
       end
     end
 
@@ -195,17 +195,17 @@ describe Admin::SitesController do
       it "assigns the site as @site" do
         site = create_site
         # Trigger the behavior that occurs when invalid params are submitted
-        Site.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Site).to receive(:save).and_return(false)
         put :update, :id => site.id.to_s, :site => {}
-        assigns(:site).should eq(site)
+        expect(assigns(:site)).to eq(site)
       end
 
       it "re-renders the 'edit' template" do
         site = create_site
         # Trigger the behavior that occurs when invalid params are submitted
-        Site.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Site).to receive(:save).and_return(false)
         put :update, :id => site.id.to_s, :site => {}
-        response.should render_template("edit")
+        expect(response).to render_template("edit")
       end
     end
   end
@@ -221,7 +221,7 @@ describe Admin::SitesController do
     it "redirects to the sites list" do
       site = create_site
       delete :destroy, :id => site.id.to_s
-      response.should redirect_to(admin_sites_url)
+      expect(response).to redirect_to(admin_sites_url)
     end
   end
 
@@ -229,8 +229,8 @@ describe Admin::SitesController do
     it "displays embedding instructions" do
       site = create_site
       get :created, :id => site.id.to_s
-      response.body.should include("Paste the following snippet into your web pages to embed comments")
-      response.body.should include(site.key)
+      expect(response.body).to include("Paste the following snippet into your web pages to embed comments")
+      expect(response.body).to include(site.key)
     end
   end
 
@@ -238,8 +238,8 @@ describe Admin::SitesController do
     it "displays a test page" do
       site = create_site
       get :test, :id => site.id.to_s
-      response.body.should include("Test page for site")
-      response.body.should include(site.key)
+      expect(response.body).to include("Test page for site")
+      expect(response.body).to include(site.key)
     end
   end
 end

@@ -1,4 +1,5 @@
 # -*- Mode: Ruby; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+# -*- encoding: utf-8 -*-
 
 require 'zlib'
 
@@ -47,7 +48,7 @@ class ApiController < ApplicationController
       render :partial => 'site_not_found'
     end
   end
-  
+
   def add_comment
     prepare!(
       [:site_key, :topic_key, :topic_title, :topic_url, :content],
@@ -55,7 +56,7 @@ class ApiController < ApplicationController
     )
     begin
       @content = decompress(params[:content])
-      
+
       if @content.blank?
         render :partial => 'content_may_not_be_blank'
         return
@@ -85,7 +86,7 @@ class ApiController < ApplicationController
       render :partial => 'internal_error'
     end
   end
-  
+
   def preview_comment
     prepare!([], [:html, :js, :json])
     @content = decompress(params[:content])

@@ -6,12 +6,14 @@ class Comment < ActiveRecord::Base
   class AkismetError < StandardError
   end
 
+  attr_accessible :author_name, :author_email, :author_ip, :author_user_agent, :referer, :content
+
   belongs_to :topic, :inverse_of => :comments
   
   acts_as_enum :moderation_status, [:ok, :unchecked, :spam]
   
-  scope :visible, where(:moderation_status => moderation_status(:ok))
-  scope :requiring_moderation, where("moderation_status != #{moderation_status(:ok)}")
+  scope :visible, -> { where(:moderation_status => moderation_status(:ok)) }
+  scope :requiring_moderation, -> { where("moderation_status != #{moderation_status(:ok)}") }
   
   validates_presence_of :content
   validates_presence_of :author_ip
@@ -124,6 +126,6 @@ private
   end
 
   def notify_moderators
-    Mailer.comment_posted(self).deliver
+    Mailer.comment_posted(self).deliver_now
   end
 end

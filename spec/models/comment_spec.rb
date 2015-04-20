@@ -8,12 +8,12 @@ describe Comment do
     comment = FactoryGirl.create(:comment, :topic => topic, :author_name => "Morishima")
     comment.author_name = ""
     comment.save!
-    comment.author_name.should be_nil
+    expect(comment.author_name).to be_nil
   end
 
   it "strips leading and trailing spaces from the email address" do
     comment = FactoryGirl.create(:comment, :topic => topic)
     comment.author_email = " foo@bar.com "
-    comment.author_email.should == "foo@bar.com"
+    expect(comment.author_email).to eq("foo@bar.com")
   end
 end

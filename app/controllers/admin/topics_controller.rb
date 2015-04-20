@@ -1,4 +1,4 @@
-class Admin::TopicsController < InheritedResources::Base
+class Admin::TopicsController < ApplicationController
   layout 'admin'
 
   load_and_authorize_resource

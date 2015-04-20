@@ -1,22 +1,22 @@
 module SpecSupport
-  def login(user)
+  def login(user, example = nil)
     if example.metadata[:type] == :request
       visit("/test/login?user_id=#{user.id}")
-      page.should have_content("ok")
+      expect(page).to have_content("ok")
     elsif example.metadata[:type] == :controller || example.metadata[:type] == :view
       raise "Please use sign_in instead in controller specs"
     else
       raise "Test type #{example.metadata[:type].inspect} not supported"
     end
   end
-  
+
   def visit_html(html)
     File.open('public/_test.html', 'w') do |f|
       f.write(html)
     end
     visit('/_test.html')
   end
-  
+
   def show_topic(site_key, topic_key, options = {})
     pre_js    = options[:pre_js]
     topic_url = options[:topic_url]

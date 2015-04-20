@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 3.2.12'
+gem 'rails', '4.2.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -8,14 +8,20 @@ gem 'rails', '~> 3.2.12'
 gem 'schema_plus'
 gem 'default_value_for'
 gem 'bluecloth'
-gem 'devise', '~> 2.2'
-gem 'jquery-rails', '>= 1.0.12'
+gem 'devise'
+gem 'jquery-rails'
 gem 'will_paginate'
-gem 'css3buttons'
-gem 'cancan', '~> 1.6.10'
-gem 'inherited_resources'
+gem 'cancan'
 gem 'rack'
 gem 'nokogiri'
+gem 'css3buttons'
+
+gem 'sass-rails'
+gem 'coffee-rails'
+gem 'uglifier'
+
+# compatibility gems
+gem 'protected_attributes'
 
 # Deploy with Capistrano
 # gem 'capistrano'
@@ -26,6 +32,8 @@ gem 'bcrypt'
 
 group :development do
   gem 'guard-livereload'
+  gem 'web-console'
+  gem 'spring'
 
   # Gems used for comment import from WordPress
   # gem 'htmlentities'
@@ -37,21 +45,17 @@ end
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :development, :test do
-  gem 'rspec-rails', '~> 2.11'
-  gem 'capybara', '~> 1.1', :require => false
+  gem 'pry'
+  gem 'rspec'
+  gem 'rspec-rails', '~> 3.0.0'
+  gem 'rspec-activemodel-mocks' # for compatibility
+  gem 'capybara', '~> 2.2.0', :require => false
   gem 'capybara-webkit', :require => false
+  gem 'capybara-screenshot'
   gem 'database_cleaner', :require => false
   gem 'factory_girl_rails', :require => false
   gem 'launchy', :require => false
   gem 'spork', '0.9.0.rc9', :require => false
-end
-
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.2.5'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
 end
 
 group :mysql do
