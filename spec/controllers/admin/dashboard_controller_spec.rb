@@ -21,7 +21,7 @@ describe Admin::DashboardController, type: :controller do
     it "errors out if the system already has administrators" do
       admin
       visit_normally
-      response.should render_template('shared/forbidden')
+      expect(response).to render_template('shared/forbidden')
     end
   end
   
@@ -39,14 +39,14 @@ describe Admin::DashboardController, type: :controller do
     it "creates a new admin user" do
       visit_normally
       user = User.find_by_email('a@a.com')
-      user.should_not be_nil
-      user.should be_admin
+      expect(user).not_to be_nil
+      expect(user).to be_admin
     end
     
     it "errors out if the system already has administrators" do
       admin
       visit_normally
-      response.should render_template('shared/forbidden')
+      expect(response).to render_template('shared/forbidden')
     end
   end
   
@@ -71,7 +71,7 @@ describe Admin::DashboardController, type: :controller do
       sign_in(admin)
       visit_normally
       site = Site.find_by_name('foobar')
-      site.should_not be_nil
+      expect(site).not_to be_nil
     end
 
     it "always assigns the created site to the currently logged in user" do
@@ -81,7 +81,7 @@ describe Admin::DashboardController, type: :controller do
         :user_id => kotori.id.to_s
       }
       site = Site.find_by_name('foobar')
-      site.user_id.should == admin.id
+      expect(site.user_id).to eq(admin.id)
     end
   end
 end

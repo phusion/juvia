@@ -2,7 +2,7 @@ module SpecSupport
   def login(user, example = nil)
     if example.metadata[:type] == :request
       visit("/test/login?user_id=#{user.id}")
-      page.should have_content("ok")
+      expect(page).to have_content("ok")
     elsif example.metadata[:type] == :controller || example.metadata[:type] == :view
       raise "Please use sign_in instead in controller specs"
     else

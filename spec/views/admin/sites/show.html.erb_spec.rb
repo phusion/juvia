@@ -9,11 +9,11 @@ describe "admin/sites/show.html.erb", type: :view do
 
   it "shows the site key" do
     render
-    rendered.should include(@site.key)
+    expect(rendered).to include(@site.key)
   end
 
   it "shows a list of topics" do
     render
-    rendered.should have_selector('.topics.list')
+    expect(rendered).to have_selector('.topics.list')
   end
 end
