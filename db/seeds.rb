@@ -27,9 +27,9 @@ if Rails.env.development?
     :referer => 'http://www.google.com')
 else
   User.create!({
-    :email => 'admin@localhost',
-    :password => 'admin',
-    :password_confirmation => 'admin',
+    :email => 'admin@localhost.com',
+    :password => 'adminadmin',
+    :password_confirmation => 'adminadmin',
     :admin => true
   }, :as => :admin)
 end
