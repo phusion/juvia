@@ -6,6 +6,10 @@ class Admin::TopicsController < ApplicationController
 
   def show
     @comments = @topic.comments.page(params[:page])
+    respond_to do |format|
+      format.json { render json: @topic.to_json }
+      format.html
+    end
   end
 
   def destroy

@@ -76,6 +76,25 @@ describe Admin::TopicsController, type: :controller do
     it "assigns the requested topic as @topic" do
       visit_normally
       expect(assigns(:topic)).to eq(@topic)
+      expect(assigns(:comments)).to eq(@topic.comments)
+    end
+
+    context "as json" do
+      let(:json_response) { ActiveSupport::JSON.decode(response.body) }
+
+      it "assigns the @topic and @comments" do
+        get :show, :id => @topic.id, format: :json
+
+        expect(assigns(:topic)).to eq(@topic)
+        expect(assigns(:comments)).to eq(@topic.comments)
+      end
+
+      it "returns valid JSON response" do
+        get :show, :id => @topic.id, format: :json
+
+        expect(json_response['comments']).not_to be_nil
+        expect(json_response['comments']['count']).to eq(@topic.comments.count)
+      end
     end
   end
 
