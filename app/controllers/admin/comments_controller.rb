@@ -23,7 +23,7 @@ class Admin::CommentsController < ApplicationController
   def update
     @comment = Comment.find(params[:id])
     authorize! :update, @comment
-    if @comment.update_attributes(params[:comment], :as => current_user.role)
+    if @comment.update_attributes(comment_params)
       redirect_back(admin_comments_path)
     else
       render :action => 'edit'
@@ -82,6 +82,12 @@ class Admin::CommentsController < ApplicationController
   end
 
 private
+  def comment_params
+    params.require(:comment).permit(
+      :author_name, :author_email, :content
+    )
+  end
+
   def set_navigation_ids
     @navigation_ids = [:dashboard, :comments]
   end
