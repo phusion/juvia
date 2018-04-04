@@ -17,6 +17,7 @@ Other notable highlights:
  * Email notification of new comments.
  * Wordpress comment import (thanks to JangoSteve).
 
+<!---
 ## Discussion & support
 
 Please join [the Juvia discussion forum](https://groups.google.com/forum/?fromgroups#!forum/juvia).
@@ -28,6 +29,7 @@ You can see Juvia in action at [the demo site](http://juvia-demo.phusion.nl). Lo
 <img src="http://brightbox.com/images/misc/logo.png">
 
 The demo site is hosted on a server by [Brightbox](http://www.brightbox.com).
+--->
 
 ## Installation
 
@@ -63,9 +65,7 @@ James Smith has written a Rails helper gem for embedding Juvia comments into Rai
 
 ## TODO
 
-Juvia currently suits my need so I may or may not work on these things in the future. But if you want to contribute you are more than welcome to do so!
-
- * A better logo. I drew the current one in Inkscape in about an hour but I'm sure real artists can do better.
+The following contributions would be very welcome:
  * Juvia works fine but we need more tests to prevent things from breaking in the future.
  * Document the `list_topics` API call.
  * A Quote/Reply button for each comment.
