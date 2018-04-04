@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Juvia: the open source commenting system</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/landing-page.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="http://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="http://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-inverse navbar-overlay" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/traveling-ruby/">Juvia</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#about">About</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/phusion/juvia/blob/master/README.md">Get Started</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/phusion/juvia">Github</a>
+                    </li>
+                    <li>
+                        <a href="https://blog.phusion.nl">Blog</a>
+                    </li>
+                    <li>
+                        <a href="mailto:info@phusion.nl">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Header -->
+    <div class="intro-header">
+
+        <div class="container">
+            <div class="intro-message">
+                <img src="img/juvia.png" width="200" class="logo logo-before-message hidden-xs hidden-sm">
+                <h1>Tired of building commenting systems?</h1>
+                <h3>Embedding a Juvia commenting page only involves pasting a JavaScript snippet into your web page.</h3>
+                <a href="#about" class="btn btn-lg btn-info">Learn more</a> <a href="https://github.com/phusion/juvia" class="btn btn-lg btn-primary">Get it at Github</a>
+
+                <img src="img/juvia.png" class="logo logo-after-message visible-xs-block visible-sm-block">
+            </div>
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.intro-header -->
+
+    <!-- Page Content -->
+
+    <div class="content-section-a" id="about">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <h3>Comments out-of-the-box</h3>
+                    <p>Juvia is an open source commenting system. It allows you to outsource your commenting needs to an external system so that you don't have to build your own commenting system for each website or each web app.</p>
+                    <p>Juvia is similar to Disqus and IntenseDebate. Trying to integrate existing commenting solutions in an AJAX web application is frustrating. <strong>Juvia offers full support for AJAX web pages</strong>. Juvia's source does not conflict with your page's existing JavaScripts.</p>
+                  </div>
+                <div class="col-lg-5 col-sm-6">
+                    <h3>Features</h3>
+                    <ul>
+                      <li>Moderation support, either manually or automatically via Akismet.</li>
+                      <li>Multi-user support for Juvia admin panel operators.</li>
+                      <li>Email notification of new comments.</li>
+                      <li>WordPress comment import.</li>
+                    </ul>
+                    <p>Juvia deliberately does not support nested comments typical for extremely active discussion forums. Instead, Juvia strives for simplicity.</p>
+                  </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-a -->
+
+    <div class="content-section-b">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1  col-lg-8 col-lg-offset-2  text-center">
+                    <h2 class="section-heading">Installing Juvia</h2>
+                    <p class="lead">something.</p>
+                  </div>
+                </div>
+                  <div>
+                    <ol>
+                      <li>Clone <a href:"https://github.com/phusion/juvia/" target="_blank">the repository</a> into a desired directory and <code>cd</code> to it.</li><br/>
+                      <li>Configure your database details by editing config/database.yml.</li><br/>
+                      <li>Configure other settings by editing config/application.yml.</li><br/>
+                      <li>Install the necessary dependencies:<br/> <code>bundle install --without='development test postgres sqlite' --path=help</code></li><br/>
+                      <li>Install the database schema:<br/> <code>bundle exec rake db:schema:load RAILS_ENV=production</code></li><br/>
+                      <li>Compile the static assets:<br/> <code>bundle exec rake assets:precompile RAILS_ENV=production RAILS_GROUPS=assets</code></li><br/>
+                      <li>Deploy this application to Phusion Passenger or whatever application server you prefer.</li><br/>
+                      <p><em>You can now access Juvia through the address that you configured. It will ask you to create an initial administrator account and to register a site.</em></p>
+                </div>
+            </div>
+
+            <div class="text-center" style="margin-top: 2em">
+                <p><a href="https://github.com/phusion/juvia/blob/master/README.md" class="btn btn-info btn-lg">Learn how it works</a></p>
+
+                <p style="margin-top: 2em; margin-left: -4em">
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-via="phusion_nl" data-size="large">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                    <a href="https://news.ycombinator.com/submit" class="hn-button" data-count="horizontal" data-style="twitter">Vote on Hacker News</a>
+<script type="text/javascript">var HN=[];HN.factory=function(e){return function(){HN.push([e].concat(Array.prototype.slice.call(arguments,0)))};},HN.on=HN.factory("on"),HN.once=HN.factory("once"),HN.off=HN.factory("off"),HN.emit=HN.factory("emit"),HN.load=function(){var e="hn-button.js";if(document.getElementById(e))return;var t=document.createElement("script");t.id=e,t.src="//hn-button.herokuapp.com/hn-button.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n)},HN.load();</script>
+                </p>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-b -->
+
+
+    <!-- /.content-section-b -->
+
+    <div class="content-section-a">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 text-center">
+                    <h2 class="section-heading">Check out our other stuff too</h2>
+                    <p><a href="https://www.phusionpassenger.com"><img src="img/ppassenger.png" width="256"></a></p>
+                    <p class="lead"><strong>Phusion Passenger®</strong>, runs and manages Ruby, Node.js & Python apps on your web server with ease. From business critical apps with billions of requests per day to passion projects, over 650,000 sites use Passenger.</p>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <p><a href="https://www.phusionpassenger.com" class="btn btn-lg btn-info">Learn more</a></p>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-a -->
+
+    <div class="banner">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <a href="https://www.phusion.nl/"><img src="img/phusion.png" width="100" height="100" class="logo"></a>
+                    <h3><a style="color:#333;" href="https://www.phusion.nl/">Brought to you by Phusion</a></h3>
+                    <a style="color:#333;" href="https://www.phusion.nl/" target="_blank">website</a> | <a style="color:#333;" href="https://www.twitter.com/phusion_nl/" target="_blank">twitter</a> | <a style="color:#333;" href="https://www.github.com/phusion" target="_blank">GitHub</a>
+                </div>
+
+            </div>
+
+        </div>
+
+        </div>
+        <!-- /.container -->
+
+        <div class="clearfix"></div>
+
+    </div>
+    <!-- /.banner -->
+
+    <!-- Footer -->
+    <footer class="page-footer">
+        <div class="container">
+          <p class="copyright text-muted small">Copyright &copy; Phusion Holding B.V. 2015-2018. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-32583440-8', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
