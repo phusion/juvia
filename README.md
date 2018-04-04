@@ -1,3 +1,5 @@
+[![Maintainers Wanted](https://img.shields.io/badge/maintainers-wanted-red.svg)](https://github.com/pickhardt/maintainers-wanted)
+
 # About Juvia
 
 ![Logo](https://github.com/phusion/juvia/raw/master/app/assets/images/logo-128.png)
