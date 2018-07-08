@@ -64,7 +64,7 @@ group :mysql do
 end
 
 # adapter: postgresql
-gem 'pg', :require => false
+gem 'pg', '~> 0.18', :require => false
 
 group :sqlite do
   # adapter: sqlite3
