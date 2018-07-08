@@ -63,10 +63,8 @@ group :mysql do
   gem 'mysql2', :require => false
 end
 
-group :postgres do
-  # adapter: postgresql
-  gem 'pg', :require => false
-end
+# adapter: postgresql
+gem 'pg', :require => false
 
 group :sqlite do
   # adapter: sqlite3
