@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.0'
+gem 'rails', '4.2.8'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -63,10 +63,8 @@ group :mysql do
   gem 'mysql2', :require => false
 end
 
-group :postgres do
-  # adapter: postgresql
-  gem 'pg', :require => false
-end
+# adapter: postgresql
+gem 'pg', '~> 0.18', :require => false
 
 group :sqlite do
   # adapter: sqlite3

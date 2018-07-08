@@ -44,6 +44,10 @@ class Topic < ActiveRecord::Base
     topic_key.match(/\/$/) ? topic_key.chop : "#{topic_key}/"
   end
 
+  def to_json
+    {:comments => {count: comments.count}}
+  end
+
 private
   def self.find_by_site_key_and_topic_key(site_key, topic_key)
     Topic.

@@ -5,13 +5,16 @@ class Admin::TopicsController < ApplicationController
   before_filter :set_navigation_ids
 
   def show
-    show! do
-      @comments = @topic.comments.page(params[:page])
+    @comments = @topic.comments.page(params[:page])
+    respond_to do |format|
+      format.json { render json: @topic.to_json }
+      format.html
     end
   end
 
   def destroy
-    destroy! { admin_site_path(@topic.site) }
+    @topic.destroy
+    redirect_to admin_site_path(@topic.site)
   end
 
   def index
