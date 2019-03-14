@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.0'
+gem 'rails', '~> 4.2.11'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -13,7 +13,7 @@ gem 'jquery-rails'
 gem 'will_paginate'
 gem 'cancan'
 gem 'rack'
-gem 'nokogiri'
+gem 'nokogiri', "~> 1.8.5"
 gem 'css3buttons'
 
 gem 'sass-rails'
@@ -50,7 +50,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'rspec-activemodel-mocks' # for compatibility
   gem 'capybara', '~> 2.2.0', :require => false
-  #gem 'capybara-webkit', :require => false
+  gem 'capybara-webkit', :require => false
   gem 'capybara-screenshot'
   gem 'database_cleaner', :require => false
   gem 'factory_girl_rails', :require => false
