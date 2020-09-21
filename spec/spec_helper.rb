@@ -11,7 +11,6 @@ Spork.prefork do
   require 'capybara/rails'
   require 'capybara/rspec'
   require 'capybara-screenshot/rspec'
-  require 'capybara-webkit'
   require 'database_cleaner'
   require 'launchy'
   require 'rspec/rails'
@@ -21,7 +20,7 @@ Spork.prefork do
   # in spec/support/ and its subdirectories.
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
-  Capybara.javascript_driver               = :webkit
+  Capybara.javascript_driver               = :selenium_headless
   Capybara::Screenshot.autosave_on_failure = false
 
   DatabaseCleaner.logger = Rails.logger
