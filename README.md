@@ -1,10 +1,8 @@
-[![Maintainers Wanted](https://img.shields.io/badge/maintainers-wanted-red.svg)](https://github.com/pickhardt/maintainers-wanted)
-
 # About Juvia
 
 ![Logo](https://github.com/phusion/juvia/raw/master/app/assets/images/logo-128.png)
 
-**Juvia is currently unmaintained. If you're interested in taking over maintenance, please open an issue and tell us about it.**
+**Juvia is currently maintained, but we surely will appreciate new contributors.**
 
 Juvia is an open source commenting system. It allows you to outsource your commenting needs to an external system so that you don't have to build your own commenting system for each website or each web app. Embedding a Juvia commenting page only involves pasting a JavaScript snippet into your web page.
 
@@ -67,7 +65,15 @@ James Smith has written a Rails helper gem for embedding Juvia comments into Rai
 
 ## TODO
 
-The following contributions would be very welcome:
+Juvia is pretty broken and outdated at the moment. That means we have to stabilize and update components first. That's what we are gonna do:
+
+* Update libraries and gems, replace highly outdated dependencies, make project work on modern Ruby branch, lint code (probably have to push to Rails 5 or 6, Rails 4 is pretty outdated at the moment already)
+* Add dependabot, github actions to CI/CD, mandatody CI for pull requests (if possible)
+* Make and publish a rodmap based on issues, TODO and common sense
+* Work on the TODO list
+* Documentation, user guides
+
+Some features we will like to implement in the future:
  * Juvia works fine but we need more tests to prevent things from breaking in the future.
  * Document the `list_topics` API call.
  * A Quote/Reply button for each comment.
