@@ -26,19 +26,19 @@ class Ability
     # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
 
     # Non-logged in users cannot do anything.
-    return if !user
+    return unless user
 
-    crud = [:create, :read, :update, :destroy]
+    crud = %i[create read update destroy]
 
     if user.admin?
       can crud, :all
       can :list, :all
       can :make_admin, User
     else
-      can [:read, :update, :destroy], User, :id => user.id
-      can crud, Site, :user_id => user.id
-      can crud, Topic, :site => { :user_id => user.id }
-      can crud, Comment, :topic => { :site => { :user_id => user.id } }
+      can %i[read update destroy], User, id: user.id
+      can crud, Site, user_id: user.id
+      can crud, Topic, site: { user_id: user.id }
+      can crud, Comment, topic: { site: { user_id: user.id } }
     end
   end
 end

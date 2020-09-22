@@ -1,27 +1,20 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.2.11'
+gem 'rails', '~> 6.0.3.3' # latest release
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-gem 'schema_plus'
-gem 'default_value_for'
 gem 'bluecloth'
 gem 'devise'
 gem 'jquery-rails'
 gem 'will_paginate'
-gem 'cancan'
+gem 'cancancan'
 gem 'rack'
-gem 'nokogiri', "~> 1.8.5"
+gem 'nokogiri'
 gem 'css3buttons'
+gem 'rake'
 
 gem 'sass-rails'
 gem 'coffee-rails'
 gem 'uglifier'
-
-# compatibility gems
-gem 'protected_attributes'
 
 # Deploy with Capistrano
 # gem 'capistrano'
@@ -47,15 +40,15 @@ end
 group :development, :test do
   gem 'pry'
   gem 'rspec'
-  gem 'rspec-rails', '~> 3.0.0'
-  gem 'rspec-activemodel-mocks' # for compatibility
-  gem 'capybara', '~> 2.2.0', :require => false
-  gem 'capybara-webkit', :require => false
-  gem 'capybara-screenshot'
-  gem 'database_cleaner', :require => false
-  gem 'factory_girl_rails', :require => false
-  gem 'launchy', :require => false
-  gem 'spork', '0.9.0.rc9', :require => false
+  gem 'rspec-rails'
+  #gem 'rspec-activemodel-mocks' # for compatibility
+  #gem 'capybara', '~> 2.2.0', :require => false
+  #gem 'selenium-webdriver', :require => false
+  #gem 'capybara-screenshot'
+  #gem 'database_cleaner', :require => false
+  #gem 'factory_girl_rails', :require => false
+  #gem 'launchy', :require => false
+  #gem 'spork', '0.9.0.rc9', :require => false
 end
 
 group :mysql do

@@ -1,17 +1,17 @@
 class Admin::CommentsController < ApplicationController
   layout 'admin'
 
-  skip_authorization_check :only => [:preview, :new_import, :import]
-  before_filter :set_navigation_ids
-  before_filter :save_return_to_url, :only => [:new, :edit, :approve, :destroy]
-  before_filter :require_admin!, :only => [:new_import, :import]
+  skip_authorization_check only: %i[preview new_import import]
+  before_action :set_navigation_ids
+  before_action :save_return_to_url, only: %i[new edit approve destroy]
+  before_action :require_admin!, only: %i[new_import import]
 
   def index
     authorize! :read, Comment
-    @all_comments = Comment.
-      accessible_by(current_ability).
-      order('created_at DESC').
-      includes(:topic)
+    @all_comments = Comment
+                    .accessible_by(current_ability)
+                    .order('created_at DESC')
+                    .includes(:topic)
     @comments = @all_comments.page(params[:page])
   end
 
@@ -23,15 +23,15 @@ class Admin::CommentsController < ApplicationController
   def update
     @comment = Comment.find(params[:id])
     authorize! :update, @comment
-    if @comment.update_attributes(params[:comment], :as => current_user.role)
+    if @comment.update_attributes(params[:comment], as: current_user.role)
       redirect_back(admin_comments_path)
     else
-      render :action => 'edit'
+      render action: 'edit'
     end
   end
 
   def preview
-    render :text => ApplicationHelper.render_markdown(params[:content])
+    render text: ApplicationHelper.render_markdown(params[:content])
   end
 
   def approve
@@ -39,9 +39,7 @@ class Admin::CommentsController < ApplicationController
     authorize! :update, @comment
     @comment.transaction do
       @comment.moderation_status = :ok
-      if @comment.site.moderation_method == :akismet
-        @comment.report_ham
-      end
+      @comment.report_ham if @comment.site.moderation_method == :akismet
       @comment.save!
     end
     redirect_back(admin_comments_path)
@@ -51,9 +49,7 @@ class Admin::CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     authorize! :destroy, @comment
     @comment.transaction do
-      if params[:spam] && @comment.site.moderation_method == :akismet
-        @comment.report_spam
-      end
+      @comment.report_spam if params[:spam] && @comment.site.moderation_method == :akismet
       @comment.destroy
     end
     redirect_back(admin_comments_path)
@@ -61,12 +57,12 @@ class Admin::CommentsController < ApplicationController
 
   def new_import
     @sites = Site.all
-    @migrators = Juvia::Migrators::PLATFORMS.map{ |p| p.titleize }
+    @migrators = Juvia::Migrators::PLATFORMS.map { |p| p.titleize }
   end
 
   def import
-    options = {:table_prefix => params[:table_prefix],
-      :wp_multisite_id => params[:wp_multisite_id]}
+    options = { table_prefix: params[:table_prefix],
+                wp_multisite_id: params[:wp_multisite_id] }
     if Juvia::Migrators.process(
       params[:site_id],
       params[:import_type],
@@ -76,13 +72,14 @@ class Admin::CommentsController < ApplicationController
       params[:database_host],
       options
     )
-      flash[:notice] = "Imported!"
+      flash[:notice] = 'Imported!'
       redirect_to(admin_comments_path)
     end
   end
 
-private
+  private
+
   def set_navigation_ids
-    @navigation_ids = [:dashboard, :comments]
+    @navigation_ids = %i[dashboard comments]
   end
 end

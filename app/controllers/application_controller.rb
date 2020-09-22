@@ -1,31 +1,29 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  
-  before_filter :authenticate_user!
-  check_authorization :if => :inside_admin_area?
 
-  rescue_from CanCan::AccessDenied do |exception|
-    render :template => 'shared/forbidden'
+  before_action :authenticate_user!
+  check_authorization if: :inside_admin_area?
+
+  rescue_from CanCan::AccessDenied do |_exception|
+    render template: 'shared/forbidden'
   end
 
-private
+  private
+
   ### before filters
-  
+
   def require_admin!
-    if !current_user.admin?
-      render :template => 'shared/admin_required'
-    end
+    render template: 'shared/admin_required' unless current_user.admin?
   end
-  
+
   def save_return_to_url
-    if (path = params[:return_to]) && path =~ /\A\//
+    if (path = params[:return_to]) && path =~ %r{\A/}
       session[:return_to] = path
     end
   end
-  
-  
+
   ### helpers
-  
+
   def redirect_back(default_url = nil)
     redirect_to(session.delete(:return_to) || :back)
   rescue RedirectBackError

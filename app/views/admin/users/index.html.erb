@@ -7,13 +7,13 @@
 
   <div class="users resources list">
   <% @users.each do |user| %>
-    <%= div_for(user, :class => 'item') do %>
+    <div class="item user" id="<%= user.id %>">
       <div class="avatar"><img src="//www.gravatar.com/avatar/<%= user.email_md5 %>?s=22" width="22" height="22"></div>
       <div class="email"><%= link_to user.email, [:admin, user] %></div>
       <% if user.admin? %>
         <div class="admin">admin</div>
       <% end %>
-    <% end %>
+    </div>
   <% end %>
   </div>
 

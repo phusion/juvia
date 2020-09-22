@@ -2,7 +2,7 @@ class Admin::TopicsController < ApplicationController
   layout 'admin'
 
   load_and_authorize_resource
-  before_filter :set_navigation_ids
+  before_action :set_navigation_ids
 
   def show
     show! do
@@ -15,27 +15,28 @@ class Admin::TopicsController < ApplicationController
   end
 
   def index
-    raise "Not allowed"
+    raise 'Not allowed'
   end
 
   def new
-    raise "Not allowed"
+    raise 'Not allowed'
   end
 
   def create
-    raise "Not allowed"
+    raise 'Not allowed'
   end
 
   def edit
-    raise "Not allowed"
+    raise 'Not allowed'
   end
 
   def update
-    raise "Not allowed"
+    raise 'Not allowed'
   end
 
-private
+  private
+
   def set_navigation_ids
-    @navigation_ids = [:dashboard, :sites]
+    @navigation_ids = %i[dashboard sites]
   end
 end

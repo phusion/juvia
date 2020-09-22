@@ -1,8 +1,8 @@
 class Admin::SitesController < ApplicationController
   layout 'admin'
-  
-  before_filter :set_navigation_ids
-  
+
+  before_action :set_navigation_ids
+
   # GET /admin/sites
   # GET /admin/sites.json
   def index
@@ -11,7 +11,7 @@ class Admin::SitesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render :json => @sites }
+      format.json { render json: @sites }
     end
   end
 
@@ -23,7 +23,7 @@ class Admin::SitesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render :json => @site }
+      format.json { render json: @site }
     end
   end
 
@@ -35,7 +35,7 @@ class Admin::SitesController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render :json => @site }
+      format.json { render json: @site }
     end
   end
 
@@ -59,16 +59,16 @@ class Admin::SitesController < ApplicationController
   # POST /admin/sites.json
   def create
     authorize! :create, Site
-    @site = Site.new(params[:site], :as => current_user.role)
+    @site = Site.new(params[:site], as: current_user.role)
     @site.user = current_user
 
     respond_to do |format|
       if @site.save
         format.html { redirect_to [:admin, @site] }
-        format.json { render :json => @site, :status => :created, :location => @site }
+        format.json { render json: @site, status: :created, location: @site }
       else
-        format.html { render :action => "new" }
-        format.json { render :json => @site.errors, :status => :unprocessable_entity }
+        format.html { render action: 'new' }
+        format.json { render json: @site.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -80,12 +80,12 @@ class Admin::SitesController < ApplicationController
     authorize! :update, @site
 
     respond_to do |format|
-      if @site.update_attributes(params[:site], :as => current_user.role)
-        format.html { redirect_to [:admin, @site], :notice => 'Site was successfully updated.' }
+      if @site.update_attributes(params[:site], as: current_user.role)
+        format.html { redirect_to [:admin, @site], notice: 'Site was successfully updated.' }
         format.json { head :ok }
       else
-        format.html { render :action => "edit" }
-        format.json { render :json => @site.errors, :status => :unprocessable_entity }
+        format.html { render action: 'edit' }
+        format.json { render json: @site.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -103,8 +103,9 @@ class Admin::SitesController < ApplicationController
     end
   end
 
-private
+  private
+
   def set_navigation_ids
-    @navigation_ids = [:dashboard, :sites]
+    @navigation_ids = %i[dashboard sites]
   end
 end

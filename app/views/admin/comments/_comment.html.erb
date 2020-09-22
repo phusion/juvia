@@ -1,4 +1,4 @@
-<%= div_for(comment, 'data-comment-id' => comment.id, :class => "moderation_status_#{comment.moderation_status}") do %>
+<div class="<%= "comment moderation_status_#{comment.moderation_status}" %>" id="<%= comment.id %>" data-comment-id="<%= comment.id %>">
   <div class="arrow"></div>
   <div class="shell">
     <div class="metadata">
@@ -51,4 +51,4 @@
       <% end %>
     </div>
   </div>
-<% end %>
+</div>
