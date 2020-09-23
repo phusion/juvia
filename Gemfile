@@ -15,6 +15,7 @@ gem 'cancan'
 gem 'rack'
 gem 'nokogiri', "~> 1.8.5"
 gem 'css3buttons'
+gem 'rake', '< 11.0'
 
 gem 'sass-rails'
 gem 'coffee-rails'
@@ -50,7 +51,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'rspec-activemodel-mocks' # for compatibility
   gem 'capybara', '~> 2.2.0', :require => false
-  gem 'capybara-webkit', :require => false
+  gem 'selenium-webdriver', :require => false
   gem 'capybara-screenshot'
   gem 'database_cleaner', :require => false
   gem 'factory_girl_rails', :require => false
@@ -65,7 +66,7 @@ end
 
 group :postgres do
   # adapter: postgresql
-  gem 'pg', :require => false
+  gem 'pg', '~> 0.15', :require => false
 end
 
 group :sqlite do

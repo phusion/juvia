@@ -51,6 +51,7 @@ GEM
     capybara-screenshot (1.0.22)
       capybara (>= 1.0, < 4)
       launchy
+    childprocess (3.0.0)
     coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -143,7 +144,7 @@ GEM
       nenv (~> 0.1)
       shellany (~> 0.0)
     orm_adapter (0.5.0)
-    pg (1.1.4)
+    pg (0.20.0)
     protected_attributes (1.1.4)
       activemodel (>= 4.0.1, < 5.0)
     pry (0.12.2)
@@ -177,7 +178,7 @@ GEM
       activesupport (= 4.2.11.1)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (12.3.2)
+    rake (10.5.0)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
@@ -209,6 +210,7 @@ GEM
       rspec-support (~> 3.0.0)
     rspec-support (3.0.4)
     ruby_dep (1.5.0)
+    rubyzip (2.3.0)
     sass (3.7.3)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -285,6 +287,9 @@ GEM
     schema_plus_views (0.3.1)
       activerecord (~> 4.2)
       schema_plus_core (~> 1.0)
+    selenium-webdriver (3.142.7)
+      childprocess (>= 0.5, < 4.0)
+      rubyzip (>= 1.2.2)
     shellany (0.0.1)
     spork (0.9.0.rc9)
     spring (2.0.2)
@@ -335,16 +340,18 @@ DEPENDENCIES
   launchy
   mysql2
   nokogiri (~> 1.8.5)
-  pg
+  pg (~> 0.15)
   protected_attributes
   pry
   rack
   rails (~> 4.2.11)
+  rake (< 11.0)
   rspec
   rspec-activemodel-mocks
   rspec-rails (~> 3.0.0)
   sass-rails
   schema_plus
+  selenium-webdriver
   spork (= 0.9.0.rc9)
   spring
   sqlite3
@@ -353,4 +360,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   1.16.1
+   1.17.3
