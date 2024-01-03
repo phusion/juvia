@@ -1,17 +1,17 @@
 class Admin::DashboardController < ApplicationController
   layout 'admin'
 
-  skip_before_filter :authenticate_user!, :only => [:index, :new_admin, :create_admin]
+  skip_before_action :authenticate_user!, only: %i[index new_admin create_admin]
   skip_authorization_check
-  before_filter :require_admin!, :except => [:index, :new_admin, :create_admin]
-  before_filter :require_no_admins_defined, :only => [:new_admin, :create_admin]
-  before_filter :set_navigation_ids
+  before_action :require_admin!, except: %i[index new_admin create_admin]
+  before_action :require_no_admins_defined, only: %i[new_admin create_admin]
+  before_action :set_navigation_ids
 
   def index
-    if User.where(:admin => true).count == 0
-      redirect_to :action => 'new_admin'
+    if User.where(admin: true).count == 0
+      redirect_to action: 'new_admin'
     elsif current_user && current_user.accessible_sites.count == 0
-      redirect_to :action => 'new_site'
+      redirect_to action: 'new_site'
     else
       redirect_to admin_sites_path
     end
@@ -28,7 +28,7 @@ class Admin::DashboardController < ApplicationController
       sign_in(@user)
       redirect_to dashboard_path
     else
-      render :action => 'new_admin'
+      render action: 'new_admin'
     end
   end
 
@@ -42,15 +42,14 @@ class Admin::DashboardController < ApplicationController
     if @site.save
       redirect_to created_admin_site_path(@site)
     else
-      render :action => 'new_site'
+      render action: 'new_site'
     end
   end
 
-private
+  private
+
   def require_no_admins_defined
-    if User.where(:admin => true).count > 0
-      render :template => 'shared/forbidden'
-    end
+    render template: 'shared/forbidden' if User.where(admin: true).count > 0
   end
 
   def set_navigation_ids

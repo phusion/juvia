@@ -1,8 +1,6 @@
 class Topic < ActiveRecord::Base
-  attr_accessible :key, :title, :url
-
-  belongs_to :site, :inverse_of => :topics
-  has_many :comments, -> { order("created_at DESC") }, :inverse_of => :topic
+  belongs_to :site, inverse_of: :topics
+  has_many :comments, -> { order('created_at DESC') }, inverse_of: :topic
 
   validates_presence_of :key
   validates_presence_of :title
@@ -15,11 +13,7 @@ class Topic < ActiveRecord::Base
       topic
     else
       site = Site.find_by_key(site_key)
-      if site
-        Topic.new(:key => topic_key, :site => site)
-      else
-        nil
-      end
+      Topic.new(key: topic_key, site: site) if site
     end
   end
 
@@ -29,32 +23,28 @@ class Topic < ActiveRecord::Base
       topic
     else
       site = Site.find_by_key(site_key)
-      if site
-        site.topics.create!(
-          :key => topic_key,
-          :title => topic_title,
-          :url => topic_url)
-      else
-        nil
-      end
+      site&.topics&.create!(
+        key: topic_key,
+        title: topic_title,
+        url: topic_url
+      )
     end
   end
 
   def self.alt_key(topic_key)
-    topic_key.match(/\/$/) ? topic_key.chop : "#{topic_key}/"
+    topic_key.match(%r{/$}) ? topic_key.chop : "#{topic_key}/"
   end
 
-private
   def self.find_by_site_key_and_topic_key(site_key, topic_key)
     Topic.
       where('sites.key = ? AND topics.key = ?', site_key, topic_key).
       joins(:site).
-      select('topics.*').
-      first ||
-    Topic.
-      where('sites.key = ? AND topics.key = ?', site_key, alt_key(topic_key)).
-      joins(:site).
-      select('topics.*').
-      first
+      select('topics.*')
+         .first ||
+      Topic.
+        where('sites.key = ? AND topics.key = ?', site_key, alt_key(topic_key)).
+        joins(:site).
+        select('topics.*').
+        first
   end
 end

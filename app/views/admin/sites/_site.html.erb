@@ -1,4 +1,4 @@
-<%= div_for(site, :class => 'item container') do %>
+<div class="item container site" id="<%= site.id %>">
   <div class="row">
     <div class="col_9 identity_column">
       <%= small_identity_tag(:site, site.name, [:admin, site]) %>
@@ -8,4 +8,4 @@
       <%= site.comments.count %> comments
     </div>
   </div>
-<% end %>
+</div>

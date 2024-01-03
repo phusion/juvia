@@ -5,24 +5,24 @@ require 'zlib'
 
 class ApiController < ApplicationController
   layout nil
-  
-  skip_before_filter :verify_authenticity_token
-  skip_before_filter :authenticate_user!
-  before_filter :handle_cors
-  before_filter :populate_variables
+
+  skip_before_action :verify_authenticity_token
+  skip_before_action :authenticate_user!
+  before_action :handle_cors
+  before_action :populate_variables
 
   class MissingParameter < StandardError
   end
   class UnacceptableFormat < StandardError
   end
 
-  rescue_from MissingParameter do |exception|
-    render :partial => 'missing_parameter'
+  rescue_from MissingParameter do |_exception|
+    render partial: 'missing_parameter'
   end
   rescue_from UnacceptableFormat do |exception|
     # Do nothing, response already sent.
   end
-  
+
   def show_topic
     @topic_title = params[:topic_title]
     @topic_url   = params[:topic_url]
@@ -31,87 +31,88 @@ class ApiController < ApplicationController
     # Must come before error checking because the error
     # templates depend on @include_base/@include_css.
 
-    if params.has_key?('comment_order')
-      @comment_order = params[:comment_order]
-    else
-      @comment_order = 'latest-first'
-    end
+    @comment_order = if params.has_key?('comment_order')
+                       params[:comment_order]
+                     else
+                       'latest-first'
+                     end
 
     prepare!(
-      [:site_key, :topic_key, :container, :topic_title, :topic_url],
-      [:html, :js]
+      %i[site_key topic_key container topic_title topic_url],
+      %i[html js]
     )
 
     if @topic = Topic.lookup(@site_key, @topic_key)
       render
     else
-      render :partial => 'site_not_found'
+      render partial: 'site_not_found'
     end
   end
 
   def add_comment
     prepare!(
-      [:site_key, :topic_key, :topic_title, :topic_url, :content],
-      [:html, :js, :json]
+      %i[site_key topic_key topic_title topic_url content],
+      %i[html js json]
     )
     begin
       @content = decompress(params[:content])
 
       if @content.blank?
-        render :partial => 'content_may_not_be_blank'
+        render partial: 'content_may_not_be_blank'
         return
       end
-      
+
       Topic.transaction do
         @topic = Topic.lookup_or_create(
           @site_key,
           @topic_key,
           params[:topic_title],
-          params[:topic_url])
+          params[:topic_url]
+        )
         if @topic
           @comment = @topic.comments.create!(
-            :author_name => params[:author_name],
-            :author_email => params[:author_email],
-            :author_ip => request.env['REMOTE_ADDR'],
-            :author_user_agent => request.env['HTTP_USER_AGENT'],
-            :referer => request.env['HTTP_REFERER'],
-            :content => @content)
+            author_name: params[:author_name],
+            author_email: params[:author_email],
+            author_ip: request.env['REMOTE_ADDR'],
+            author_user_agent: request.env['HTTP_USER_AGENT'],
+            referer: request.env['HTTP_REFERER'],
+            content: @content
+          )
           render
         else
-          render :partial => 'site_not_found'
+          render partial: 'site_not_found'
         end
       end
-    rescue => e
+    rescue StandardError => e
       log_exception(e)
-      render :partial => 'internal_error'
+      render partial: 'internal_error'
     end
   end
 
   def preview_comment
-    prepare!([], [:html, :js, :json])
+    prepare!([], %i[html js json])
     @content = decompress(params[:content])
   end
 
   def list_topics
-    prepare!([:site_key], [:json, :jsonp])
+    prepare!([:site_key], %i[json jsonp])
     @site = Site.find_by_key(@site_key)
     if @site
       render
     else
-      render :partial => 'site_not_found'
+      render partial: 'site_not_found'
     end
   end
 
-private
+  private
+
   def handle_cors
-    headers["Access-Control-Allow-Origin"] = "*"
-    headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
-    headers["Access-Control-Max-Age"] = (60 * 60 * 24).to_s
-    if request.method == "OPTIONS"
-      render :text => '', :content_type => 'text/plain'
-    end
+    headers['Access-Control-Allow-Origin'] = '*'
+    headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'
+    headers['Access-Control-Max-Age'] = (60 * 60 * 24).to_s
+    render text: '', content_type: 'text/plain' if request.method == 'OPTIONS'
   end
-  
+
   def populate_variables
     @container    = params[:container]
     @site_key     = params[:site_key]
@@ -144,7 +145,7 @@ private
     end
     raise UnacceptableFormat if performed?
   end
-  
+
   def get_boolean_param(name, default = false)
     if params[name].present?
       value = params[name].downcase
@@ -153,9 +154,9 @@ private
       default
     end
   end
-  
+
   def decompress(str)
-    result = Zlib::Inflate.inflate(str.unpack('m').first)
+    result = Zlib::Inflate.inflate(str.unpack1('m'))
     result.force_encoding('utf-8') if result.respond_to?(:force_encoding)
     result
   end
