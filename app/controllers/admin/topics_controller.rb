@@ -5,13 +5,16 @@ class Admin::TopicsController < ApplicationController
   before_action :set_navigation_ids
 
   def show
-    show! do
-      @comments = @topic.comments.page(params[:page])
-    end
+    @topic = Topic.find(params[:id])
+    authorize! :read, @topic
+    @comments = @topic.comments.page(params[:page])
   end
 
   def destroy
-    destroy! { admin_site_path(@topic.site) }
+    @topic = Topic.find(params[:id])
+    authorize! :destroy, @topic
+    @topic.destroy
+    redirect_to admin_site_path(@topic.site)
   end
 
   def index
